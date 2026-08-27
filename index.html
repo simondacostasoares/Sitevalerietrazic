@@ -133,7 +133,9 @@
                width="1080" height="1080">
         </div>
 
-        <div class="duo__texte">
+        <div class="duo__texte trait-feuille">
+          <img class="trait-feuille__feuille" src="images/feuille-trait.png" alt="" aria-hidden="true" width="160" height="138">
+
           <h1 class="lecteur-ecran-seulement">Valérie Trazic, professeure de yoga et yogathérapeute à La Ciotat</h1>
 
           <p class="hero__citation">
@@ -158,7 +160,9 @@
     <section>
       <div class="conteneur duo duo--inverse">
 
-        <div class="duo__texte">
+        <div class="duo__texte trait-feuille">
+          <img class="trait-feuille__feuille" src="images/feuille-trait.png" alt="" aria-hidden="true" width="160" height="138" loading="lazy">
+
           <h2 class="duo__titre">Yogathérapie</h2>
           <p class="duo__accroche">Comment acquérir des outils afin de devenir acteur dans son parcours de soin</p>
           <a class="bouton" href="yogatherapie.html">En savoir +</a>
@@ -175,35 +179,53 @@
 
 
     <!-- ====================================================================
-         3. LES COURS DE YOGA — trois cartes
+         3. LES COURS DE YOGA — bandeau gris, trois cartes blanches
+
+         Les deux <svg> sont les vagues de transition. Elles portent la
+         couleur de la section VOISINE (blanc au-dessus, crème en dessous) et
+         viennent mordre sur le gris : la jointure est donc toujours parfaite.
          ==================================================================== -->
     <section class="cours">
+
+      <svg class="cours__vague cours__vague--haut" viewBox="0 100 1920 200" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M1920 300v-4.067c-455.162 0-690.876-51.203-1082.65-129.288C490.044 97.423 0 100.013 0 100.013V300h1920z"/>
+      </svg>
+
       <div class="conteneur">
 
+        <img class="cours__lotus" src="images/lotus.svg" alt="" aria-hidden="true" width="46" height="33" loading="lazy">
+
         <h2 class="cours__titre">Les cours de Yoga</h2>
+        <span class="cours__trait" aria-hidden="true"></span>
 
         <div class="cours__grille">
 
           <article class="carte">
-            <img class="carte__image" src="images/cours.png"
-                 alt="Illustration d'un atelier de yoga avec des enfants"
-                 width="823" height="1080" loading="lazy">
+            <div class="carte__cadre">
+              <img class="carte__image" src="images/cours.png"
+                   alt="Illustration d'un atelier de yoga avec des enfants"
+                   width="823" height="1080" loading="lazy">
+            </div>
             <h3 class="carte__titre">Cours enfants</h3>
             <a class="bouton" href="cours-enfants.html">En savoir +</a>
           </article>
 
           <article class="carte">
-            <img class="carte__image" src="images/cours-2.png"
-                 alt="Illustration d'un cours de yoga pour adultes"
-                 width="884" height="1080" loading="lazy">
+            <div class="carte__cadre">
+              <img class="carte__image" src="images/cours-2.png"
+                   alt="Illustration d'un cours de yoga pour adultes"
+                   width="884" height="1080" loading="lazy">
+            </div>
             <h3 class="carte__titre">Cours adultes</h3>
             <a class="bouton" href="cours-adultes.html">En savoir +</a>
           </article>
 
           <article class="carte">
-            <img class="carte__image" src="images/cours-3.png"
-                 alt="Illustration d'un cours de yoga partagé entre un parent et son enfant"
-                 width="814" height="1080" loading="lazy">
+            <div class="carte__cadre">
+              <img class="carte__image" src="images/cours-3.png"
+                   alt="Illustration d'un cours de yoga partagé entre un parent et son enfant"
+                   width="814" height="1080" loading="lazy">
+            </div>
             <h3 class="carte__titre">Cours parents / enfants</h3>
             <a class="bouton" href="cours-parents-enfants.html">En savoir +</a>
           </article>
@@ -211,54 +233,83 @@
         </div>
 
       </div>
+
+      <svg class="cours__vague cours__vague--bas" viewBox="0 102.446 1920 197.554" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+        <path d="M0 102.446V300h1920S1050.116 102.446 0 102.446z"/>
+      </svg>
+
     </section>
 
 
     <!-- ====================================================================
-         4. YOGA ADAPTÉ SANTÉ — illustration à gauche, texte à droite
+         4 et 5 — même fond crème, deux sections
          ==================================================================== -->
-    <section>
-      <div class="conteneur duo">
+    <div class="zone-creme">
 
-        <div class="duo__illustration">
-          <img src="images/yoga-adapte.png"
-               alt="Illustration d'une séance de yoga adapté, en douceur"
-               width="1292" height="1046" loading="lazy">
-        </div>
+      <!-- 4. YOGA ADAPTÉ SANTÉ — illustration à gauche, texte à droite -->
+      <section>
+        <div class="conteneur duo">
 
-        <div class="duo__texte">
-          <h2 class="duo__titre">Yoga Adapté Santé</h2>
-          <p class="duo__accroche">Le mouvement est adapté aux possibilités et aux besoins de chacun pour bouger avec plaisir, en sécurité.</p>
-          <a class="bouton" href="yoga-adapte-sante.html">Découvrir</a>
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- ====================================================================
-         5. MON PARCOURS — panneau crème et portrait rond
-         ==================================================================== -->
-    <section class="parcours">
-      <div class="conteneur parcours__grille">
-
-        <div class="parcours__contenu">
-          <h2 class="parcours__titre">Mon parcours</h2>
-
-          <div class="parcours__texte">
-            <p>Le yoga fait partie intégrante de ma vie depuis longtemps. C'est devenu au fil des années une manière de vivre, de respirer, de regarder…</p>
-            <p>Un art de vivre que je cultive et dont je ne cesse de découvrir la richesse, l'étendue, la pertinence, que j'ai à cœur de faire découvrir.</p>
+          <div class="duo__illustration">
+            <img src="images/yoga-adapte.png"
+                 alt="Illustration d'une séance de yoga adapté au pied d'un arbre"
+                 width="1292" height="1046" loading="lazy">
           </div>
 
-          <a class="bouton" href="a-propos.html">En savoir +</a>
+          <div class="duo__texte duo__texte--centre">
+            <h2 class="duo__titre">Yoga Adapté Santé</h2>
+            <p class="duo__accroche">Le mouvement est adapté aux possibilités et aux besoins de chacun pour bouger avec plaisir, en sécurité.</p>
+            <a class="bouton" href="yoga-adapte-sante.html">Découvrir</a>
+          </div>
+
         </div>
+      </section>
 
-        <img class="parcours__portrait" src="images/cours.png"
-             alt="Illustration de Valérie Trazic animant un atelier de yoga"
-             width="823" height="1080" loading="lazy">
 
-      </div>
-    </section>
+      <!-- 5. MON PARCOURS — bulle blanche à gauche, portrait à droite -->
+      <section class="parcours">
+        <div class="conteneur parcours__grille">
+
+          <div class="parcours__bulle">
+
+            <!-- La forme blanche est posée DERRIÈRE le texte plutôt que de
+                 découper le bloc : découpé, le bloc rognerait les mots qui
+                 s'approchent des bords arrondis. -->
+            <svg class="parcours__forme" viewBox="31.499 20 137.001 160.001" preserveAspectRatio="none" aria-hidden="true" focusable="false">
+              <path d="M166.344 54.704c-1.805-4.794-4.774-9.353-9.025-13.403-11.189-10.658-30.812-17.352-48.765-20.236-47.41-7.615-75.151 27.098-76.986 56.126-.874 13.824 6.889 27.31 7.497 41.175.652 14.878-5.574 29.557-2.586 44.536 1.666 8.348 8.576 13.214 20.06 15.16 34.353 5.821 80.34-1.147 97.585-25.256 4.83-6.752 6.951-14.461 7.698-21.959.881-8.85-1.181-17.654-1.463-26.49-.268-8.412 2.606-16.449 5.664-24.509 3.091-8.151 3.392-16.986.321-25.144z"/>
+            </svg>
+
+            <div class="parcours__contenu">
+              <img class="parcours__feuille" src="images/feuille-trait.png" alt="" aria-hidden="true" width="160" height="138" loading="lazy">
+
+              <h2 class="parcours__titre">Mon parcours</h2>
+
+              <div class="parcours__texte">
+                <p>Le yoga fait partie intégrante de ma vie depuis longtemps. C'est devenu au fil des années une manière de vivre, de respirer, de regarder…</p>
+                <p>Un art de vivre que je cultive et dont je ne cesse de découvrir la richesse, l'étendue, la pertinence, que j'ai à cœur de faire découvrir.</p>
+              </div>
+
+              <a class="bouton" href="a-propos.html">En savoir +</a>
+            </div>
+
+          </div>
+
+          <div class="parcours__profil">
+            <div class="parcours__rond">
+              <img src="images/tete-valerie.png" alt="Portrait illustré de Valérie Trazic" width="202" height="281" loading="lazy">
+            </div>
+            <p class="parcours__nom">Valérie Trazic</p>
+            <span class="parcours__filet" aria-hidden="true"></span>
+            <p class="parcours__role">
+              Professeure de Yoga<br>
+              Yogathérapeute
+            </p>
+          </div>
+
+        </div>
+      </section>
+
+    </div>
 
   </main>
 

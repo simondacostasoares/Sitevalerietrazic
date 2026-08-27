@@ -5,11 +5,14 @@
    le bandeau contact et le pied de page.
 
    La page enchaîne cinq blocs, dans l'ordre du site d'origine :
-     1. Hero            — illustration à gauche, texte à droite
-     2. Yogathérapie    — texte à gauche, illustration à droite
-     3. Les cours       — trois cartes
-     4. Yoga Adapté Santé — illustration à gauche, texte à droite
-     5. Mon parcours    — panneau crème, portrait rond
+     1. Hero              — illustration à gauche, texte à droite
+     2. Yogathérapie      — texte à gauche, illustration à droite
+     3. Les cours         — bandeau gris, trois cartes blanches
+     4. Yoga Adapté Santé — bandeau crème
+     5. Mon parcours      — bulle blanche + portrait
+
+   Les blocs 4 et 5 partagent le même fond crème : ils sont enveloppés
+   ensemble dans .zone-creme.
    ========================================================================== */
 
 
@@ -25,8 +28,8 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: var(--espace-l);
-  padding-block: var(--espace-xl);
+  gap: var(--espace-m);
+  padding-block: var(--espace-m);
 }
 
 /* Par défaut l'illustration est à gauche. « --inverse » la renvoie à droite
@@ -54,9 +57,46 @@
   line-height: 1.67;
 }
 
+/* Yoga Adapté Santé a son texte centré, contrairement aux deux autres. */
+.duo__texte--centre {
+  text-align: center;
+}
+
+
+/* --- Le trait jaune et sa feuille ----------------------------------------
+   Sur le site d'origine, les blocs de texte du hero et de la yogathérapie
+   sont accompagnés d'un trait vertical jaune surmonté de deux feuilles.
+
+   Le trait est dessiné en CSS plutôt qu'importé en image : il épouse ainsi
+   la hauteur du texte, quelle que soit la longueur de celui-ci et quelle que
+   soit la largeur de l'écran. Seules les feuilles sont un fichier. -------- */
+
+.trait-feuille {
+  position: relative;
+  padding-left: 3rem;
+}
+
+.trait-feuille__feuille {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 40px;
+}
+
+/* Le trait part sous les feuilles et descend jusqu'au bas du texte. */
+.trait-feuille::before {
+  content: "";
+  position: absolute;
+  left: 18px;
+  top: 34px;
+  bottom: 0;
+  width: 2px;
+  background-color: var(--jaune);
+}
+
 
 /* --- Les formes organiques -------------------------------------------------
-   Sur le site d'origine, les deux grandes illustrations ne sont pas des
+   Sur le site d'origine, les grandes illustrations ne sont pas des
    rectangles : elles sont découpées dans une forme organique.
 
    La découpe se fait avec « clip-path », qui pointe vers un tracé défini en
@@ -93,35 +133,84 @@
 
 /* --- Le hero ------------------------------------------------------------ */
 
-/* Pas de retrait en haut : l'illustration doit toucher le filet de l'en-tête,
-   comme sur le site d'origine. */
 .hero {
-  padding-top: var(--espace-m);
+  padding-top: var(--espace-s);
 }
 
-/* La citation d'ouverture. Ce n'est pas un titre : c'est une phrase posée en
-   exergue, dans la même taille que le reste. Le retrait et le filet jaune
-   suffisent à la distinguer. */
 .hero__citation {
-  margin: 0 0 var(--espace-m);
-  padding-left: var(--espace-s);
-  border-left: 2px solid var(--jaune);
-  font-style: normal;
+  margin-bottom: var(--espace-m);
 }
 
 
 /* ==========================================================================
-   2. LES COURS — trois cartes
+   2. LES COURS — bandeau gris et trois cartes blanches
    ========================================================================== */
 
+/* « position: relative » sert d'ancrage aux deux vagues, et « overflow:
+   hidden » les empêche de dépasser sur les côtés.
+   Les retraits verticaux sont plus grands que la hauteur des vagues (119 px
+   en haut, 50 px en bas) : sans ça, le contenu passerait dessous. */
 .cours {
-  padding-block: var(--espace-xl);
+  position: relative;
+  overflow: hidden;
+  padding-block: calc(119px + var(--espace-m)) calc(50px + var(--espace-m));
+  background-color: var(--gris-bloc);
   text-align: center;
 }
 
+/* --- Les vagues de transition -------------------------------------------
+   Le passage d'une section à l'autre ne se fait pas sur une ligne droite
+   mais sur une courbe très étirée.
+
+   Le principe : une forme de la couleur de la section VOISINE vient mordre
+   sur celle-ci. En haut, une forme blanche mange le gris ; en bas, une forme
+   crème fait la même chose. C'est donc la section grise qui porte les deux,
+   et la jointure est forcément parfaite — il n'y a jamais deux bords à faire
+   coïncider.
+
+   « preserveAspectRatio="none" » autorise la forme à s'étirer en largeur
+   sans grandir en hauteur : la courbe garde la même épaisseur sur un
+   téléphone et sur un grand écran. --- */
+
+.cours__vague {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: block;
+}
+
+.cours__vague--haut {
+  top: 0;
+  height: 119px;
+  fill: var(--fond);
+  /* Le tracé d'origine est orienté vers le bas ; on le retourne. */
+  transform: scaleY(-1);
+}
+
+.cours__vague--bas {
+  bottom: 0;
+  height: 50px;
+  fill: var(--creme);
+  transform: scaleX(-1);
+}
+
+.cours__lotus {
+  width: 46px;
+  margin: 0 auto var(--espace-xs);
+}
+
 .cours__titre {
-  margin-bottom: var(--espace-l);
   font-size: clamp(1.5rem, 3vw, 28px);
+}
+
+/* Le petit trait sous le titre. Il est court et centré : c'est une ponctuation,
+   pas une séparation. */
+.cours__trait {
+  display: block;
+  width: 130px;
+  height: 1px;
+  margin: var(--espace-xs) auto var(--espace-l);
+  background-color: var(--trait);
 }
 
 /* « auto-fit » + « minmax » : les cartes se répartissent d'elles-mêmes sur
@@ -133,21 +222,38 @@
   gap: var(--espace-m);
 }
 
+/* La carte est blanche et son retrait intérieur crée la marge claire qu'on
+   voit autour de l'illustration. */
 .carte {
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 14px 14px var(--espace-m);
+  background-color: var(--fond);
+  border-radius: 8px;
+  box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
+}
+
+/* Le cadre qui recadre l'illustration. C'est LUI qui masque le débordement :
+   au survol, l'image grandit à l'intérieur sans que le cadre bouge. */
+.carte__cadre {
+  width: 100%;
+  overflow: hidden;
+  border-radius: 6px;
 }
 
 /* « aspect-ratio » plutôt qu'une hauteur en pixels : la boîte garde la
-   proportion du site d'origine quelle que soit la largeur de la colonne.
-   Avec une hauteur fixe, une carte large recadrait l'illustration si fort
-   que les personnages se retrouvaient coupés. */
+   proportion du site d'origine quelle que soit la largeur de la colonne. */
 .carte__image {
   width: 100%;
   aspect-ratio: 286 / 335;
   object-fit: cover;
-  border-radius: 10px;
+  transition: transform 0.45s ease;
+}
+
+.carte:hover .carte__image,
+.carte:focus-within .carte__image {
+  transform: scale(1.06);
 }
 
 .carte__titre {
@@ -163,23 +269,54 @@
 
 
 /* ==========================================================================
-   3. MON PARCOURS — panneau crème et portrait rond
+   3. LA ZONE CRÈME — Yoga Adapté Santé et Mon parcours
    ========================================================================== */
 
-/* Le crème habille le BLOC DE TEXTE, pas toute la section. Étendu à la
-   section entière, il passait aussi derrière le portrait — dont le fond est
-   crème lui aussi — et le rond devenait invisible. */
-.parcours__contenu {
+.zone-creme {
   background-color: var(--creme);
-  padding: var(--espace-l);
+  padding-bottom: var(--espace-l);
 }
+
+
+/* --- Mon parcours -------------------------------------------------------- */
 
 .parcours__grille {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
-  gap: var(--espace-l);
-  padding-block: var(--espace-xl);
+  gap: var(--espace-m);
+  padding-block: var(--espace-m);
+}
+
+/* La bulle blanche reprend la forme organique du bloc Yogathérapie — c'est
+   le même tracé sur le site d'origine.
+
+   La forme est une image de fond posée DERRIÈRE le texte, et non un
+   découpage du bloc lui-même : découpé, le bloc rognerait les mots qui
+   s'approchent trop des bords arrondis. */
+.parcours__bulle {
+  position: relative;
+  padding: var(--espace-l) clamp(var(--espace-m), 6vw, var(--espace-xl));
+  text-align: center;
+}
+
+.parcours__forme {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--fond);
+}
+
+/* Le contenu repasse au-dessus de la forme. */
+.parcours__contenu {
+  position: relative;
+}
+
+/* Ici la feuille est seule : pas de trait vertical, contrairement au hero. */
+.parcours__feuille {
+  width: 40px;
+  margin-bottom: var(--espace-xs);
 }
 
 .parcours__titre {
@@ -191,17 +328,50 @@
   margin-bottom: var(--espace-m);
 }
 
-/* Le portrait est un simple cercle : sur le site d'origine, la découpe de
-   cette image-là n'est pas une forme organique mais un rond parfait.
-   « aspect-ratio: 1 » garantit qu'il reste rond quelle que soit la largeur
-   de la colonne. */
-.parcours__portrait {
+
+/* --- Le portrait, à droite ----------------------------------------------- */
+
+.parcours__profil {
+  text-align: center;
+}
+
+/* Le rond blanc derrière l'illustration. Sans lui, le portrait — dont le fond
+   est crème — se fondrait dans le crème de la section.
+   « aspect-ratio: 1 » garantit qu'il reste rond à toute largeur. */
+.parcours__rond {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
   width: 100%;
   max-width: 268px;
   aspect-ratio: 1;
-  object-fit: cover;
+  margin: 0 auto var(--espace-m);
   border-radius: 50%;
-  margin-inline: auto;
+  background-color: var(--fond);
+  overflow: hidden;
+}
+
+.parcours__rond img {
+  width: 72%;
+}
+
+.parcours__nom {
+  margin: 0;
+  font-family: var(--titres);
+  font-size: 22px;
+}
+
+/* Même trait court que sous le titre des cours. */
+.parcours__filet {
+  display: block;
+  width: 130px;
+  height: 1px;
+  margin: var(--espace-xs) auto var(--espace-s);
+  background-color: var(--trait);
+}
+
+.parcours__role {
+  margin: 0;
 }
 
 
@@ -222,7 +392,6 @@
   .parcours__grille {
     grid-template-columns: 1fr;
     gap: var(--espace-m);
-    padding-block: var(--espace-l);
   }
 
   .duo__illustration,
@@ -230,27 +399,32 @@
     order: -1;
   }
 
-  .parcours__portrait {
+  .parcours__profil {
     order: -1;
-  }
-
-  .parcours__contenu {
-    padding: var(--espace-m);
   }
 
   /* Les illustrations ne prennent pas toute la largeur : à pleine largeur,
      la forme organique devient énorme et écrase le texte qui suit. */
   .duo__illustration {
-    max-width: 460px;
+    max-width: 420px;
     margin-inline: auto;
   }
 
+  /* Les vagues s'aplatissent : à 119 px sur un téléphone, la courbe mangeait
+     la moitié de la section. */
   .cours {
-    padding-block: var(--espace-l);
+    padding-block: calc(60px + var(--espace-m)) calc(30px + var(--espace-m));
   }
 
-  .cours__titre {
+  .cours__vague--haut { height: 60px; }
+  .cours__vague--bas  { height: 30px; }
+
+  .cours__trait {
     margin-bottom: var(--espace-m);
+  }
+
+  .parcours__bulle {
+    padding: var(--espace-l) var(--espace-m);
   }
 }
 
@@ -261,8 +435,19 @@
     font-size: 18px;
   }
 
-  .carte__image {
-    height: 280px;
+  /* Le trait jaune se resserre : 3 rem de retrait, c'est trop sur un écran
+     de 375 px. */
+  .trait-feuille {
+    padding-left: 2.25rem;
+  }
+
+  .trait-feuille__feuille {
+    width: 32px;
+  }
+
+  .trait-feuille::before {
+    left: 14px;
+    top: 28px;
   }
 
   /* Le bouton passe en pleine largeur (règle de style.css) : dans une carte,

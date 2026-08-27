@@ -32,6 +32,7 @@
   --fond:        #FFFFFF;  /* fond du site : blanc, PAS crème            */
   --creme:       #FFF8DE;  /* cellules du bandeau contact, formes déco    */
   --jaune:       #FED93F;  /* le seul jaune du site                      */
+  --gris-bloc:   #F7F7F7;  /* bandeau gris de la section « Les cours »   */
   --texte:       #000000;  /* texte principal                            */
   --texte-doux:  #BABABA;  /* page courante dans le menu                 */
   --trait:       #282626;  /* filet sous l'en-tête                       */
