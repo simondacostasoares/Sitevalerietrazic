@@ -223,7 +223,11 @@
 }
 
 /* La carte est blanche et son retrait intérieur crée la marge claire qu'on
-   voit autour de l'illustration. */
+   voit autour de l'illustration.
+
+   Au survol, c'est la carte ENTIÈRE qui grandit, jamais l'illustration seule :
+   les trois dessins se raccordent d'une carte à l'autre pour reformer l'arbre,
+   et agrandir l'image à l'intérieur de son cadre romprait ce raccord. */
 .carte {
   display: flex;
   flex-direction: column;
@@ -232,10 +236,19 @@
   background-color: var(--fond);
   border-radius: 8px;
   box-shadow: 0 2px 14px rgba(0, 0, 0, 0.07);
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
 }
 
-/* Le cadre qui recadre l'illustration. C'est LUI qui masque le débordement :
-   au survol, l'image grandit à l'intérieur sans que le cadre bouge. */
+.carte:hover,
+.carte:focus-within {
+  transform: scale(1.04);
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  /* La carte agrandie passe au-dessus de ses voisines plutôt que dessous. */
+  position: relative;
+  z-index: 1;
+}
+
+/* Le cadre arrondit les angles de l'illustration. */
 .carte__cadre {
   width: 100%;
   overflow: hidden;
@@ -248,12 +261,6 @@
   width: 100%;
   aspect-ratio: 286 / 335;
   object-fit: cover;
-  transition: transform 0.45s ease;
-}
-
-.carte:hover .carte__image,
-.carte:focus-within .carte__image {
-  transform: scale(1.06);
 }
 
 .carte__titre {
@@ -352,7 +359,7 @@
 }
 
 .parcours__rond img {
-  width: 72%;
+  width: 60%;
 }
 
 .parcours__nom {
