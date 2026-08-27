@@ -1,0 +1,273 @@
+/* ==========================================================================
+   ACCUEIL — styles propres à index.html
+   --------------------------------------------------------------------------
+   Chargé APRÈS style.css, qui fournit les variables, l'en-tête, les boutons,
+   le bandeau contact et le pied de page.
+
+   La page enchaîne cinq blocs, dans l'ordre du site d'origine :
+     1. Hero            — illustration à gauche, texte à droite
+     2. Yogathérapie    — texte à gauche, illustration à droite
+     3. Les cours       — trois cartes
+     4. Yoga Adapté Santé — illustration à gauche, texte à droite
+     5. Mon parcours    — panneau crème, portrait rond
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. LE BLOC EN DEUX COLONNES — utilisé trois fois sur la page
+   --------------------------------------------------------------------------
+   Hero, Yogathérapie et Yoga Adapté Santé partagent la même ossature : une
+   illustration d'un côté, du texte de l'autre. Un seul jeu de règles, et une
+   variante « --inverse » qui échange les deux côtés.
+   ========================================================================== */
+
+.duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--espace-l);
+  padding-block: var(--espace-xl);
+}
+
+/* Par défaut l'illustration est à gauche. « --inverse » la renvoie à droite
+   SANS toucher à l'ordre du HTML : le texte reste écrit avant l'image dans
+   le fichier, donc lu avant elle par un lecteur d'écran. */
+.duo--inverse .duo__illustration {
+  order: 2;
+}
+
+.duo__texte > :last-child {
+  margin-bottom: 0;
+}
+
+/* Titre de bloc : 45 px sur le site d'origine. clamp() le fait rétrécir tout
+   seul sur les petits écrans, sans point de rupture supplémentaire. */
+.duo__titre {
+  margin-bottom: var(--espace-s);
+  font-size: clamp(2rem, 4vw, 45px);
+}
+
+/* Accroche sous le titre : 20 px, un cran au-dessus du corps de texte. */
+.duo__accroche {
+  margin-bottom: var(--espace-m);
+  font-size: 20px;
+  line-height: 1.67;
+}
+
+
+/* --- Les formes organiques -------------------------------------------------
+   Sur le site d'origine, les deux grandes illustrations ne sont pas des
+   rectangles : elles sont découpées dans une forme organique.
+
+   La découpe se fait avec « clip-path », qui pointe vers un tracé défini en
+   SVG dans le HTML de la page. Deux raisons de préférer ça à « mask-image » :
+   le tracé est écrit en coordonnées relatives (0 à 1), donc il s'étire tout
+   seul quelle que soit la taille de l'image ; et il fonctionne en ouvrant le
+   fichier par double-clic, ce que les masques pointant vers un fichier
+   externe ne font pas.
+
+   C'est aussi ce qui règle le fond blanc de yoga-therapie.png : découpé en
+   forme organique, il ne fait plus un rectangle blanc sur la page. --------- */
+
+.duo__illustration img {
+  width: 100%;
+}
+
+/* Les deux fichiers sont presque carrés et comportent une large marge crème.
+   Affichés tels quels, le dessin se retrouve minuscule au centre d'une
+   grande forme vide. On leur impose donc le cadrage du site d'origine —
+   « aspect-ratio » fixe la proportion de la boîte, « cover » recadre l'image
+   dedans — ce qui ramène le dessin à sa taille juste. */
+.forme-hero img {
+  clip-path: url(#forme-hero);
+  aspect-ratio: 495 / 560;
+  object-fit: cover;
+}
+
+.forme-bloc img {
+  clip-path: url(#forme-bloc);
+  aspect-ratio: 599 / 505;
+  object-fit: cover;
+}
+
+
+/* --- Le hero ------------------------------------------------------------ */
+
+/* Pas de retrait en haut : l'illustration doit toucher le filet de l'en-tête,
+   comme sur le site d'origine. */
+.hero {
+  padding-top: var(--espace-m);
+}
+
+/* La citation d'ouverture. Ce n'est pas un titre : c'est une phrase posée en
+   exergue, dans la même taille que le reste. Le retrait et le filet jaune
+   suffisent à la distinguer. */
+.hero__citation {
+  margin: 0 0 var(--espace-m);
+  padding-left: var(--espace-s);
+  border-left: 2px solid var(--jaune);
+  font-style: normal;
+}
+
+
+/* ==========================================================================
+   2. LES COURS — trois cartes
+   ========================================================================== */
+
+.cours {
+  padding-block: var(--espace-xl);
+  text-align: center;
+}
+
+.cours__titre {
+  margin-bottom: var(--espace-l);
+  font-size: clamp(1.5rem, 3vw, 28px);
+}
+
+/* « auto-fit » + « minmax » : les cartes se répartissent d'elles-mêmes sur
+   trois, deux ou une colonne selon la place disponible. Pas besoin d'un
+   point de rupture pour chaque cas. */
+.cours__grille {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--espace-m);
+}
+
+.carte {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* « aspect-ratio » plutôt qu'une hauteur en pixels : la boîte garde la
+   proportion du site d'origine quelle que soit la largeur de la colonne.
+   Avec une hauteur fixe, une carte large recadrait l'illustration si fort
+   que les personnages se retrouvaient coupés. */
+.carte__image {
+  width: 100%;
+  aspect-ratio: 286 / 335;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.carte__titre {
+  margin-block: var(--espace-m) var(--espace-s);
+  font-size: 20px;
+}
+
+/* Pousse le bouton en bas de la carte : les trois boutons restent alignés
+   même si un titre passe sur deux lignes. */
+.carte .bouton {
+  margin-top: auto;
+}
+
+
+/* ==========================================================================
+   3. MON PARCOURS — panneau crème et portrait rond
+   ========================================================================== */
+
+/* Le crème habille le BLOC DE TEXTE, pas toute la section. Étendu à la
+   section entière, il passait aussi derrière le portrait — dont le fond est
+   crème lui aussi — et le rond devenait invisible. */
+.parcours__contenu {
+  background-color: var(--creme);
+  padding: var(--espace-l);
+}
+
+.parcours__grille {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  align-items: center;
+  gap: var(--espace-l);
+  padding-block: var(--espace-xl);
+}
+
+.parcours__titre {
+  margin-bottom: var(--espace-m);
+  font-size: clamp(1.75rem, 3.5vw, 40px);
+}
+
+.parcours__texte {
+  margin-bottom: var(--espace-m);
+}
+
+/* Le portrait est un simple cercle : sur le site d'origine, la découpe de
+   cette image-là n'est pas une forme organique mais un rond parfait.
+   « aspect-ratio: 1 » garantit qu'il reste rond quelle que soit la largeur
+   de la colonne. */
+.parcours__portrait {
+  width: 100%;
+  max-width: 268px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-inline: auto;
+}
+
+
+/* ==========================================================================
+   4. RESPONSIVE
+   --------------------------------------------------------------------------
+   Vérifié à 1440 / 900 / 600 / 375 px.
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+  /* Les blocs en deux colonnes s'empilent, et l'illustration passe TOUJOURS
+     au-dessus du texte — y compris dans la variante inversée, où elle est
+     écrite après lui dans le HTML. Sans cette règle, un bloc sur deux
+     afficherait son image après son texte et le rythme de la page serait
+     cassé. */
+  .duo,
+  .parcours__grille {
+    grid-template-columns: 1fr;
+    gap: var(--espace-m);
+    padding-block: var(--espace-l);
+  }
+
+  .duo__illustration,
+  .duo--inverse .duo__illustration {
+    order: -1;
+  }
+
+  .parcours__portrait {
+    order: -1;
+  }
+
+  .parcours__contenu {
+    padding: var(--espace-m);
+  }
+
+  /* Les illustrations ne prennent pas toute la largeur : à pleine largeur,
+     la forme organique devient énorme et écrase le texte qui suit. */
+  .duo__illustration {
+    max-width: 460px;
+    margin-inline: auto;
+  }
+
+  .cours {
+    padding-block: var(--espace-l);
+  }
+
+  .cours__titre {
+    margin-bottom: var(--espace-m);
+  }
+}
+
+
+@media (max-width: 600px) {
+
+  .duo__accroche {
+    font-size: 18px;
+  }
+
+  .carte__image {
+    height: 280px;
+  }
+
+  /* Le bouton passe en pleine largeur (règle de style.css) : dans une carte,
+     il reprend sa largeur naturelle pour ne pas écraser la mise en page. */
+  .carte .bouton {
+    width: auto;
+  }
+}

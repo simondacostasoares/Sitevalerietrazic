@@ -30,9 +30,8 @@
 
   /* --- Couleurs, relevées sur ventyoga.fr --- */
   --fond:        #FFFFFF;  /* fond du site : blanc, PAS crème            */
-  --creme:       #FFF8DE;  /* crème : accent décoratif uniquement        */
+  --creme:       #FFF8DE;  /* cellules du bandeau contact, formes déco    */
   --jaune:       #FED93F;  /* le seul jaune du site                      */
-  --gris-bloc:   #F7F7F7;  /* fond des cellules du bandeau contact       */
   --texte:       #000000;  /* texte principal                            */
   --texte-doux:  #BABABA;  /* page courante dans le menu                 */
   --trait:       #282626;  /* filet sous l'en-tête                       */
@@ -340,42 +339,32 @@ img {
    4. BOUTONS — communs à tout le site
    ========================================================================== */
 
+/* Relevé sur le site d'origine : un rectangle jaune plein, sans contour ni
+   arrondi, texte noir à 18 px. Au survol, il se vide de sa couleur et garde
+   un contour jaune — le mouvement inverse, pour que l'état survolé se
+   distingue sans introduire de teinte nouvelle. */
 .bouton {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--espace-xs);
-  min-height: 46px;
-  padding: var(--espace-xs) var(--espace-m);
+  min-width: 142px;
+  min-height: 40px;
+  padding: var(--espace-xs) var(--espace-s);
   border: 1px solid var(--jaune);
-  border-radius: var(--rayon);
+  background-color: var(--jaune);
+  color: var(--texte);
   font-family: var(--corps);
-  font-weight: var(--moyen);
-  font-size: 15px;
-  line-height: 1.4;
+  font-weight: var(--normal);
+  font-size: 18px;
+  line-height: 1.2;
   text-align: center;
   text-decoration: none;
   cursor: pointer;
   transition: background-color 0.2s ease;
 }
 
-.bouton--principal {
-  background-color: var(--jaune);
-  color: var(--texte);
-}
-
-.bouton--secondaire {
-  background-color: transparent;
-  color: var(--texte);
-}
-
-.bouton--secondaire:hover,
-.bouton--secondaire:focus-visible {
-  background-color: var(--jaune);
-}
-
-.bouton--principal:hover,
-.bouton--principal:focus-visible {
+.bouton:hover,
+.bouton:focus-visible {
   background-color: transparent;
 }
 
@@ -411,14 +400,16 @@ img {
   gap: var(--espace-m);
   min-height: 263px;
   padding: var(--espace-m) var(--espace-s);
-  background-color: var(--gris-bloc);
+  background-color: var(--creme);
   text-align: center;
 }
 
+/* Les trois icônes n'ont pas le même rapport largeur / hauteur. On fixe donc
+   la HAUTEUR et on laisse la largeur suivre : à largeur égale, l'enveloppe
+   paraîtrait plus grosse que le repère. */
 .bandeau-contact__icone {
-  width: 26px;
-  height: 30px;
-  object-fit: contain;
+  height: 34px;
+  width: auto;
 }
 
 .bandeau-contact__texte {
@@ -426,6 +417,11 @@ img {
   font-size: 16px;
   line-height: 1.7;
   font-style: normal;   /* neutralise l'italique par défaut de <address> */
+
+  /* Trois lignes réservées, même quand le texte n'en fait qu'une. Sans ça,
+     la cellule de l'adresse — la seule à tenir sur trois lignes — pousse son
+     icône vers le haut et les trois pictos ne sont plus alignés. */
+  min-height: calc(3 * 16px * 1.7);
 }
 
 .bandeau-contact__texte a {
@@ -568,6 +564,12 @@ img {
     min-height: 0;
     gap: var(--espace-s);
     padding: var(--espace-m) var(--espace-s);
+  }
+
+  /* Empilées, les cellules n'ont plus à s'aligner entre elles : la hauteur
+     réservée ne servirait qu'à créer du vide. */
+  .bandeau-contact__texte {
+    min-height: 0;
   }
 }
 
