@@ -1,0 +1,22 @@
+# ---------------------------------------------------------------------------
+# Ce qui ne doit PAS partir en ligne.
+#
+# Hostinger publie le dépôt TEL QUEL dans public_html : tout fichier versionné
+# ici devient accessible publiquement sur le site, et téléchargé par chaque
+# visiteur. Les fichiers de travail — notes, originaux d'images — restent donc
+# en local.
+# ---------------------------------------------------------------------------
+
+# Fichiers système macOS
+.DS_Store
+.DS_Store?
+._*
+
+# Notes de projet (usage interne, pas destinées au public)
+CLAUDE.md
+Charte.md
+contenu.md
+
+# Originaux des images, avant redimensionnement et compression.
+# Les versions publiées sont dans images/, trois fois plus légères.
+Originaux images/
