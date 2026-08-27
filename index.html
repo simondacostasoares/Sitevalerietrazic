@@ -26,11 +26,10 @@
   <link rel="icon" href="images/favicon-512.png" sizes="512x512">
   <link rel="apple-touch-icon" href="images/favicon-180.png">
 
-  <!-- Polices Google Fonts : uniquement les graisses autorisées par la charte
-       (Quicksand 400/500/600/700, Nunito Sans 400/600/700). -->
+  <!-- Le site d'origine n'utilise que Quicksand, titres comme corps de texte. -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- style.css : design system + éléments communs. accueil.css : cette page. -->
   <link rel="stylesheet" href="css/style.css">
@@ -42,7 +41,7 @@
        EN-TÊTE — identique sur les 7 pages du site.
        Pour le modifier, il faut le faire dans chaque fichier HTML.
        Sur la page courante, le lien porte aria-current="page" : c'est lui
-       qui déclenche le soulignement jaune.
+       qui déclenche le grisé.
        ====================================================================== -->
   <header class="entete">
     <div class="conteneur entete__interieur">
@@ -72,12 +71,7 @@
                aller. Sur mobile, le CSS le transforme en simple intertitre
                et déplie la liste en permanence. -->
           <li class="nav__deroulant">
-            <button class="nav__lien nav__bascule" type="button" aria-expanded="false" aria-controls="sous-menu-cours">
-              Cours
-              <svg class="nav__chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true">
-                <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-              </svg>
-            </button>
+            <button class="nav__lien nav__bascule" type="button" aria-expanded="false" aria-controls="sous-menu-cours">Cours</button>
 
             <ul class="nav__sous-menu" id="sous-menu-cours">
               <li><a class="nav__sous-lien" href="cours-adultes.html">Cours adultes</a></li>
@@ -91,7 +85,7 @@
           <li><a class="nav__lien" href="a-propos.html">À propos</a></li>
 
           <!-- « Contact » n'est pas une page non plus : c'est une ancre vers
-               le pied de page, qui porte id="contact". -->
+               le bandeau de coordonnées, qui porte id="contact". -->
           <li><a class="nav__lien" href="#contact">Contact</a></li>
 
         </ul>
@@ -109,65 +103,67 @@
          Ce bloc n'existe que pour vérifier l'en-tête et le pied de page.
          ==================================================================== -->
     <section class="conteneur" style="padding-block: 6rem; text-align: center;">
-      <h1>Valérie Trazic</h1>
-      <p style="margin-top: 2rem;">Contenu de l'accueil à venir.</p>
+      <p>Contenu de l'accueil à venir.</p>
       <p>Cette page ne sert pour l'instant qu'à valider l'en-tête et le pied de page.</p>
-      <p style="margin-top: 3rem;">
-        <a class="bouton bouton--principal" href="#contact">Aller au pied de page</a>
-      </p>
     </section>
 
   </main>
 
 
   <!-- ======================================================================
-       PIED DE PAGE — identique sur les 7 pages du site.
+       BANDEAU CONTACT — identique sur les 7 pages.
        Il porte id="contact" : c'est la cible de l'entrée « Contact » du menu.
+       Les filets jaunes entre les cellules ne sont pas des bordures : c'est
+       le fond jaune du bandeau qui apparaît dans les fentes de 1 px.
        ====================================================================== -->
-  <footer class="pied" id="contact">
-    <div class="conteneur">
+  <section class="bandeau-contact" id="contact" aria-label="Coordonnées">
+    <div class="bandeau-contact__grille">
 
-      <div class="pied__colonnes">
-
-        <div class="pied__colonne pied__identite">
-          <img class="pied__branche" src="images/branche.png" alt="" aria-hidden="true" width="400" height="430" loading="lazy">
-          <p class="pied__nom">Valérie Trazic</p>
-          <p class="pied__role">
-            Professeure de Yoga<br>
-            Yogathérapeute
-          </p>
-        </div>
-
-        <div class="pied__colonne">
-          <h2 class="pied__titre">Où me trouver</h2>
-          <!-- <address> porte le sens « voici les coordonnées » pour les
-               lecteurs d'écran et les moteurs de recherche. La liste reste à
-               l'intérieur : un <li> ne peut pas vivre en dehors d'une liste. -->
-          <address>
-            <ul class="pied__liste">
-              <li><a href="https://auventdanslesbranches.fr" target="_blank" rel="noopener">Au vent dans les branches<span class="lecteur-ecran-seulement"> (nouvelle fenêtre)</span></a></li>
-              <li>17 rue Emmanuel Barthélémy<br>13600 La Ciotat</li>
-            </ul>
-          </address>
-        </div>
-
-        <div class="pied__colonne">
-          <h2 class="pied__titre">Me contacter</h2>
-          <ul class="pied__liste">
-            <li><a href="tel:+33671415745">06 71 41 57 45</a></li>
-            <li><a href="mailto:trazicvalerie@gmail.com">trazicvalerie@gmail.com</a></li>
-          </ul>
-        </div>
-
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-lieu.svg" alt="" aria-hidden="true" width="26" height="30" loading="lazy">
+        <address class="bandeau-contact__texte">
+          <a href="https://auventdanslesbranches.fr" target="_blank" rel="noopener">Au vent dans les branches<span class="lecteur-ecran-seulement"> (nouvelle fenêtre)</span></a><br>
+          17 rue Emmanuel Barthélémy<br>
+          13600 La Ciotat
+        </address>
       </div>
 
-      <div class="pied__bas">
-        <p class="pied__copyright">© 2026 Valérie Trazic</p>
-        <p class="pied__credit">
-          Site et illustrations par Mathis Olieu —
-          <a href="mailto:contact@mathisolieu.fr">contact@mathisolieu.fr</a>
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-telephone.svg" alt="" aria-hidden="true" width="26" height="26" loading="lazy">
+        <p class="bandeau-contact__texte">
+          <a href="tel:+33671415745">06 71 41 57 45</a>
         </p>
       </div>
+
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-mail.svg" alt="" aria-hidden="true" width="26" height="18" loading="lazy">
+        <p class="bandeau-contact__texte">
+          <a href="mailto:trazicvalerie@gmail.com">trazicvalerie@gmail.com</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       PIED DE PAGE — identique sur les 7 pages. Fond blanc, tout centré.
+       ====================================================================== -->
+  <footer class="pied">
+    <div class="conteneur">
+
+      <img class="pied__branche" src="images/branche.png" alt="" aria-hidden="true" width="400" height="430" loading="lazy">
+
+      <p class="pied__nom">Valérie Trazic</p>
+      <p class="pied__role">
+        Professeure de Yoga<br>
+        Yogathérapeute
+      </p>
+
+      <p class="pied__credit">
+        Site et illustrations par Mathis Olieu<br>
+        <a href="mailto:contact@mathisolieu.fr">contact@mathisolieu.fr</a>
+      </p>
 
     </div>
   </footer>
