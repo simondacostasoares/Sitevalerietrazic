@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Valérie Trazic — Professeure de yoga et yogathérapeute à La Ciotat</title>
+  <meta name="description" content="Cours de yoga et accompagnement en yogathérapie à La Ciotat. Une approche qui envisage l'être dans sa globalité : le corps, le mental, l'émotionnel.">
+
+  <!-- Aperçu lors d'un partage sur WhatsApp, Facebook, Messenger…
+       og:url doit rester une adresse absolue : une adresse relative ne
+       fonctionne pas ici.
+       À FAIRE : og:image manque. Il faut une image de partage au format
+       1200 × 630 px ; aucune des illustrations récupérées n'a ce format. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Valérie Trazic">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:url" content="https://valerietrazic.fr/">
+  <meta property="og:title" content="Professeure de yoga et yogathérapeute à La Ciotat">
+  <meta property="og:description" content="Cours de yoga et accompagnement en yogathérapie à La Ciotat. Une approche qui envisage l'être dans sa globalité : le corps, le mental, l'émotionnel.">
+
+  <!-- Icône du site, dérivée de la branche.
+       Le format 180 px est celui d'iOS : il a un fond crème parce qu'iOS
+       remplace la transparence par du noir. -->
+  <link rel="icon" href="images/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="images/favicon-512.png" sizes="512x512">
+  <link rel="apple-touch-icon" href="images/favicon-180.png">
+
+  <!-- Polices Google Fonts : uniquement les graisses autorisées par la charte
+       (Quicksand 400/500/600/700, Nunito Sans 400/600/700). -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&family=Nunito+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <!-- style.css : design system + éléments communs. accueil.css : cette page. -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <!-- ======================================================================
+       EN-TÊTE — identique sur les 7 pages du site.
+       Pour le modifier, il faut le faire dans chaque fichier HTML.
+       Sur la page courante, le lien porte aria-current="page" : c'est lui
+       qui déclenche le soulignement jaune.
+       ====================================================================== -->
+  <header class="entete">
+    <div class="conteneur entete__interieur">
+
+      <a href="index.html" class="entete__marque">
+        <img class="entete__branche" src="images/branche.png" alt="" aria-hidden="true" width="400" height="430">
+        <span class="entete__nom">Valérie Trazic</span>
+      </a>
+
+      <nav class="nav" aria-label="Navigation principale">
+
+        <button class="nav__burger" type="button" aria-expanded="false" aria-controls="menu-principal">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span class="lecteur-ecran-seulement">Ouvrir le menu</span>
+        </button>
+
+        <ul class="nav__liste" id="menu-principal">
+
+          <li><a class="nav__lien" href="index.html" aria-current="page">Accueil</a></li>
+
+          <li><a class="nav__lien" href="yogatherapie.html">Yogathérapie</a></li>
+
+          <!-- « Cours » n'est pas une page : c'est l'intitulé d'un groupe.
+               C'est donc un <button>, pas un <a> — il n'y a nulle part où
+               aller. Sur mobile, le CSS le transforme en simple intertitre
+               et déplie la liste en permanence. -->
+          <li class="nav__deroulant">
+            <button class="nav__lien nav__bascule" type="button" aria-expanded="false" aria-controls="sous-menu-cours">
+              Cours
+              <svg class="nav__chevron" viewBox="0 0 10 6" fill="none" aria-hidden="true">
+                <path d="M1 1l4 4 4-4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+
+            <ul class="nav__sous-menu" id="sous-menu-cours">
+              <li><a class="nav__sous-lien" href="cours-adultes.html">Cours adultes</a></li>
+              <li><a class="nav__sous-lien" href="cours-enfants.html">Cours enfants</a></li>
+              <li><a class="nav__sous-lien" href="cours-parents-enfants.html">Cours parents / enfants</a></li>
+              <li><a class="nav__sous-lien" href="yoga-adapte-sante.html">Yoga Adapté Santé</a></li>
+              <li><a class="nav__sous-lien" href="cours-adultes.html#entreprises">Entreprises</a></li>
+            </ul>
+          </li>
+
+          <li><a class="nav__lien" href="a-propos.html">À propos</a></li>
+
+          <!-- « Contact » n'est pas une page non plus : c'est une ancre vers
+               le pied de page, qui porte id="contact". -->
+          <li><a class="nav__lien" href="#contact">Contact</a></li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- ====================================================================
+         [PROVISOIRE] Le contenu de l'accueil arrive à l'étape suivante.
+         Ce bloc n'existe que pour vérifier l'en-tête et le pied de page.
+         ==================================================================== -->
+    <section class="conteneur" style="padding-block: 6rem; text-align: center;">
+      <h1>Valérie Trazic</h1>
+      <p style="margin-top: 2rem;">Contenu de l'accueil à venir.</p>
+      <p>Cette page ne sert pour l'instant qu'à valider l'en-tête et le pied de page.</p>
+      <p style="margin-top: 3rem;">
+        <a class="bouton bouton--principal" href="#contact">Aller au pied de page</a>
+      </p>
+    </section>
+
+  </main>
+
+
+  <!-- ======================================================================
+       PIED DE PAGE — identique sur les 7 pages du site.
+       Il porte id="contact" : c'est la cible de l'entrée « Contact » du menu.
+       ====================================================================== -->
+  <footer class="pied" id="contact">
+    <div class="conteneur">
+
+      <div class="pied__colonnes">
+
+        <div class="pied__colonne pied__identite">
+          <img class="pied__branche" src="images/branche.png" alt="" aria-hidden="true" width="400" height="430" loading="lazy">
+          <p class="pied__nom">Valérie Trazic</p>
+          <p class="pied__role">
+            Professeure de Yoga<br>
+            Yogathérapeute
+          </p>
+        </div>
+
+        <div class="pied__colonne">
+          <h2 class="pied__titre">Où me trouver</h2>
+          <!-- <address> porte le sens « voici les coordonnées » pour les
+               lecteurs d'écran et les moteurs de recherche. La liste reste à
+               l'intérieur : un <li> ne peut pas vivre en dehors d'une liste. -->
+          <address>
+            <ul class="pied__liste">
+              <li><a href="https://auventdanslesbranches.fr" target="_blank" rel="noopener">Au vent dans les branches<span class="lecteur-ecran-seulement"> (nouvelle fenêtre)</span></a></li>
+              <li>17 rue Emmanuel Barthélémy<br>13600 La Ciotat</li>
+            </ul>
+          </address>
+        </div>
+
+        <div class="pied__colonne">
+          <h2 class="pied__titre">Me contacter</h2>
+          <ul class="pied__liste">
+            <li><a href="tel:+33671415745">06 71 41 57 45</a></li>
+            <li><a href="mailto:trazicvalerie@gmail.com">trazicvalerie@gmail.com</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="pied__bas">
+        <p class="pied__copyright">© 2026 Valérie Trazic</p>
+        <p class="pied__credit">
+          Site et illustrations par Mathis Olieu —
+          <a href="mailto:contact@mathisolieu.fr">contact@mathisolieu.fr</a>
+        </p>
+      </div>
+
+    </div>
+  </footer>
+
+
+  <script src="js/menu.js"></script>
+
+</body>
+</html>

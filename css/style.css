@@ -1,0 +1,771 @@
+/* ==========================================================================
+   VALÉRIE TRAZIC — Feuille de style commune
+   --------------------------------------------------------------------------
+   Ce fichier contient :
+     1. les variables du design system (:root)
+     2. les bases (typographie, conteneur)
+     3. l'en-tête et la navigation
+     4. les boutons
+     5. le pied de page
+     6. le responsive de ces éléments communs
+
+   Il est chargé sur les 7 pages, AVANT le fichier propre à chaque page.
+
+   RÈGLE : aucune couleur, police ou graisse ne doit être écrite « en dur »
+   ailleurs. On passe toujours par une variable de :root.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. VARIABLES — le tableau électrique du site
+   --------------------------------------------------------------------------
+   Toutes les valeurs de la charte sont écrites ici, et nulle part ailleurs.
+   Pour changer une couleur partout, il suffit de la modifier à cet endroit.
+   ========================================================================== */
+
+:root {
+
+  /* --- Couleurs (Charte.md) --- */
+  --fond:          #FFF8DE;  /* fond principal du site                */
+  --jaune-deco:    #FFDE59;  /* jaune secondaire, éléments décoratifs */
+  --cta:           #FAB009;  /* boutons et accents                    */
+  --texte:         #2B2B2B;  /* texte principal                       */
+  --texte-sur-cta: #2B2B2B;  /* texte posé sur un bouton --cta        */
+
+  /* Exception assumée : fond de certaines zones de contenu. */
+  --blanc:         #FFFFFF;
+
+  /* Trait discret, utilisé pour les séparations. C'est --texte à 12 %,
+     jamais un gris inventé : il s'accorde donc automatiquement au texte. */
+  --trait:         rgba(43, 43, 43, 0.12);
+
+  /* --- Polices --- */
+  --titres: "Quicksand", sans-serif;
+  --corps:  "Nunito Sans", sans-serif;
+
+  /* --- Graisses : uniquement ces quatre valeurs --- */
+  --normal:   400;
+  --moyen:    500;
+  --semigras: 600;
+  --gras:     700;
+
+  /* --- Espacements --- */
+  --espace-xs: 0.5rem;   /*  8px */
+  --espace-s:  1rem;     /* 16px */
+  --espace-m:  2rem;     /* 32px */
+  --espace-l:  4rem;     /* 64px */
+  --espace-xl: 6rem;     /* 96px */
+
+  /* --- Dimensions --- */
+  --largeur-max:  1140px; /* largeur maximale du contenu */
+  --largeur-texte: 62ch;  /* longueur de ligne confortable à la lecture */
+  --rayon:        12px;   /* arrondi standard            */
+  --rayon-image:  20px;   /* arrondi des grandes images  */
+}
+
+
+/* ==========================================================================
+   2. BASES
+   ========================================================================== */
+
+/* « border-box » fait que les paddings et bordures sont comptés DANS la
+   largeur d'un élément. Sans ça, une boîte de 100 % + du padding déborde. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Empêche tout défilement horizontal, même quand un élément décoratif déborde
+   volontairement sur les côtés.
+   La règle est posée sur html SEUL, et surtout pas sur body : sur body, elle
+   transforme celui-ci en conteneur de défilement, ce qui neutralise
+   silencieusement le « position: sticky » de l'en-tête. */
+html {
+  overflow-x: hidden;
+
+  /* L'en-tête est collé en haut. Sans ce retrait, une arrivée par ancre
+     (#entreprises, #petit-groupe, #contact…) placerait sa cible DERRIÈRE
+     l'en-tête. Cette ligne décale toutes les ancres d'un coup, celles
+     d'aujourd'hui comme celles à venir. */
+  scroll-padding-top: 7rem;
+
+  /* La page glisse jusqu'à l'ancre au lieu d'y sauter. */
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background-color: var(--fond);
+  color: var(--texte);
+  font-family: var(--corps);
+  font-weight: var(--normal);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+h1, h2, h3 {
+  font-family: var(--titres);
+  color: var(--texte);
+  margin: 0;
+  line-height: 1.2;
+}
+
+/* clamp(mini, souhaité, maxi) : la taille s'adapte toute seule à la largeur
+   de l'écran, sans avoir besoin d'un point de rupture pour chaque taille. */
+h1 { font-size: clamp(2.25rem, 5vw, 3.5rem);  font-weight: var(--normal); }
+h2 { font-size: clamp(1.6rem,  3.2vw, 2.25rem); font-weight: var(--moyen); }
+h3 { font-size: clamp(1.2rem,  2vw,   1.4rem);  font-weight: var(--semigras); }
+
+p { margin: 0 0 var(--espace-s); }
+
+a { color: inherit; }
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Contour de focus visible au clavier, sur tout le site. Sans lui, une
+   personne qui navigue à la touche Tab ne sait plus où elle se trouve. */
+:focus-visible {
+  outline: 2px solid var(--cta);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* Ouverture des panneaux dépliants (menu mobile, sous-menu).
+   « display: none » ne s'anime pas ; une animation posée sur l'élément au
+   moment où il s'affiche, elle, se joue. Le contenu se révèle donc en
+   glissant, ce qui montre d'où il vient. */
+@keyframes deplier {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Respecte le réglage système « réduire les animations ». */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Conteneur central réutilisé par toutes les sections du site. */
+.conteneur {
+  width: 100%;
+  max-width: var(--largeur-max);
+  margin-inline: auto;
+  padding-inline: var(--espace-m);
+}
+
+/* Masque un élément à l'écran tout en le laissant lisible par les lecteurs
+   d'écran (utile pour les libellés de boutons purement graphiques). */
+.lecteur-ecran-seulement {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   3. EN-TÊTE — commun aux 7 pages
+   ========================================================================== */
+
+/* L'en-tête reste collé en haut pendant le défilement.
+   Trois conditions pour que ça fonctionne :
+   — « sticky » et non « fixed » : l'en-tête garde sa place dans le flux, donc
+     le contenu ne remonte pas dessous au chargement ;
+   — un fond opaque est indispensable, sinon le texte de la page défilerait
+     par transparence derrière le menu ;
+   — un élément « sticky » reste un bloc de référence pour ses enfants
+     positionnés : le menu mobile, posé en absolu sous l'en-tête, s'ancre
+     donc au bon endroit. */
+.entete {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--fond);
+  padding-block: var(--espace-s);
+}
+
+.entete__interieur {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--espace-m);
+}
+
+/* --- La marque : la branche + le nom ---
+   Il n'y a pas de logo dessiné. « flex-shrink: 0 » est indispensable : sans
+   lui, la marque se comprime quand le menu manque de place et la branche se
+   retrouve écrasée horizontalement. */
+.entete__marque {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-s);
+  flex-shrink: 0;
+  text-decoration: none;
+}
+
+.entete__branche {
+  width: 42px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+/* La branche s'incline très légèrement au survol : un signe de vie, pas une
+   animation. */
+.entete__marque:hover .entete__branche,
+.entete__marque:focus-visible .entete__branche {
+  transform: rotate(-6deg);
+}
+
+.entete__nom {
+  font-family: var(--titres);
+  font-weight: var(--moyen);
+  font-size: clamp(1.15rem, 2.2vw, 1.5rem);
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   3b. NAVIGATION
+   ========================================================================== */
+
+.nav__liste {
+  display: flex;
+  align-items: center;
+  gap: clamp(var(--espace-s), 2vw, var(--espace-m));
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Le lien et le bouton « Cours » doivent être strictement identiques à
+   l'œil. Le bouton hérite donc explicitement de la police, que les
+   navigateurs remplacent sinon par leur police de formulaire. */
+.nav__lien {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--espace-xs);
+  padding: var(--espace-xs) 0;
+  border: none;
+  background: none;
+  font-family: var(--corps);
+  font-weight: var(--semigras);
+  font-size: 0.95rem;
+  color: inherit;
+  line-height: inherit;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+/* Le soulignement jaune est dessiné avec ::after plutôt qu'avec
+   text-decoration : cela permet de le décoller un peu du texte. */
+.nav__lien::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 2px;
+  background-color: var(--cta);
+  transform: scaleX(0);
+  transition: transform 0.25s ease;
+}
+
+.nav__lien:hover::after,
+.nav__lien:focus-visible::after,
+.nav__lien[aria-current="page"]::after {
+  transform: scaleX(1);
+}
+
+/* --- Sous-menu « Cours » -------------------------------------------------
+   Sur ordinateur : un panneau qui se déplie sous l'entrée « Cours ».
+   Il s'ouvre dans trois cas — au survol de la souris, quand le clavier entre
+   dans la zone (:focus-within), et au clic (aria-expanded, géré par menu.js).
+   Les trois modes d'ouverture existent parce qu'aucun ne couvre les autres :
+   le survol ignore le clavier, le clavier ignore la souris, et sur un écran
+   tactile seul le clic existe. -------------------------------------------- */
+
+.nav__deroulant {
+  position: relative;
+}
+
+/* Le petit chevron pivote quand le panneau est ouvert. */
+.nav__chevron {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+}
+
+.nav__deroulant:hover .nav__chevron,
+.nav__deroulant:focus-within .nav__chevron,
+.nav__bascule[aria-expanded="true"] .nav__chevron {
+  transform: rotate(180deg);
+}
+
+.nav__sous-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  translate: -50% 0;
+  z-index: 20;
+  min-width: 240px;
+  margin: 0;
+  padding: var(--espace-xs);
+  list-style: none;
+  background-color: var(--fond);
+  border: 1px solid var(--trait);
+  border-radius: var(--rayon);
+  box-shadow: 0 8px 24px rgba(43, 43, 43, 0.1);
+}
+
+.nav__deroulant:hover .nav__sous-menu,
+.nav__deroulant:focus-within .nav__sous-menu,
+.nav__bascule[aria-expanded="true"] + .nav__sous-menu {
+  display: block;
+  animation: deplier 0.2s ease both;
+}
+
+/* Une zone tampon invisible entre l'entrée « Cours » et le panneau : sans
+   elle, le panneau se referme dès que la souris traverse l'espace vide en
+   descendant vers lui. */
+.nav__sous-menu::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -12px;
+  height: 12px;
+}
+
+.nav__sous-lien {
+  display: block;
+  padding: var(--espace-xs) var(--espace-s);
+  border-radius: var(--rayon);
+  font-size: 0.95rem;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 0.2s ease;
+}
+
+.nav__sous-lien:hover,
+.nav__sous-lien:focus-visible {
+  background-color: var(--jaune-deco);
+}
+
+/* Sur la page courante, la puce jaune remplace le soulignement : dans un
+   panneau, un trait sous le texte se confondrait avec la ligne suivante. */
+.nav__sous-lien[aria-current="page"] {
+  font-weight: var(--gras);
+  background-color: var(--jaune-deco);
+}
+
+/* --- Bouton burger : visible uniquement sur mobile (voir §6) --- */
+
+.nav__burger {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.nav__burger span {
+  display: block;
+  height: 2px;
+  width: 26px;
+  background-color: var(--texte);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+/* Les trois barres se transforment en croix quand le menu est ouvert. */
+.nav__burger[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav__burger[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+.nav__burger[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+
+/* ==========================================================================
+   4. BOUTONS — communs à tout le site
+   --------------------------------------------------------------------------
+   Deux variantes seulement :
+     .bouton--principal  → fond plein, pour l'action mise en avant
+     .bouton--secondaire → contour, pour l'action complémentaire
+   ========================================================================== */
+
+.bouton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espace-xs);
+  min-height: 52px;
+  padding: var(--espace-xs) var(--espace-m);
+  border: 2px solid var(--cta);
+  border-radius: var(--rayon);
+  font-family: var(--corps);
+  font-weight: var(--gras);
+  font-size: 1rem;
+  line-height: 1.35;
+  text-align: center;
+  /* Répartit le texte équitablement sur les lignes plutôt que de laisser un
+     seul mot en fin de ligne. */
+  text-wrap: balance;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.bouton:hover,
+.bouton:focus-visible {
+  transform: translateY(-2px);
+}
+
+.bouton--principal {
+  background-color: var(--cta);
+  color: var(--texte-sur-cta);
+}
+
+.bouton--secondaire {
+  background-color: transparent;
+  color: var(--texte);
+}
+
+.bouton--secondaire:hover,
+.bouton--secondaire:focus-visible {
+  background-color: var(--jaune-deco);
+}
+
+/* Version compacte, pour les boutons placés à l'intérieur d'une carte.
+   Ce n'est pas un nouveau style de bouton : c'est le même, en plus petit. */
+.bouton--petit {
+  min-height: 44px;
+  padding: var(--espace-xs) var(--espace-s);
+  border-width: 1px;
+  font-size: 0.9rem;
+}
+
+/* Petite flèche qui avance légèrement au survol. */
+.bouton__fleche {
+  width: 16px;
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+.bouton:hover .bouton__fleche,
+.bouton:focus-visible .bouton__fleche {
+  transform: translateX(3px);
+}
+
+
+/* ==========================================================================
+   5. PIED DE PAGE — commun aux 7 pages
+   --------------------------------------------------------------------------
+   Il porte id="contact" : c'est la cible de l'entrée « Contact » du menu,
+   qui n'est pas une page mais une ancre.
+   ========================================================================== */
+
+/* Aucun retrait au-dessus : sinon le fond crème apparaîtrait entre le
+   contenu et le trait du pied de page, comme une bande qui dépasse — très
+   visible sur les pages dont le contenu se termine en blanc. */
+.pied {
+  margin-top: var(--espace-xl);
+  padding-block: var(--espace-l) var(--espace-m);
+  border-top: 2px solid var(--jaune-deco);
+}
+
+.pied__colonnes {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  gap: var(--espace-l);
+  align-items: start;
+}
+
+/* --- Colonne 1 : l'identité --- */
+
+.pied__identite .pied__branche {
+  width: 54px;
+  margin-bottom: var(--espace-s);
+}
+
+.pied__nom {
+  margin: 0;
+  font-family: var(--titres);
+  font-weight: var(--moyen);
+  font-size: 1.35rem;
+  line-height: 1.3;
+}
+
+.pied__role {
+  margin: var(--espace-xs) 0 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* --- Colonnes 2 et 3 --- */
+
+.pied__titre {
+  margin-bottom: var(--espace-s);
+  font-family: var(--titres);
+  font-weight: var(--semigras);
+  font-size: 1.05rem;
+}
+
+.pied__liste {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 0.95rem;
+  font-style: normal;   /* neutralise l'italique par défaut de <address> */
+  line-height: 1.7;
+}
+
+.pied__liste li + li {
+  margin-top: var(--espace-xs);
+}
+
+.pied__liste a {
+  text-decoration: none;
+}
+
+.pied__liste a:hover,
+.pied__liste a:focus-visible {
+  text-decoration: underline;
+  text-decoration-color: var(--cta);
+  text-underline-offset: 4px;
+}
+
+/* --- Bas de page --- */
+
+.pied__bas {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--espace-s);
+  margin-top: var(--espace-l);
+  padding-top: var(--espace-m);
+  border-top: 1px solid var(--trait);
+}
+
+.pied__copyright {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+/* Crédit de l'illustrateur. En italique et un cran plus petit : c'est une
+   mention, pas du contenu. */
+.pied__credit {
+  margin: 0;
+  font-size: 0.85rem;
+  font-style: italic;
+}
+
+.pied__credit a {
+  text-decoration: none;
+}
+
+.pied__credit a:hover,
+.pied__credit a:focus-visible {
+  text-decoration: underline;
+  text-decoration-color: var(--cta);
+  text-underline-offset: 3px;
+}
+
+
+/* ==========================================================================
+   6. RESPONSIVE — éléments communs
+   --------------------------------------------------------------------------
+   Quatre largeurs de référence : 1440 / 900 / 600 / 375 px.
+   ========================================================================== */
+
+/* --- Le menu passe en burger ---
+   Le seuil est à 900 px : la navigation ne compte que cinq entrées, elle
+   tient donc plus longtemps que celle du site de l'association. --- */
+@media (max-width: 900px) {
+
+  .nav__burger {
+    display: flex;
+  }
+
+  /* Le menu se déplie sous l'en-tête, en pleine largeur. */
+  .nav__liste {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    z-index: 10;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: var(--espace-s) var(--espace-m) var(--espace-m);
+    background-color: var(--fond);
+    border-bottom: 2px solid var(--jaune-deco);
+    /* Si la liste est plus haute que l'écran (petit téléphone en paysage),
+       elle défile à l'intérieur plutôt que de sortir de la fenêtre. */
+    max-height: calc(100vh - 100%);
+    overflow-y: auto;
+  }
+
+  .nav__liste.est-ouvert {
+    display: flex;
+    animation: deplier 0.24s ease both;
+  }
+
+  /* Le trait de séparation est porté par l'élément de liste, pas par le
+     lien : le lien reste ainsi à la largeur de son texte, et le soulignement
+     jaune de la page courante fonctionne comme sur ordinateur. */
+  .nav__liste > li {
+    border-bottom: 1px solid var(--trait);
+  }
+
+  .nav__liste > li:last-child {
+    border-bottom: none;
+  }
+
+  .nav__lien {
+    padding-block: var(--espace-s);
+    font-size: 1.05rem;
+  }
+
+  /* --- Le sous-menu « Cours » dans le burger ---
+     Pas de déroulé dans un déroulé : c'est la source classique de menus
+     impossibles à utiliser au doigt. Les cinq entrées sont simplement
+     listées en retrait, toujours visibles. « Cours » cesse donc d'être un
+     bouton pour redevenir un intertitre. --- */
+  .nav__deroulant {
+    position: static;
+  }
+
+  .nav__bascule {
+    cursor: default;
+    opacity: 0.65;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    padding-bottom: 0;
+  }
+
+  /* Ni soulignement jaune ni chevron : « Cours » n'est plus cliquable. */
+  .nav__bascule::after,
+  .nav__chevron {
+    display: none;
+  }
+
+  .nav__sous-menu,
+  .nav__deroulant:hover .nav__sous-menu,
+  .nav__deroulant:focus-within .nav__sous-menu {
+    display: block;
+    position: static;
+    translate: none;
+    min-width: 0;
+    padding: 0 0 var(--espace-xs);
+    background: none;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    animation: none;
+  }
+
+  .nav__sous-menu::before {
+    display: none;
+  }
+
+  .nav__sous-lien {
+    padding: var(--espace-xs) 0 var(--espace-xs) var(--espace-s);
+    border-left: 2px solid var(--jaune-deco);
+    border-radius: 0;
+    font-size: 1rem;
+  }
+
+  .nav__sous-lien:hover,
+  .nav__sous-lien:focus-visible,
+  .nav__sous-lien[aria-current="page"] {
+    background: none;
+    border-left-color: var(--cta);
+  }
+
+  /* --- Pied de page sur deux colonnes --- */
+  .pied__colonnes {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--espace-m);
+  }
+
+  /* L'identité reprend toute la largeur, au-dessus des deux autres. */
+  .pied__identite {
+    grid-column: 1 / -1;
+  }
+}
+
+
+/* --- Mobile --- */
+@media (max-width: 600px) {
+
+  /* Marge latérale un peu plus large qu'un simple 1 rem : le texte tombait
+     trop près du bord de l'écran et devenait inconfortable à lire. */
+  .conteneur {
+    padding-inline: 1.5rem;
+  }
+
+  .entete__branche {
+    width: 36px;
+  }
+
+  .bouton {
+    width: 100%;
+  }
+
+  .pied {
+    margin-top: var(--espace-l);
+  }
+
+  .pied__colonnes {
+    grid-template-columns: 1fr;
+    gap: var(--espace-m);
+  }
+
+  /* Le bas de page repasse en colonne : côte à côte, le copyright et le
+     crédit se serraient l'un contre l'autre. */
+  .pied__bas {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--espace-xs);
+  }
+}
+
+
+/* --- Très petits écrans (375 px et moins) --- */
+@media (max-width: 380px) {
+
+  /* Le nom passe sous la branche plutôt que de la comprimer. */
+  .entete__nom {
+    font-size: 1.05rem;
+  }
+
+  .entete__marque {
+    gap: var(--espace-xs);
+  }
+}
