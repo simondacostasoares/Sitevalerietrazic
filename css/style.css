@@ -340,10 +340,11 @@ img {
    4. BOUTONS — communs à tout le site
    ========================================================================== */
 
-/* Relevé sur le site d'origine : un rectangle jaune plein, sans contour ni
-   arrondi, texte noir à 18 px. Au survol, il se vide de sa couleur et garde
-   un contour jaune — le mouvement inverse, pour que l'état survolé se
-   distingue sans introduire de teinte nouvelle. */
+/* Relevé sur le site d'origine : un rectangle jaune plein, texte noir à 18 px.
+   Les angles sont arrondis, à la demande de Simon — c'est le seul écart avec
+   l'original, qui les laisse vifs. Au survol, le bouton se vide de sa couleur
+   et garde son contour jaune : le mouvement inverse, pour que l'état survolé
+   se distingue sans introduire de teinte nouvelle. */
 .bouton {
   display: inline-flex;
   align-items: center;
@@ -352,6 +353,7 @@ img {
   min-height: 40px;
   padding: var(--espace-xs) var(--espace-s);
   border: 1px solid var(--jaune);
+  border-radius: 6px;
   background-color: var(--jaune);
   color: var(--texte);
   font-family: var(--corps);

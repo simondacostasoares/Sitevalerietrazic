@@ -72,6 +72,10 @@
    soit la largeur de l'écran. Seules les feuilles sont un fichier. -------- */
 
 .trait-feuille {
+  /* Une seule valeur à changer pour redimensionner l'ensemble : le trait se
+     recale tout seul, parce que sa position est calculée à partir d'elle. */
+  --feuille: 40px;
+
   position: relative;
   padding-left: 3rem;
 }
@@ -80,15 +84,24 @@
   position: absolute;
   top: 0;
   left: 0;
-  width: 40px;
+  width: var(--feuille);
 }
 
-/* Le trait part sous les feuilles et descend jusqu'au bas du texte. */
+/* Le trait prolonge la tige des feuilles : il doit partir exactement de sa
+   pointe, sinon il court à côté d'elle.
+
+   Dans le fichier, la tige se termine à 60,7 % de la largeur et touche le bord
+   inférieur (l'image fait 160 × 138, soit un rapport de 0,8625). Ces deux
+   proportions sont écrites ici en clair plutôt que traduites en pixels : le
+   raccord reste juste quelle que soit la taille de la feuille.
+
+   Les deux retraits d'un pixel centrent le trait sur la tige et le font
+   remonter très légèrement sous la pointe, pour qu'aucun blanc ne s'intercale. */
 .trait-feuille::before {
   content: "";
   position: absolute;
-  left: 18px;
-  top: 34px;
+  left: calc(var(--feuille) * 0.607 - 1px);
+  top: calc(var(--feuille) * 0.8625 - 2px);
   bottom: 0;
   width: 2px;
   background-color: var(--jaune);
@@ -241,8 +254,8 @@
 
 .carte:hover,
 .carte:focus-within {
-  transform: scale(1.04);
-  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.12);
+  transform: scale(1.08);
+  box-shadow: 0 10px 32px rgba(0, 0, 0, 0.14);
   /* La carte agrandie passe au-dessus de ses voisines plutôt que dessous. */
   position: relative;
   z-index: 1;
@@ -443,18 +456,10 @@
   }
 
   /* Le trait jaune se resserre : 3 rem de retrait, c'est trop sur un écran
-     de 375 px. */
+     de 375 px. Seule la taille de la feuille change — le trait suit. */
   .trait-feuille {
+    --feuille: 32px;
     padding-left: 2.25rem;
-  }
-
-  .trait-feuille__feuille {
-    width: 32px;
-  }
-
-  .trait-feuille::before {
-    left: 14px;
-    top: 28px;
   }
 
   /* Le bouton passe en pleine largeur (règle de style.css) : dans une carte,
