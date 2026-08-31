@@ -1,0 +1,206 @@
+/* ==========================================================================
+   YOGATHÉRAPIE — styles propres à yogatherapie.html
+   --------------------------------------------------------------------------
+   Chargé après style.css et page-interieure.css, qui fournissent les
+   variables, l'en-tête, les sections, le trait jaune et le pied de page.
+
+   Ce fichier ne contient que les deux blocs qu'on ne trouve nulle part
+   ailleurs sur le site :
+     1. les trois cartes « pour quoi, pour qui ? » ;
+     2. les quatre étapes du déroulement, posées dans des taches blanches.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. LES TROIS CARTES « POUR QUOI, POUR QUI ? »
+   --------------------------------------------------------------------------
+   Trois panneaux blancs sur le fond gris, chacun coiffé d'un titre centré et
+   souligné d'un trait jaune.
+   ========================================================================== */
+
+.cartes {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--espace-m);
+  align-items: stretch;   /* toutes les cartes prennent la même hauteur */
+}
+
+.carte-theme {
+  padding: var(--espace-m) var(--espace-s);
+  background-color: var(--fond);
+}
+
+.carte-theme__titre {
+  margin-bottom: var(--espace-xs);
+  font-size: clamp(1.375rem, 2.5vw, 30px);
+  text-align: center;
+}
+
+/* Le petit trait jaune sous le titre. Il ne fait pas toute la largeur de la
+   carte : c'est une ponctuation, pas une séparation. */
+.carte-theme__filet {
+  display: block;
+  width: 70%;
+  height: 3px;
+  margin: 0 auto var(--espace-m);
+  background-color: var(--jaune);
+}
+
+/* La liste garde ses puces — c'est bien une énumération — mais reçoit un
+   retrait mesuré, la valeur par défaut du navigateur étant trop large. */
+.carte-theme__liste {
+  margin: 0;
+  padding-left: 1.25rem;
+}
+
+.carte-theme__liste li + li {
+  margin-top: var(--espace-xs);
+}
+
+
+/* ==========================================================================
+   2. LES QUATRE ÉTAPES
+   --------------------------------------------------------------------------
+   Un parcours en zigzag : les étapes tombent alternativement à gauche et à
+   droite d'un fil jaune vertical, chacune posée dans une tache blanche.
+
+   Les taches sont dessinées en CSS, avec quatre rayons de bordure différents.
+   Le procédé : au lieu d'arrondir un coin d'un quart de cercle, on lui donne
+   un rayon horizontal et un rayon vertical différents — ce qui produit un
+   quart d'ellipse. Quatre coins traités ainsi, chacun avec ses propres
+   proportions, et le rectangle devient une tache. Aucun fichier image, aucun
+   tracé à maintenir, et la forme s'adapte à la longueur du texte.
+   ========================================================================== */
+
+.etapes {
+  position: relative;
+  margin: 0;
+  padding: 0;
+  list-style: none;   /* la numérotation est affichée en gros, à la main */
+}
+
+/* Le fil jaune qui relie les étapes. Il est posé derrière elles, au milieu,
+   et s'arrête un peu avant le haut et le bas pour ne pas dépasser. */
+.etapes::before {
+  content: "";
+  position: absolute;
+  top: 4%;
+  bottom: 4%;
+  left: 50%;
+  width: 2px;
+  background-color: var(--jaune);
+}
+
+/* La largeur est volontairement étroite : c'est elle qui donne sa forme à la
+   tache. Large, le texte tient sur deux lignes et la tache s'aplatit en
+   ellipse ; resserrée, il en faut quatre ou cinq et la tache redevient
+   ronde, comme sur le site d'origine. */
+.etape {
+  position: relative;   /* passe au-dessus du fil */
+  width: 38%;
+  margin-left: 12%;
+}
+
+/* Une étape sur deux part à droite. Les deux colonnes se rejoignent au
+   milieu, là où passe le fil : il disparaît donc derrière les taches et ne
+   réapparaît que dans les intervalles, comme sur le site d'origine. */
+.etape:nth-child(even) {
+  margin-left: 50%;
+}
+
+/* Les étapes se chevauchent verticalement : c'est ce décalage qui donne au
+   parcours son allure de zigzag plutôt que d'escalier. */
+.etape + .etape {
+  margin-top: calc(var(--espace-m) * -1);
+}
+
+/* Les marges intérieures sont larges parce que les coins sont rognés en
+   quarts d'ellipse : sans elles, les premières et dernières lettres de
+   chaque ligne sortiraient de la tache. */
+.etape__tache {
+  padding: calc(var(--espace-l) + var(--espace-s)) var(--espace-l);
+  background-color: var(--fond);
+  border-radius: 56% 44% 38% 62% / 46% 58% 42% 54%;
+}
+
+/* Chaque tache reçoit une déformation différente : quatre formes identiques
+   trahiraient immédiatement le procédé. */
+.etape:nth-child(2) .etape__tache {
+  border-radius: 42% 58% 55% 45% / 56% 44% 56% 44%;
+}
+
+.etape:nth-child(3) .etape__tache {
+  border-radius: 60% 40% 45% 55% / 42% 55% 45% 58%;
+}
+
+.etape:nth-child(4) .etape__tache {
+  border-radius: 45% 55% 60% 40% / 52% 48% 52% 48%;
+}
+
+/* Le numéro déborde en haut de la tache, comme sur le site d'origine. */
+.etape__numero {
+  position: relative;
+  z-index: 1;
+  margin-bottom: calc(var(--espace-l) * -1);
+  padding-left: var(--espace-s);
+  color: var(--jaune);
+  font-family: var(--titres);
+  font-size: clamp(3rem, 6vw, 72px);
+  line-height: 1;
+}
+
+.etape__texte {
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   3. RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+  /* Le zigzag n'a plus la place de zigzaguer : les étapes s'alignent en
+     colonne, et le fil jaune passe à gauche pour rester lisible. */
+  .etapes::before {
+    left: 1.25rem;
+  }
+
+  /* La largeur reste bridée : c'est elle qui garde la tache ronde. Étalée
+     sur toute la ligne, elle redeviendrait une ellipse écrasée. */
+  .etape,
+  .etape:nth-child(even) {
+    width: auto;
+    max-width: 420px;
+    margin-left: var(--espace-m);
+    margin-right: 0;
+  }
+
+  /* Le chevauchement disparaît en même temps que le zigzag : empilées, les
+     taches se mangeraient. */
+  .etape + .etape {
+    margin-top: var(--espace-s);
+  }
+
+  /* Les marges intérieures ne descendent pas plus bas : c'est là que la
+     courbe rentre le plus, et le texte sortirait de la tache. */
+  .etape__tache {
+    padding: calc(var(--espace-m) + var(--espace-s)) var(--espace-m);
+  }
+
+  .etape__numero {
+    margin-bottom: calc(var(--espace-m) * -1);
+  }
+}
+
+@media (max-width: 600px) {
+
+  .etape,
+  .etape:nth-child(even) {
+    margin-left: var(--espace-s);
+  }
+
+  .etape__numero {
+    padding-left: var(--espace-xs);
+  }
+}

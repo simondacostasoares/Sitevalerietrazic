@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Yogathérapie — Valérie Trazic, yogathérapeute à La Ciotat</title>
+  <meta name="description" content="Accompagnement en yogathérapie à La Ciotat : anxiété, stress, douleurs chroniques, soutien aux aidants. Suivi individuel, enfants et adolescents, petits groupes.">
+
+  <!-- Aperçu lors d'un partage sur WhatsApp, Facebook, Messenger…
+       og:url doit rester une adresse absolue : une adresse relative ne
+       fonctionne pas ici.
+       À FAIRE : og:image manque. Il faut une image de partage au format
+       1200 × 630 px ; aucune des illustrations récupérées n'a ce format. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Valérie Trazic">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:url" content="https://valerietrazic.fr/yogatherapie.html">
+  <meta property="og:title" content="Yogathérapie à La Ciotat">
+  <meta property="og:description" content="Accompagnement en yogathérapie à La Ciotat : anxiété, stress, douleurs chroniques, soutien aux aidants. Suivi individuel, enfants et adolescents, petits groupes.">
+
+  <!-- Icône du site, dérivée de la branche.
+       Le format 180 px est celui d'iOS : il a un fond crème parce qu'iOS
+       remplace la transparence par du noir. -->
+  <link rel="icon" href="images/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="images/favicon-512.png" sizes="512x512">
+  <link rel="apple-touch-icon" href="images/favicon-180.png">
+
+  <!-- Le site d'origine n'utilise que Quicksand, titres comme corps de texte. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- style.css : design system + éléments communs.
+       page-interieure.css : gabarit des six pages autres que l'accueil.
+       yogatherapie.css : les deux blocs propres à cette page. -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/page-interieure.css">
+  <link rel="stylesheet" href="css/yogatherapie.css">
+</head>
+
+<body>
+
+  <!-- ======================================================================
+       EN-TÊTE — identique sur les 7 pages du site.
+       Pour le modifier, il faut le faire dans chaque fichier HTML.
+       Sur la page courante, le lien porte aria-current="page" : c'est lui
+       qui déclenche le grisé.
+       ====================================================================== -->
+  <header class="entete">
+    <div class="conteneur entete__interieur">
+
+      <a href="index.html" class="entete__marque">
+        <img class="entete__branche" src="images/branche.png" alt="" aria-hidden="true" width="400" height="430">
+        <span class="entete__nom">Valérie Trazic</span>
+      </a>
+
+      <nav class="nav" aria-label="Navigation principale">
+
+        <button class="nav__burger" type="button" aria-expanded="false" aria-controls="menu-principal">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span class="lecteur-ecran-seulement">Ouvrir le menu</span>
+        </button>
+
+        <ul class="nav__liste" id="menu-principal">
+
+          <li><a class="nav__lien" href="index.html">Accueil</a></li>
+
+          <li><a class="nav__lien" href="yogatherapie.html" aria-current="page">Yogathérapie</a></li>
+
+          <!-- « Cours » n'est pas une page : c'est l'intitulé d'un groupe.
+               C'est donc un <button>, pas un <a> — il n'y a nulle part où
+               aller. Sur mobile, le CSS le transforme en simple intertitre
+               et déplie la liste en permanence. -->
+          <li class="nav__deroulant">
+            <button class="nav__lien nav__bascule" type="button" aria-expanded="false" aria-controls="sous-menu-cours">Cours</button>
+
+            <ul class="nav__sous-menu" id="sous-menu-cours">
+              <li><a class="nav__sous-lien" href="cours-adultes.html">Cours adultes</a></li>
+              <li><a class="nav__sous-lien" href="cours-enfants.html">Cours enfants</a></li>
+              <li><a class="nav__sous-lien" href="cours-parents-enfants.html">Cours parents / enfants</a></li>
+              <li><a class="nav__sous-lien" href="yoga-adapte-sante.html">Yoga Adapté Santé</a></li>
+              <li><a class="nav__sous-lien" href="cours-adultes.html#entreprises">Entreprises</a></li>
+            </ul>
+          </li>
+
+          <li><a class="nav__lien" href="a-propos.html">À propos</a></li>
+
+          <!-- « Contact » n'est pas une page non plus : c'est une ancre vers
+               le bandeau de coordonnées, qui porte id="contact". -->
+          <li><a class="nav__lien" href="#contact">Contact</a></li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+  </header>
+
+
+  <main>
+
+    <!-- ====================================================================
+         1. BANDEAU DE TITRE
+         ==================================================================== -->
+    <section class="conteneur hero-page">
+
+      <div class="hero-page__texte trait-feuille">
+        <img class="trait-feuille__feuille" src="images/feuille-trait.png" alt="" aria-hidden="true" width="160" height="138">
+        <h1 class="hero-page__titre">Yogathérapie</h1>
+        <p class="hero-page__accroche">
+          Comment acquérir des outils afin de devenir acteur dans son parcours de soin
+        </p>
+      </div>
+
+      <div class="hero-page__illustration">
+        <img src="images/yoga-therapie.png" alt="Deux personnes assises en méditation dans une pièce claire" width="1292" height="1046">
+      </div>
+
+    </section>
+
+
+    <!-- ====================================================================
+         LA BANDE GRISE — elle court derrière les cinq sections suivantes,
+         de « pour quoi, pour qui ? » jusqu'au petit groupe.
+         ==================================================================== -->
+    <div class="zone-grise">
+
+      <!-- ==================================================================
+           2. POUR QUOI, POUR QUI ?
+           ================================================================== -->
+      <section class="conteneur section" id="pour-qui" aria-labelledby="titre-pour-qui">
+
+        <h2 class="section__titre" id="titre-pour-qui">La Yogathérapie : pour quoi, pour qui ?</h2>
+
+        <div class="cartes">
+
+          <div class="carte-theme">
+            <h3 class="carte-theme__titre">Anxiété, Stress</h3>
+            <span class="carte-theme__filet" aria-hidden="true"></span>
+            <ul class="carte-theme__liste">
+              <li>Anxiété, stress, troubles du sommeil</li>
+              <li>Dépression</li>
+              <li>État de stress post-traumatique</li>
+            </ul>
+          </div>
+
+          <div class="carte-theme">
+            <h3 class="carte-theme__titre">Pathologies</h3>
+            <span class="carte-theme__filet" aria-hidden="true"></span>
+            <ul class="carte-theme__liste">
+              <li>Maux de dos</li>
+              <li>Troubles digestifs</li>
+              <li>Douleurs chroniques (HTA, diabète, fibromyalgie)</li>
+            </ul>
+          </div>
+
+          <div class="carte-theme">
+            <h3 class="carte-theme__titre">Soutien</h3>
+            <span class="carte-theme__filet" aria-hidden="true"></span>
+            <ul class="carte-theme__liste">
+              <li>Accompagnement et soutien aux aidants</li>
+              <li>Accompagnement lors de sevrage médicamenteux</li>
+              <li>Accompagnement lors du traitement d'un cancer</li>
+              <li>Accompagnement lors d'un parcours en PMA</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </section>
+
+
+      <!-- ==================================================================
+           3. QU'EST-CE QUE C'EST ?
+           ================================================================== -->
+      <section class="conteneur section" id="definition" aria-labelledby="titre-definition">
+
+        <h2 class="section__titre" id="titre-definition">La yogathérapie, qu'est-ce que c'est ?</h2>
+
+        <div class="trait bloc-texte">
+          <p>
+            La yogathérapie vous permet d'<strong>acquérir des outils pour prendre en
+            main votre santé</strong> et votre bien-être.
+          </p>
+          <p>
+            La yogathérapie sélectionne et <strong>adapte des outils traditionnels du
+            yoga</strong> pour être accessible à tous et atteindre les effets recherchés.
+            Pour ce faire, elle s'appuie sur les connaissances et recherches
+            scientifiques et médicales actuelles menées sur le yoga.
+          </p>
+          <p>
+            La yogathérapie est <strong>efficace</strong>. Elle prend en charge l'individu
+            dans sa globalité. Grâce à des <strong>postures très simples</strong>, grâce à
+            une mobilisation de <strong>la respiration</strong> et à un <strong>travail sur
+            les pensées et les émotions</strong>, elle favorise la prise de conscience et le
+            développement des ressources de l'être humain. Elle s'appuie sur la capacité
+            naturelle du corps à se réguler et à trouver l'équilibre, l'homéostasie. Elle
+            peut être suffisante ou venir en complément des traitements médicaux
+            nécessaires suivant les cas.
+          </p>
+          <p>
+            Un parcours réussi en yogathérapie nécessite l'investissement de la personne
+            dans une pratique régulière, idéalement quotidienne. L'accompagnement
+            personnalisé et bienveillant vise à rendre la personne <strong>autonome</strong>.
+          </p>
+        </div>
+
+        <p class="zone-bouton zone-bouton--aligne">
+          <a class="bouton" href="https://www.idyt.com/wp-content/uploads/JdY267-IDYT-Dossier.pdf" target="_blank" rel="noopener">
+            Découvrir le métier de yogathérapeute<span class="lecteur-ecran-seulement"> (document PDF, nouvelle fenêtre)</span>
+          </a>
+        </p>
+
+      </section>
+
+
+      <!-- ==================================================================
+           4. COMMENT ÇA SE PASSE ?
+           ================================================================== -->
+      <section class="conteneur section" id="deroulement" aria-labelledby="titre-deroulement">
+
+        <h2 class="section__titre section__titre--centre" id="titre-deroulement">Comment ça se passe ?</h2>
+
+        <div class="trait bloc-texte bloc-texte--centre">
+          <p>
+            L'accompagnement se déroule généralement sur dix séances bi-mensuelles.<br>
+            Par la suite, un rendez-vous mensuel, trimestriel ou semestriel peut être
+            proposé en fonction des besoins.
+          </p>
+        </div>
+
+        <!-- Une liste ordonnée : ce sont bien quatre étapes qui se suivent.
+             Les puces natives sont masquées, le numéro étant affiché en gros
+             au-dessus de chaque tache. -->
+        <ol class="etapes">
+
+          <li class="etape">
+            <p class="etape__numero" aria-hidden="true">1</p>
+            <div class="etape__tache">
+              <p class="etape__texte">
+                Le premier rendez-vous permet de faire un bilan global et de déterminer
+                les objectifs de la prise en charge.
+              </p>
+            </div>
+          </li>
+
+          <li class="etape">
+            <p class="etape__numero" aria-hidden="true">2</p>
+            <div class="etape__tache">
+              <p class="etape__texte">
+                Les séances suivantes commencent par un entretien d'une vingtaine de
+                minutes et un retour sur la pratique en autonomie.
+              </p>
+            </div>
+          </li>
+
+          <li class="etape">
+            <p class="etape__numero" aria-hidden="true">3</p>
+            <div class="etape__tache">
+              <p class="etape__texte">
+                Puis, en lien avec les objectifs déterminés au départ et avec l'entretien
+                de début de séance, je propose généralement l'apprentissage d'une ou deux
+                postures nouvelles, d'une respiration et d'une relaxation ou d'une
+                méditation.
+              </p>
+            </div>
+          </li>
+
+          <li class="etape">
+            <p class="etape__numero" aria-hidden="true">4</p>
+            <div class="etape__tache">
+              <p class="etape__texte">
+                La personne part avec des enregistrements audios et vidéos si nécessaire
+                pour pratiquer à la maison jusqu'au prochain rendez-vous.
+              </p>
+            </div>
+          </li>
+
+        </ol>
+
+      </section>
+
+
+      <!-- ==================================================================
+           5. ENFANTS ET ADOLESCENTS
+           ================================================================== -->
+      <section class="conteneur section" id="enfants" aria-labelledby="titre-enfants">
+
+        <h2 class="section__titre" id="titre-enfants">La Yogathérapie pour les enfants et les adolescents</h2>
+
+        <div class="trait bloc-texte">
+          <p>
+            Anxiété, stress, phobies, difficultés scolaires, TDAH, TSA, TCA, Tocs,
+            troubles du sommeil, addictions… J'accompagne votre enfant à travers des
+            exercices adaptés à ses besoins.
+          </p>
+        </div>
+
+        <div class="bloc-duo">
+          <div class="bloc-duo__texte">
+            <p>
+              Lors du premier rendez-vous, les parents sont présents. Nous déterminons
+              <strong>ensemble</strong> les objectifs de la prise en charge.
+            </p>
+          </div>
+          <div class="bloc-duo__illustration bloc-duo__illustration--tache">
+            <img src="images/enfant-3.png" alt="Enfant dans la posture du guerrier, bras écartés" width="580" height="580" loading="lazy">
+          </div>
+        </div>
+
+        <div class="bloc-duo bloc-duo--inverse">
+          <div class="bloc-duo__texte">
+            <p>
+              À chaque séance, quelques <strong>outils</strong> sont proposés : mobilisation
+              corporelle, respiration, relaxation, visualisation… Ils sont
+              <strong>adaptés</strong> à l'âge de votre enfant et à ses possibilités.<br>
+              Votre enfant repart avec une trace de ces exercices afin de pouvoir les
+              refaire à la maison.
+            </p>
+          </div>
+          <div class="bloc-duo__illustration bloc-duo__illustration--tache">
+            <img src="images/enfant-2.png" alt="Enfant assis en tailleur, les yeux fermés" width="580" height="580" loading="lazy">
+          </div>
+        </div>
+
+        <div class="bloc-duo">
+          <div class="bloc-duo__texte">
+            <p>
+              Le succès de la prise en charge repose sur l'<strong>investissement</strong>
+              de l'enfant et la <strong>pratique quotidienne</strong> des exercices
+              proposés.<br>
+              Je vous encourage, en tant que parent, à accompagner votre enfant et à
+              pratiquer les exercices avec lui en déterminant un temps dédié à ce
+              rendez-vous, au moins les premiers temps. Une quinzaine de minutes sont
+              suffisantes pour être efficaces.
+            </p>
+          </div>
+          <div class="bloc-duo__illustration bloc-duo__illustration--tache">
+            <img src="images/enfant-1.png" alt="Enfant penché en avant, mains au sol" width="580" height="580" loading="lazy">
+          </div>
+        </div>
+
+      </section>
+
+
+      <!-- ==================================================================
+           6. EN PETIT GROUPE
+           Section nouvelle, absente du site d'origine. L'illustration vient
+           du site de l'association.
+           ================================================================== -->
+      <section class="conteneur section" id="petit-groupe" aria-labelledby="titre-petit-groupe">
+
+        <h2 class="section__titre" id="titre-petit-groupe">La yogathérapie en petit groupe</h2>
+
+        <div class="bloc-duo bloc-duo--inverse">
+
+          <div class="bloc-duo__texte">
+            <p>
+              Moins personnalisée que le suivi individuel, la yogathérapie peut également
+              se pratiquer en petit groupe. Les séances réunissent <strong>7 personnes
+              maximum</strong> dans une pratique collective adaptée aux personnes
+              présentes. Ces séances sont destinées aux personnes qui souhaitent se
+              remettre en mouvement suite à une période d'arrêt pour cause de maladie,
+              d'intervention chirurgicale ou de sédentarité prolongée.
+            </p>
+            <p>
+              Mouvements très simples, respirations, visualisations et temps d'échange
+              sont proposés durant la séance. Un chemin en douceur pour se reconnecter à
+              son corps, à ses ressentis et aller vers un état d'apaisement et de
+              mieux-être physique et psychique.
+            </p>
+            <p>
+              Séances collectives à <strong>Au vent dans les branches</strong>, La Ciotat :
+            </p>
+            <ul class="carte-theme__liste">
+              <li>Mercredi 17h30 – 18h45</li>
+              <li>Jeudi 9h30 – 10h45</li>
+            </ul>
+            <p class="zone-bouton">
+              <a class="bouton" href="https://auventdanslesbranches.fr/yogatherapie.html" target="_blank" rel="noopener">
+                Voir sur le site d'Au vent dans les branches<span class="lecteur-ecran-seulement"> (nouvelle fenêtre)</span>
+              </a>
+            </p>
+          </div>
+
+          <div class="bloc-duo__illustration">
+            <img src="images/petit-groupe.webp" alt="Un petit groupe assis en cercle autour d'une bougie" width="929" height="472" loading="lazy">
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
+
+
+    <!-- ====================================================================
+         7. MODALITÉS — retour sur fond blanc
+         ==================================================================== -->
+    <section class="conteneur section" id="modalites" aria-labelledby="titre-modalites">
+
+      <h2 class="section__titre" id="titre-modalites">Modalités</h2>
+
+      <div class="modalites">
+
+        <div>
+          <span class="modalites__picto">
+            <img src="images/picto-tarif.svg" alt="" aria-hidden="true" width="40" height="37">
+          </span>
+          <h3 class="modalites__intitule">Tarifs</h3>
+          <p class="modalites__texte">
+            <strong>Adulte :</strong><br>
+            60 € (séance d'1h)
+          </p>
+          <p class="modalites__texte">
+            <strong>Enfant / adolescent :</strong><br>
+            60 € la 1<sup>re</sup> séance<br>
+            (1h, parents présents)<br>
+            puis 50 € (séance de 40 min)
+          </p>
+        </div>
+
+        <div>
+          <span class="modalites__picto">
+            <img src="images/picto-lieu.svg" alt="" aria-hidden="true" width="40" height="37">
+          </span>
+          <h3 class="modalites__intitule">Lieu</h3>
+          <address class="modalites__texte">
+            <strong>Centre Epignosis</strong><br>
+            392 avenue Ernest Subilia<br>
+            13600 La Ciotat
+          </address>
+          <p class="modalites__texte">Et</p>
+          <address class="modalites__texte">
+            <strong>Au vent dans les branches</strong><br>
+            17 rue Emmanuel Barthélémy<br>
+            13600 La Ciotat
+          </address>
+          <p class="modalites__texte modalites__note">Possibilité de séance à domicile</p>
+        </div>
+
+        <div>
+          <span class="modalites__picto">
+            <img src="images/picto-telephone.svg" alt="" aria-hidden="true" width="40" height="37">
+          </span>
+          <h3 class="modalites__intitule">Renseignements complémentaires</h3>
+          <p class="modalites__texte">
+            <strong><a href="tel:+33671415745">06 71 41 57 45</a></strong>
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ======================================================================
+       BANDEAU CONTACT — identique sur les 7 pages.
+       Il porte id="contact" : c'est la cible de l'entrée « Contact » du menu.
+       Les filets jaunes entre les cellules ne sont pas des bordures : c'est
+       le fond jaune du bandeau qui apparaît dans les fentes de 1 px.
+       ====================================================================== -->
+  <section class="bandeau-contact" id="contact" aria-label="Coordonnées">
+    <div class="bandeau-contact__grille">
+
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-lieu.webp" alt="" aria-hidden="true" width="88" height="120" loading="lazy">
+        <address class="bandeau-contact__texte">
+          <a href="https://auventdanslesbranches.fr" target="_blank" rel="noopener">Au vent dans les branches<span class="lecteur-ecran-seulement"> (nouvelle fenêtre)</span></a><br>
+          17 rue Emmanuel Barthélémy<br>
+          13600 La Ciotat
+        </address>
+      </div>
+
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-telephone.webp" alt="" aria-hidden="true" width="118" height="120" loading="lazy">
+        <p class="bandeau-contact__texte">
+          <a href="tel:+33671415745">06 71 41 57 45</a>
+        </p>
+      </div>
+
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-mail.webp" alt="" aria-hidden="true" width="125" height="120" loading="lazy">
+        <p class="bandeau-contact__texte">
+          <a href="mailto:trazicvalerie@gmail.com">trazicvalerie@gmail.com</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       PIED DE PAGE — identique sur les 7 pages. Fond blanc, tout centré.
+       ====================================================================== -->
+  <footer class="pied">
+    <div class="conteneur">
+
+      <img class="pied__branche" src="images/branche.png" alt="" aria-hidden="true" width="400" height="430" loading="lazy">
+
+      <p class="pied__nom">Valérie Trazic</p>
+      <p class="pied__role">
+        Professeure de Yoga<br>
+        Yogathérapeute
+      </p>
+
+      <p class="pied__credit">
+        Site et illustrations par Mathis Olieu<br>
+        <a href="mailto:contact@mathisolieu.fr">contact@mathisolieu.fr</a>
+      </p>
+
+    </div>
+  </footer>
+
+
+  <script src="js/menu.js"></script>
+
+</body>
+</html>

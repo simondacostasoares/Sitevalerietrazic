@@ -1,0 +1,344 @@
+/* ==========================================================================
+   GABARIT DES PAGES INTÉRIEURES
+   --------------------------------------------------------------------------
+   Chargé après style.css sur les six pages autres que l'accueil.
+
+   Il contient ce que ces six pages ont en commun :
+     1. le bandeau de titre en haut de page (texte à gauche, illustration à
+        droite) ;
+     2. les sections et leurs titres ;
+     3. le trait jaune vertical qui accompagne un bloc de texte, avec ou
+        sans feuille ;
+     4. le bloc « illustration + texte » alterné ;
+     5. le bandeau « Modalités » à trois colonnes.
+
+   L'accueil, lui, a son propre fichier. Quelques règles se ressemblent d'un
+   fichier à l'autre — le trait à feuille, notamment. C'est volontaire : les
+   deux fichiers ne sont jamais chargés ensemble, et garder l'accueil
+   indépendant évite qu'une retouche faite ici aille casser une page déjà
+   validée.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. BANDEAU DE TITRE
+   --------------------------------------------------------------------------
+   Deux colonnes : le titre et son accroche à gauche, l'illustration à droite.
+   ========================================================================== */
+
+.hero-page {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--espace-m);
+  padding-block: var(--espace-m) var(--espace-l);
+}
+
+/* 45 px sur le site d'origine. clamp() le fait rétrécir tout seul sur les
+   petits écrans, sans point de rupture supplémentaire. */
+.hero-page__titre {
+  margin-bottom: var(--espace-s);
+  font-size: clamp(2rem, 4vw, 45px);
+}
+
+.hero-page__accroche {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.67;
+}
+
+.hero-page__illustration img {
+  width: 100%;
+}
+
+
+/* ==========================================================================
+   2. SECTIONS
+   ========================================================================== */
+
+.section {
+  padding-block: var(--espace-l);
+}
+
+/* Les sections qui se suivent sur le même fond n'ont pas besoin de deux
+   respirations : celle du bas de l'une et celle du haut de l'autre se
+   cumuleraient. On ne garde que celle du haut. */
+.section + .section {
+  padding-top: 0;
+}
+
+.section__titre {
+  margin-bottom: var(--espace-l);
+  font-size: clamp(1.75rem, 3.5vw, 45px);
+}
+
+.section__titre--centre {
+  text-align: center;
+}
+
+/* La bande grise qui court derrière plusieurs sections d'affilée.
+   Sur cette page, elle va de « pour quoi, pour qui ? » jusqu'au petit
+   groupe : les fonds se succèdent en ligne droite, sans vague. */
+.zone-grise {
+  background-color: var(--gris-bloc);
+}
+
+
+/* ==========================================================================
+   3. LE TRAIT JAUNE
+   --------------------------------------------------------------------------
+   Un trait vertical jaune posé à gauche d'un bloc de texte, comme une marge
+   de cahier. Il est dessiné en CSS et non importé en image : il épouse ainsi
+   la hauteur du texte, quelle que soit la longueur de celui-ci et quelle que
+   soit la largeur de l'écran.
+
+   Deux versions : nu (.trait) et surmonté de deux feuilles (.trait-feuille).
+   ========================================================================== */
+
+.trait {
+  position: relative;
+  padding-left: 3rem;
+}
+
+.trait::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background-color: var(--jaune);
+}
+
+.trait-feuille {
+  /* Une seule valeur à changer pour redimensionner l'ensemble : le trait se
+     recale tout seul, parce que sa position est calculée à partir d'elle. */
+  --feuille: 40px;
+
+  position: relative;
+  padding-left: 3rem;
+}
+
+.trait-feuille__feuille {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--feuille);
+}
+
+/* Le trait prolonge la tige des feuilles : il doit partir exactement de sa
+   pointe, sinon il court à côté d'elle.
+
+   Dans le fichier, la tige se termine à 60,7 % de la largeur et touche le
+   bord inférieur (l'image fait 160 × 138, soit un rapport de 0,8625). Ces
+   deux proportions sont écrites ici en clair plutôt que traduites en pixels :
+   le raccord reste juste quelle que soit la taille de la feuille. */
+.trait-feuille::before {
+  content: "";
+  position: absolute;
+  left: calc(var(--feuille) * 0.607 - 1px);
+  top: calc(var(--feuille) * 0.8625 - 2px);
+  bottom: 0;
+  width: 2px;
+  background-color: var(--jaune);
+}
+
+/* Un bloc de texte long reste lisible tant qu'une ligne ne dépasse pas une
+   soixantaine de caractères : au-delà, l'œil perd le début de la ligne
+   suivante. C'est ce que fait le site d'origine, dont le texte n'occupe
+   jamais toute la largeur. */
+.bloc-texte {
+  max-width: 62ch;
+}
+
+.bloc-texte > :last-child {
+  margin-bottom: 0;
+}
+
+/* Quand le titre de la section est centré, son texte d'introduction l'est
+   aussi — non pas au sens du texte centré, mais du bloc centré dans la page. */
+.bloc-texte--centre {
+  margin-inline: auto;
+  margin-bottom: var(--espace-l);
+}
+
+/* Un bouton posé sous un bloc de texte. La variante « aligné » le décale du
+   même retrait que le trait jaune, pour qu'il tombe sous le texte et non
+   sous le trait. */
+.zone-bouton {
+  margin-top: var(--espace-m);
+  margin-bottom: 0;
+}
+
+.zone-bouton--aligne {
+  padding-left: 3rem;
+}
+
+
+/* ==========================================================================
+   4. BLOC « ILLUSTRATION + TEXTE »
+   --------------------------------------------------------------------------
+   Une illustration d'un côté, du texte de l'autre, alternés d'un bloc au
+   suivant. Comme sur l'accueil, le texte est TOUJOURS écrit avant l'image
+   dans le HTML — donc lu avant elle par un lecteur d'écran — et c'est le CSS
+   qui les place.
+   ========================================================================== */
+
+.bloc-duo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: var(--espace-m);
+  padding-block: var(--espace-m);
+}
+
+.bloc-duo__illustration {
+  order: -1;   /* par défaut, l'illustration est à gauche */
+}
+
+.bloc-duo--inverse .bloc-duo__illustration {
+  order: 1;    /* la variante la renvoie à droite */
+}
+
+.bloc-duo__texte > :last-child {
+  margin-bottom: 0;
+}
+
+/* La tache jaune posée derrière les personnages.
+   Les illustrations sont fournies détourées : la tache est donc dessinée
+   ici, en fond, plutôt que gravée dans le fichier image. Un rayon de bordure
+   différent sur chacun des quatre coins suffit à obtenir une forme molle,
+   sans recourir à un tracé SVG. */
+/* La tache est positionnée en pourcentage de ce bloc : il doit donc faire
+   exactement la largeur de l'illustration, sinon la tache déborde d'un côté
+   ou de l'autre dès que la colonne s'élargit. */
+.bloc-duo__illustration--tache {
+  position: relative;
+  width: 100%;
+  max-width: 320px;
+  margin-inline: auto;
+}
+
+.bloc-duo__illustration--tache::before {
+  content: "";
+  position: absolute;
+  left: 22%;
+  right: 24%;
+  top: 44%;
+  bottom: 16%;
+  background-color: var(--jaune);
+  border-radius: 58% 42% 47% 53% / 52% 46% 54% 48%;
+}
+
+/* La tache ne se met pas toujours au même endroit : elle se cale derrière le
+   personnage, donc plus bas pour une posture debout, plus haut pour une
+   posture assise. */
+.bloc-duo--inverse .bloc-duo__illustration--tache::before {
+  top: 22%;
+  bottom: 32%;
+  border-radius: 44% 56% 52% 48% / 48% 54% 46% 52%;
+}
+
+.bloc-duo__illustration--tache img {
+  position: relative;   /* passe au-dessus de la tache */
+  width: 100%;
+}
+
+
+/* ==========================================================================
+   5. MODALITÉS
+   --------------------------------------------------------------------------
+   Trois colonnes centrées, chacune coiffée d'un picto blanc dans un rond
+   jaune. Les pictos sont les fichiers du site d'origine ; le rond, lui, est
+   fait en CSS.
+   ========================================================================== */
+
+.modalites {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: var(--espace-l) var(--espace-m);
+  text-align: center;
+}
+
+.modalites__picto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin: 0 auto var(--espace-m);
+  border-radius: 50%;
+  background-color: var(--jaune);
+}
+
+.modalites__picto img {
+  width: 30px;
+}
+
+.modalites__intitule {
+  margin-bottom: var(--espace-xs);
+  font-size: 18px;
+}
+
+.modalites__texte {
+  margin: 0;
+  font-style: normal;   /* neutralise l'italique par défaut de <address> */
+}
+
+.modalites__texte strong {
+  font-weight: var(--gras);
+}
+
+.modalites__note {
+  margin-top: var(--espace-s);
+  font-style: italic;
+}
+
+
+/* ==========================================================================
+   6. RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+  /* Le titre passe au-dessus de l'illustration, comme sur l'accueil : sur un
+     écran étroit, deux colonnes de 400 px deviennent deux colonnes de 150 px,
+     illisibles l'une comme l'autre. */
+  .hero-page,
+  .bloc-duo {
+    grid-template-columns: 1fr;
+  }
+
+  /* Empilés, l'illustration passe toujours AU-DESSUS du texte, quelle que
+     soit la variante. */
+  .hero-page__illustration,
+  .bloc-duo__illustration,
+  .bloc-duo--inverse .bloc-duo__illustration {
+    order: -1;
+  }
+
+  .section {
+    padding-block: var(--espace-m);
+  }
+
+  .section__titre {
+    margin-bottom: var(--espace-m);
+  }
+}
+
+@media (max-width: 600px) {
+
+  .trait,
+  .trait-feuille,
+  .zone-bouton--aligne {
+    padding-left: 2.25rem;
+  }
+
+  .trait-feuille {
+    --feuille: 32px;
+  }
+
+  .bloc-duo__illustration--tache {
+    max-width: 240px;
+  }
+}
