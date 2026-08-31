@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Cours adultes — Valérie Trazic, professeure de yoga à La Ciotat</title>
+  <meta name="description" content="Cours de yoga pour adultes à La Ciotat : Natha Yoga, respiration et méditation, yoga sur chaise. Accessible à tous, quels que soient l'âge et la souplesse.">
+
+  <!-- Aperçu lors d'un partage sur WhatsApp, Facebook, Messenger…
+       og:url doit rester une adresse absolue : une adresse relative ne
+       fonctionne pas ici.
+       À FAIRE : og:image manque. Il faut une image de partage au format
+       1200 × 630 px ; aucune des illustrations récupérées n'a ce format. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Valérie Trazic">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:url" content="https://valerietrazic.fr/cours-adultes.html">
+  <meta property="og:title" content="Cours de yoga pour adultes à La Ciotat">
+  <meta property="og:description" content="Cours de yoga pour adultes à La Ciotat : Natha Yoga, respiration et méditation, yoga sur chaise. Accessible à tous, quels que soient l'âge et la souplesse.">
+
+  <!-- Icône du site, dérivée de la branche.
+       Le format 180 px est celui d'iOS : il a un fond crème parce qu'iOS
+       remplace la transparence par du noir. -->
+  <link rel="icon" href="images/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="images/favicon-512.png" sizes="512x512">
+  <link rel="apple-touch-icon" href="images/favicon-180.png">
+
+  <!-- Le site d'origine n'utilise que Quicksand, titres comme corps de texte. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- style.css : design system + éléments communs.
+       page-interieure.css : gabarit des six pages autres que l'accueil.
+       cours-adultes.css : les blocs propres à cette page. -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/page-interieure.css">
+  <link rel="stylesheet" href="css/cours-adultes.css">
+</head>
+
+<body>
+
+  <!-- ======================================================================
+       EN-TÊTE — identique sur les 7 pages du site.
+       Pour le modifier, il faut le faire dans chaque fichier HTML.
+       Sur la page courante, le lien porte aria-current="page" : c'est lui
+       qui déclenche le grisé.
+       ====================================================================== -->
+  <header class="entete">
+    <div class="conteneur entete__interieur">
+
+      <a href="index.html" class="entete__marque">
+        <img class="entete__branche" src="images/branche.png" alt="" aria-hidden="true" width="400" height="430">
+        <span class="entete__nom">Valérie Trazic</span>
+      </a>
+
+      <nav class="nav" aria-label="Navigation principale">
+
+        <button class="nav__burger" type="button" aria-expanded="false" aria-controls="menu-principal">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span class="lecteur-ecran-seulement">Ouvrir le menu</span>
+        </button>
+
+        <ul class="nav__liste" id="menu-principal">
+
+          <li><a class="nav__lien" href="index.html">Accueil</a></li>
+
+          <li><a class="nav__lien" href="yogatherapie.html">Yogathérapie</a></li>
+
+          <!-- « Cours » n'est pas une page : c'est l'intitulé d'un groupe.
+               C'est donc un <button>, pas un <a> — il n'y a nulle part où
+               aller. Sur mobile, le CSS le transforme en simple intertitre
+               et déplie la liste en permanence. -->
+          <li class="nav__deroulant">
+            <button class="nav__lien nav__bascule" type="button" aria-expanded="false" aria-controls="sous-menu-cours">Cours</button>
+
+            <ul class="nav__sous-menu" id="sous-menu-cours">
+              <li><a class="nav__sous-lien" href="cours-adultes.html" aria-current="page">Cours adultes</a></li>
+              <li><a class="nav__sous-lien" href="cours-enfants.html">Cours enfants</a></li>
+              <li><a class="nav__sous-lien" href="cours-parents-enfants.html">Cours parents / enfants</a></li>
+              <li><a class="nav__sous-lien" href="yoga-adapte-sante.html">Yoga Adapté Santé</a></li>
+            </ul>
+          </li>
+
+          <li><a class="nav__lien" href="a-propos.html">À propos</a></li>
+
+          <!-- « Contact » n'est pas une page non plus : c'est une ancre vers
+               le bandeau de coordonnées, qui porte id="contact". -->
+          <li><a class="nav__lien" href="#contact">Contact</a></li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+  </header>
+
+
+
+  <main>
+
+    <!-- ====================================================================
+         1. BANDEAU DE TITRE
+         Pleine largeur : l'illustration occupe tout l'écran et le texte est
+         posé par-dessus, dans une bulle blanche. Sur mobile, la bulle
+         redescend sous l'image.
+         ==================================================================== -->
+    <section class="bandeau">
+
+      <img class="bandeau__illustration" src="images/cours-adultes-bandeau.png" alt="Un groupe assis en cercle sous un grand arbre" width="1800" height="770">
+
+      <div class="bandeau__bulle">
+        <div class="trait-feuille">
+          <img class="trait-feuille__feuille" src="images/feuille-trait.png" alt="" aria-hidden="true" width="160" height="138">
+          <h1 class="bandeau__titre">Cours adultes</h1>
+          <p class="bandeau__texte">
+            <strong>On commence souvent le yoga</strong> pour trouver un mieux-être
+            physique et psychique, s'assouplir, se (re)mettre en mouvement, se poser,
+            développer la présence à soi, respirer…<br>
+            En pratiquant régulièrement le yoga, vous trouverez très vraisemblablement
+            cela… peut-être autre chose aussi…
+          </p>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ====================================================================
+         2. POUR QUI ?
+         L'encart « Entreprise, association ? » est imbriqué ici, comme sur
+         le site d'origine.
+         ==================================================================== -->
+    <section class="conteneur section" id="pour-qui" aria-labelledby="titre-pour-qui">
+
+      <h2 class="section__titre section__titre--centre" id="titre-pour-qui">Pour qui ?</h2>
+
+      <div class="trait bloc-texte bloc-texte--centre">
+
+        <p>Pour tous !</p>
+
+        <p>
+          Le yoga est une pratique accessible à tous et bénéfique à tous. Le cliché de
+          la souplesse nécessaire à la pratique du yoga a la dent dure et éloigne du
+          tapis des personnes qui pourraient y trouver des bienfaits. C'est dommage !
+          Venez comme vous êtes et ce sera très bien. Quels que soient votre âge, votre
+          poids, votre souplesse, votre tempérament… le yoga fait du bien.
+        </p>
+
+        <p class="encart__note">
+          Possibilité de cours particuliers en individuel ou en petit groupe constitué
+          d'au moins trois personnes.
+        </p>
+
+        <div class="encart" id="entreprises">
+
+          <h3 class="encart__titre">
+            Entreprise, association ? Vous souhaitez porter un projet de bien-être sur
+            votre lieu de travail et accompagner vos collaborateurs sur des sujets clés :
+          </h3>
+
+          <ul class="encart__liste">
+            <li>
+              <img class="encart__picto" src="images/picto-stress.svg" alt="" aria-hidden="true" width="46" height="46" loading="lazy">
+              <span>réduction du stress, prévention du burn-out</span>
+            </li>
+            <li>
+              <img class="encart__picto" src="images/picto-posture.svg" alt="" aria-hidden="true" width="46" height="46" loading="lazy">
+              <span>amélioration de la posture</span>
+            </li>
+            <li>
+              <img class="encart__picto" src="images/picto-cohesion.svg" alt="" aria-hidden="true" width="46" height="46" loading="lazy">
+              <span>cohésion du groupe</span>
+            </li>
+          </ul>
+
+          <p class="encart__note">
+            Sous forme d'ateliers thématiques ponctuels ou réguliers, nous pouvons
+            réfléchir ensemble à une offre adaptée à votre cadre professionnel.<br>
+            Contactez-moi au <a href="tel:+33671415745">06 71 41 57 45</a>
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ====================================================================
+         3. OÙ ET QUAND ?
+         Section nouvelle, absente du site d'origine.
+         ==================================================================== -->
+    <section class="conteneur section" id="ou-et-quand" aria-labelledby="titre-ou-et-quand">
+
+      <h2 class="section__titre section__titre--serre" id="titre-ou-et-quand">Où et quand ?</h2>
+
+      <div class="trait bloc-texte">
+
+        <p>
+          Cours à La Ciotat, à
+          <a href="https://auventdanslesbranches.fr" target="_blank" rel="noopener">Au vent dans les branches<span class="lecteur-ecran-seulement"> (nouvelle fenêtre)</span></a>,
+          17 rue Emmanuel Barthélémy.
+        </p>
+
+        <h3 class="encart__titre">Natha Yoga</h3>
+        <ul class="carte-theme__liste">
+          <li>Lundi 18h – 19h15</li>
+          <li>Mardi 9h – 10h15</li>
+          <li>Mercredi 19h – 20h15</li>
+          <li>Vendredi 12h – 13h15 et 18h30 – 19h45</li>
+        </ul>
+
+        <h3 class="encart__titre">Respiration, concentration / méditation, relaxation</h3>
+        <ul class="carte-theme__liste">
+          <li>Lundi 19h30 – 20h45</li>
+        </ul>
+
+        <h3 class="encart__titre">Yoga sur chaise</h3>
+        <ul class="carte-theme__liste">
+          <li>Mardi 10h45 – 11h45</li>
+        </ul>
+
+      </div>
+
+      <p class="zone-bouton zone-bouton--aligne">
+        <a class="bouton" href="https://auventdanslesbranches.fr/natha-yoga.html" target="_blank" rel="noopener">
+          Voir les cours sur le site d'Au vent dans les branches<span class="lecteur-ecran-seulement"> (nouvelle fenêtre)</span>
+        </a>
+      </p>
+
+    </section>
+
+
+    <!-- ====================================================================
+         4. COMMENT ÇA MARCHE ?
+         Les trois colonnes et le texte qui les suit sont dans le même trait
+         jaune, comme sur le site d'origine.
+         ==================================================================== -->
+    <section class="conteneur section" id="comment" aria-labelledby="titre-comment">
+
+      <h2 class="section__titre section__titre--serre" id="titre-comment">Comment ça marche ?</h2>
+
+      <div class="trait">
+
+        <div class="trois-plans">
+
+          <div>
+            <img class="trois-plans__picto" src="images/picto-corps.svg" alt="" aria-hidden="true" width="38" height="38" loading="lazy">
+            <p class="trois-plans__texte">Par les postures, le corps agit</p>
+          </div>
+
+          <div>
+            <img class="trois-plans__picto" src="images/picto-respiration.svg" alt="" aria-hidden="true" width="38" height="38" loading="lazy">
+            <p class="trois-plans__texte">
+              Par la respiration, les émotions, les pensées s'apprivoisent, se calment,
+              l'énergie s'active, circule
+            </p>
+          </div>
+
+          <div>
+            <img class="trois-plans__picto" src="images/picto-concentration.svg" alt="" aria-hidden="true" width="38" height="38" loading="lazy">
+            <p class="trois-plans__texte">
+              Par la concentration, le mental se dompte, l'attention s'accroît
+            </p>
+          </div>
+
+        </div>
+
+        <div class="bloc-texte">
+          <p>
+            Dans les exercices, nous lierons fréquemment les trois plans pour une
+            pratique complète et régénérante.<br>
+            Toutes les postures sont adaptables afin d'être accessibles à tous.
+          </p>
+          <p>
+            Être à l'écoute de soi est un des points essentiels de la pratique.
+            Percevoir la différence entre l'inconfort, opérant, utile et la douleur,
+            qui dit stop.
+          </p>
+          <p>
+            Loin de la performance ou de la prouesse physique, la pratique permet de
+            développer l'endurance, la détermination, la persévérance à son rythme,
+            dans une écoute bienveillante de soi.
+          </p>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ======================================================================
+       BANDEAU CONTACT — identique sur les 7 pages.
+       Il porte id="contact" : c'est la cible de l'entrée « Contact » du menu.
+       Les filets jaunes entre les cellules ne sont pas des bordures : c'est
+       le fond jaune du bandeau qui apparaît dans les fentes de 1 px.
+       ====================================================================== -->
+  <section class="bandeau-contact" id="contact" aria-label="Coordonnées">
+    <div class="bandeau-contact__grille">
+
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-lieu.webp" alt="" aria-hidden="true" width="88" height="120" loading="lazy">
+        <address class="bandeau-contact__texte">
+          <a href="https://auventdanslesbranches.fr" target="_blank" rel="noopener">Au vent dans les branches<span class="lecteur-ecran-seulement"> (nouvelle fenêtre)</span></a><br>
+          17 rue Emmanuel Barthélémy<br>
+          13600 La Ciotat
+        </address>
+      </div>
+
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-telephone.webp" alt="" aria-hidden="true" width="118" height="120" loading="lazy">
+        <p class="bandeau-contact__texte">
+          <a href="tel:+33671415745">06 71 41 57 45</a>
+        </p>
+      </div>
+
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-mail.webp" alt="" aria-hidden="true" width="125" height="120" loading="lazy">
+        <p class="bandeau-contact__texte">
+          <a href="mailto:trazicvalerie@gmail.com">trazicvalerie@gmail.com</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       PIED DE PAGE — identique sur les 7 pages. Fond blanc, tout centré.
+       ====================================================================== -->
+  <footer class="pied">
+    <div class="conteneur">
+
+      <img class="pied__branche" src="images/branche.png" alt="" aria-hidden="true" width="400" height="430" loading="lazy">
+
+      <p class="pied__nom">Valérie Trazic</p>
+      <p class="pied__role">
+        Professeure de Yoga<br>
+        Yogathérapeute
+      </p>
+
+      <p class="pied__credit">
+        Site et illustrations par Mathis Olieu<br>
+        <a href="mailto:contact@mathisolieu.fr">contact@mathisolieu.fr</a>
+      </p>
+
+    </div>
+  </footer>
+
+
+  <script src="js/menu.js"></script>
+
+</body>
+</html>

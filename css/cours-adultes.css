@@ -1,0 +1,176 @@
+/* ==========================================================================
+   COURS ADULTES — styles propres à cours-adultes.html
+   --------------------------------------------------------------------------
+   Chargé après style.css et page-interieure.css.
+
+   Trois blocs qu'on ne trouve pas ailleurs :
+     1. le bandeau de titre pleine largeur, avec sa bulle blanche posée
+        sur l'illustration de l'arbre ;
+     2. l'encart gris « Entreprise, association ? » et ses trois pictos ;
+     3. les trois colonnes « Comment ça marche ? ».
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. LE BANDEAU DE TITRE
+   --------------------------------------------------------------------------
+   Ici l'illustration ne partage pas la place avec le texte : elle occupe
+   toute la largeur de l'écran, et le texte est posé PAR-DESSUS, dans une
+   bulle blanche.
+
+   Le fond crème de la section est le même que celui de l'image. C'est ce qui
+   permet à l'illustration de garder ses proportions sans laisser de bandes
+   vides sur les écrans très larges : le crème de la section prend le relais,
+   et le raccord ne se voit pas.
+   ========================================================================== */
+
+.bandeau {
+  position: relative;
+  background-color: var(--creme);
+}
+
+.bandeau__illustration {
+  width: 100%;
+  max-width: 1800px;   /* la taille réelle du fichier : au-delà, il flouterait */
+  margin-inline: auto;
+}
+
+/* La bulle est positionnée en pourcentages, pas en pixels : elle suit donc
+   l'illustration quand celle-ci s'étire ou rétrécit, et reste toujours dans
+   le vide sous la grande branche de gauche. */
+.bandeau__bulle {
+  position: absolute;
+  top: 12%;
+  left: 8%;
+  width: min(340px, 32%);
+  padding: var(--espace-m);
+  background-color: var(--fond);
+  border-radius: 46% 54% 40% 60% / 52% 44% 56% 48%;
+}
+
+.bandeau__titre {
+  margin-bottom: var(--espace-s);
+  font-size: clamp(1.5rem, 2.6vw, 32px);
+}
+
+.bandeau__texte {
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   2. L'ENCART « ENTREPRISE, ASSOCIATION ? »
+   --------------------------------------------------------------------------
+   Un panneau gris dans le fil de la section « Pour qui ? ».
+   ========================================================================== */
+
+.encart {
+  margin-top: var(--espace-m);
+  padding: var(--espace-m);
+  background-color: var(--gris-bloc);
+}
+
+/* « Entreprise, association ? » sert de titre à l'encart : c'est un vrai
+   titre dans le HTML, mis en gras plutôt qu'agrandi — l'encart reste ainsi
+   au même niveau visuel que le texte qui l'entoure. */
+.encart__titre {
+  margin-bottom: var(--espace-s);
+  font-size: 15px;
+  font-weight: var(--gras);
+  line-height: 1.88;
+}
+
+.encart__liste {
+  margin: 0 0 var(--espace-m);
+  padding: 0;
+  list-style: none;
+}
+
+.encart__liste li {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-s);
+}
+
+.encart__liste li + li {
+  margin-top: var(--espace-s);
+}
+
+.encart__picto {
+  flex-shrink: 0;   /* sans quoi le picto s'écrase quand le texte est long */
+  width: 46px;
+}
+
+.encart__note {
+  margin: 0;
+  font-style: italic;
+}
+
+
+/* ==========================================================================
+   3. « COMMENT ÇA MARCHE ? »
+   --------------------------------------------------------------------------
+   Trois colonnes, chacune avec son picto et une phrase en gras, puis le
+   texte courant. Le tout tient dans le même trait jaune.
+   ========================================================================== */
+
+/* La largeur est bridée pour que les trois colonnes restent groupées.
+   Étalées sur toute la page, les pictos se retrouvent si loin les uns des
+   autres qu'on ne les lit plus comme un ensemble. */
+.trois-plans {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: var(--espace-m);
+  max-width: 780px;
+  margin-bottom: var(--espace-l);
+  text-align: center;
+}
+
+.trois-plans__picto {
+  height: 38px;
+  width: auto;
+  margin: 0 auto var(--espace-m);
+}
+
+.trois-plans__texte {
+  margin: 0;
+  font-weight: var(--gras);
+}
+
+
+/* ==========================================================================
+   4. RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+  /* La bulle ne peut plus tenir sur l'illustration : à cette largeur elle
+     couvrirait tout le dessin. Elle repasse donc sous l'image, dans le flux
+     normal — et comme la section est déjà crème, le raccord reste propre. */
+  .bandeau__bulle {
+    position: static;
+    width: auto;
+    max-width: 34rem;
+    margin: 0 auto;
+    padding: var(--espace-m);
+    border-radius: 40% 60% 46% 54% / 12% 14% 12% 14%;
+  }
+
+  .bandeau {
+    padding-bottom: var(--espace-m);
+  }
+}
+
+@media (max-width: 600px) {
+
+  /* Un rayon en pourcentage sur un bloc étroit et haut donne une forme
+     démesurée. Sur mobile, la bulle redevient un simple rectangle arrondi. */
+  .bandeau__bulle {
+    margin-inline: var(--espace-s);
+    border-radius: var(--rayon);
+  }
+
+  .encart {
+    padding: var(--espace-s);
+  }
+}
