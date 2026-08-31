@@ -90,6 +90,13 @@
   background-color: var(--gris-bloc);
 }
 
+/* Son pendant crème. Il sert notamment derrière un bandeau de titre dont
+   l'illustration a elle-même un fond crème : la couleur court alors sur
+   toute la largeur de l'écran et le bord de l'image ne se détache plus. */
+.zone-creme {
+  background-color: var(--creme);
+}
+
 
 /* ==========================================================================
    3. LE TRAIT JAUNE

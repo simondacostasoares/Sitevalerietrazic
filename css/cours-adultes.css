@@ -22,13 +22,15 @@
    pleine largeur. Placé tel quel dans une demi-colonne, le dessin se
    retrouve minuscule au milieu d'un grand aplat crème vide.
 
-   On lui impose donc un cadre moins large : « aspect-ratio » fixe la
-   proportion de la boîte, « cover » recadre l'image dedans. Le groupe et le
-   tronc restent au centre, les marges crème des deux côtés sont rognées.
+   On la recadre donc un peu — « aspect-ratio » fixe la proportion de la
+   boîte, « cover » recadre l'image dedans — mais légèrement : le fond crème
+   de la section prend le relais de celui de l'image, si bien que les marges
+   du dessin ne se voient plus. Rogner davantage amputerait l'arbre sans rien
+   gagner.
    ========================================================================== */
 
 .hero-page__illustration img {
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 2 / 1;
   object-fit: cover;
 }
 
