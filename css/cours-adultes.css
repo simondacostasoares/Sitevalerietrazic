@@ -34,6 +34,52 @@
   object-fit: cover;
 }
 
+/* L'illustration prend un peu plus de place que le texte. Elle en a besoin :
+   le dessin est large, alors que la bulle, elle, se contente de la place que
+   son texte occupe.
+
+   La règle est enfermée dans « min-width », et non écrite telle quelle : ce
+   fichier est chargé APRÈS page-interieure.css, si bien qu'une déclaration
+   nue passerait par-dessus celle qui remet le bandeau sur une seule colonne
+   en dessous de 900 px — et la page resterait en deux colonnes sur mobile. */
+@media (min-width: 901px) {
+
+  .hero-page {
+    grid-template-columns: 1fr 1.25fr;
+  }
+}
+
+
+/* ==========================================================================
+   0 bis. LA BULLE BLANCHE DU BANDEAU
+   --------------------------------------------------------------------------
+   Comme sur le site d'origine, le texte du bandeau est posé dans une bulle
+   blanche. La forme est obtenue en donnant à chaque coin un rayon horizontal
+   et un rayon vertical différents : le coin devient un quart d'ellipse, et le
+   rectangle une bulle.
+   ========================================================================== */
+
+.bulle {
+  /* Les marges intérieures sont larges parce que les bords sont courbes :
+     dans une bulle, le texte doit rentrer davantage que dans un rectangle,
+     sinon les premières et dernières lignes touchent la paroi. */
+  padding: var(--espace-l) var(--espace-m);
+  background-color: var(--fond);
+  border-radius: 46% 54% 40% 60% / 52% 44% 56% 48%;
+}
+
+/* Plus petit que le titre des autres bandeaux : il est ici enfermé dans une
+   bulle, pas posé en pleine page. */
+.bulle__titre {
+  margin-bottom: var(--espace-s);
+  font-size: clamp(1.5rem, 2.6vw, 32px);
+}
+
+/* Aucune règle de taille : le texte reste à la taille courante du site. */
+.bulle__texte {
+  margin: 0;
+}
+
 
 /* ==========================================================================
    1. L'ENCART « ENTREPRISE, ASSOCIATION ? »
@@ -142,6 +188,17 @@
    des phrases entières : les trois plans se lisent alors les uns sous les
    autres. Le seuil est calculé sur le contenu, pas repris d'un des points de
    rupture du site — c'est ici que les colonnes cessent d'être lisibles. */
+@media (max-width: 900px) {
+
+  /* Empilée sous l'illustration, la bulle devient large et basse : les mêmes
+     rayons en pourcentage y produiraient une ellipse écrasée. On les aplatit
+     donc dans le sens vertical pour retrouver une forme de galet. */
+  .bulle {
+    padding: var(--espace-m);
+    border-radius: 40% 60% 46% 54% / 12% 14% 12% 14%;
+  }
+}
+
 @media (max-width: 780px) {
 
   .trois-plans {
@@ -150,6 +207,12 @@
 }
 
 @media (max-width: 600px) {
+
+  /* Sur un bloc étroit et haut, un rayon en pourcentage donne une forme
+     démesurée. La bulle redevient un simple rectangle arrondi. */
+  .bulle {
+    border-radius: var(--rayon);
+  }
 
   .encart {
     padding: var(--espace-s);

@@ -112,16 +112,21 @@
     <div class="zone-creme">
       <section class="conteneur hero-page">
 
-        <div class="hero-page__texte trait-feuille">
-          <img class="trait-feuille__feuille" src="images/feuille-trait.png" alt="" aria-hidden="true" width="160" height="138">
-          <h1 class="hero-page__titre">Cours adultes</h1>
-          <p class="hero-page__accroche">
-            <strong>On commence souvent le yoga</strong> pour trouver un mieux-être
-            physique et psychique, s'assouplir, se (re)mettre en mouvement, se poser,
-            développer la présence à soi, respirer…<br>
-            En pratiquant régulièrement le yoga, vous trouverez très vraisemblablement
-            cela… peut-être autre chose aussi…
-          </p>
+        <!-- La bulle et le trait à feuille sont deux enveloppes distinctes :
+             chacune a son propre retrait à gauche, et une seule balise ne peut
+             pas porter deux marges intérieures différentes du même côté. -->
+        <div class="hero-page__texte bulle">
+          <div class="trait-feuille">
+            <img class="trait-feuille__feuille" src="images/feuille-trait.png" alt="" aria-hidden="true" width="160" height="138">
+            <h1 class="bulle__titre">Cours adultes</h1>
+            <p class="bulle__texte">
+              <strong>On commence souvent le yoga</strong> pour trouver un mieux-être
+              physique et psychique, s'assouplir, se (re)mettre en mouvement, se poser,
+              développer la présence à soi, respirer…<br>
+              En pratiquant régulièrement le yoga, vous trouverez très vraisemblablement
+              cela… peut-être autre chose aussi…
+            </p>
+          </div>
         </div>
 
         <div class="hero-page__illustration">
