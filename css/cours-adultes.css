@@ -45,7 +45,7 @@
 @media (min-width: 901px) {
 
   .hero-page {
-    grid-template-columns: 1fr 1.6fr;
+    grid-template-columns: 1fr 2fr;
   }
 }
 
