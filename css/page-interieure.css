@@ -76,6 +76,13 @@
   text-align: center;
 }
 
+/* Pour un titre suivi d'un bloc qui apporte déjà sa propre respiration :
+   sans cela, les deux marges s'additionnent et le titre se retrouve isolé
+   loin de son contenu. */
+.section__titre--serre {
+  margin-bottom: var(--espace-s);
+}
+
 /* La bande grise qui court derrière plusieurs sections d'affilée.
    Sur cette page, elle va de « pour quoi, pour qui ? » jusqu'au petit
    groupe : les fonds se succèdent en ligne droite, sans vague. */
@@ -172,6 +179,15 @@
 
 .zone-bouton--aligne {
   padding-left: 3rem;
+}
+
+/* Un bouton en fin de section a besoin d'air des deux côtés : sur mobile, la
+   section suivante n'apporte plus sa propre respiration en haut, et son titre
+   viendrait se coller au bouton. */
+.zone-bouton--centre {
+  margin-top: var(--espace-l);
+  margin-bottom: var(--espace-s);
+  text-align: center;
 }
 
 
