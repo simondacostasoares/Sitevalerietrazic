@@ -3,66 +3,38 @@
    --------------------------------------------------------------------------
    Chargé après style.css et page-interieure.css.
 
-   Trois blocs qu'on ne trouve pas ailleurs :
-     1. le bandeau de titre pleine largeur, avec sa bulle blanche posée
-        sur l'illustration de l'arbre ;
-     2. l'encart gris « Entreprise, association ? » et ses trois pictos ;
-     3. les trois colonnes « Comment ça marche ? ».
+   Le bandeau de titre, lui, n'a rien de particulier : c'est le gabarit
+   commun `.hero-page`, texte à gauche et illustration à droite, comme sur la
+   page Yogathérapie et comme sur le site de l'association. C'est une
+   variation par rapport au site d'origine, qui posait le texte dans une
+   bulle sur une illustration pleine largeur — beaucoup plus haute.
+
+   Ce fichier ne contient donc que deux blocs :
+     1. l'encart gris « Entreprise, association ? » et ses trois pictos ;
+     2. les trois colonnes « Comment ça marche ? ».
    ========================================================================== */
 
 
 /* ==========================================================================
-   1. LE BANDEAU DE TITRE
+   0. LE CADRAGE DE L'ILLUSTRATION DU BANDEAU
    --------------------------------------------------------------------------
-   Ici l'illustration ne partage pas la place avec le texte : elle occupe
-   toute la largeur de l'écran, et le texte est posé PAR-DESSUS, dans une
-   bulle blanche.
+   Le fichier est panoramique — 1800 × 770 — parce qu'il servait de bandeau
+   pleine largeur. Placé tel quel dans une demi-colonne, le dessin se
+   retrouve minuscule au milieu d'un grand aplat crème vide.
 
-   Le fond crème de la section est le même que celui de l'image. C'est ce qui
-   permet à l'illustration de garder ses proportions sans laisser de bandes
-   vides sur les écrans très larges : le crème de la section prend le relais,
-   et le raccord ne se voit pas.
+   On lui impose donc un cadre moins large : « aspect-ratio » fixe la
+   proportion de la boîte, « cover » recadre l'image dedans. Le groupe et le
+   tronc restent au centre, les marges crème des deux côtés sont rognées.
    ========================================================================== */
 
-.bandeau {
-  position: relative;
-  background-color: var(--creme);
-}
-
-.bandeau__illustration {
-  width: 100%;
-  max-width: 1800px;   /* la taille réelle du fichier : au-delà, il flouterait */
-  margin-inline: auto;
-}
-
-/* La bulle est positionnée en pourcentages, pas en pixels : elle suit donc
-   l'illustration quand celle-ci s'étire ou rétrécit, et reste toujours dans
-   le vide sous la grande branche de gauche. */
-.bandeau__bulle {
-  position: absolute;
-  top: 8%;
-  left: 6%;
-  width: min(420px, 38%);
-  /* Les marges intérieures sont larges parce que les bords sont courbes :
-     dans une bulle, le texte doit rentrer davantage que dans un rectangle,
-     sinon les premières et dernières lignes touchent la paroi. */
-  padding: calc(var(--espace-m) + var(--espace-s)) var(--espace-m);
-  background-color: var(--fond);
-  border-radius: 46% 54% 40% 60% / 52% 44% 56% 48%;
-}
-
-.bandeau__titre {
-  margin-bottom: var(--espace-s);
-  font-size: clamp(1.5rem, 2.6vw, 32px);
-}
-
-.bandeau__texte {
-  margin: 0;
+.hero-page__illustration img {
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
 }
 
 
 /* ==========================================================================
-   2. L'ENCART « ENTREPRISE, ASSOCIATION ? »
+   1. L'ENCART « ENTREPRISE, ASSOCIATION ? »
    --------------------------------------------------------------------------
    Un panneau gris dans le fil de la section « Pour qui ? ».
    ========================================================================== */
@@ -111,15 +83,26 @@
 
 
 /* ==========================================================================
+   2. LES BOUTONS SOUS CHAQUE COURS
+   --------------------------------------------------------------------------
+   Chaque cours renvoie vers sa page sur le site de l'association. Le bouton
+   a donc besoin d'air en dessous : sans cela, il se collerait à l'intitulé
+   du cours suivant.
+   ========================================================================== */
+
+.zone-bouton--cours {
+  margin-top: var(--espace-s);
+  margin-bottom: var(--espace-m);
+}
+
+
+/* ==========================================================================
    3. « COMMENT ÇA MARCHE ? »
    --------------------------------------------------------------------------
    Trois colonnes, chacune avec son picto et une phrase en gras, puis le
    texte courant. Le tout tient dans le même trait jaune.
    ========================================================================== */
 
-/* La largeur est bridée pour que les trois colonnes restent groupées.
-   Étalées sur toute la page, les pictos se retrouvent si loin les uns des
-   autres qu'on ne les lit plus comme un ensemble. */
 /* Trois colonnes fixes, et non « autant que ça rentre » : avec trois
    éléments, une grille qui s'adapte toute seule finit tôt ou tard par en
    poser deux sur une ligne et un sur la suivante — bancal. Ici c'est trois
@@ -153,25 +136,6 @@
    4. RESPONSIVE
    ========================================================================== */
 
-@media (max-width: 900px) {
-
-  /* La bulle ne peut plus tenir sur l'illustration : à cette largeur elle
-     couvrirait tout le dessin. Elle repasse donc sous l'image, dans le flux
-     normal — et comme la section est déjà crème, le raccord reste propre. */
-  .bandeau__bulle {
-    position: static;
-    width: auto;
-    max-width: 34rem;
-    margin: 0 auto;
-    padding: var(--espace-m);
-    border-radius: 40% 60% 46% 54% / 12% 14% 12% 14%;
-  }
-
-  .bandeau {
-    padding-bottom: var(--espace-m);
-  }
-}
-
 /* En dessous de cette largeur, trois colonnes deviennent trop étroites pour
    des phrases entières : les trois plans se lisent alors les uns sous les
    autres. Le seuil est calculé sur le contenu, pas repris d'un des points de
@@ -184,13 +148,6 @@
 }
 
 @media (max-width: 600px) {
-
-  /* Un rayon en pourcentage sur un bloc étroit et haut donne une forme
-     démesurée. Sur mobile, la bulle redevient un simple rectangle arrondi. */
-  .bandeau__bulle {
-    margin-inline: var(--espace-s);
-    border-radius: var(--rayon);
-  }
 
   .encart {
     padding: var(--espace-s);
