@@ -40,10 +40,13 @@
    le vide sous la grande branche de gauche. */
 .bandeau__bulle {
   position: absolute;
-  top: 12%;
-  left: 8%;
-  width: min(340px, 32%);
-  padding: var(--espace-m);
+  top: 8%;
+  left: 6%;
+  width: min(420px, 38%);
+  /* Les marges intérieures sont larges parce que les bords sont courbes :
+     dans une bulle, le texte doit rentrer davantage que dans un rectangle,
+     sinon les premières et dernières lignes touchent la paroi. */
+  padding: calc(var(--espace-m) + var(--espace-s)) var(--espace-m);
   background-color: var(--fond);
   border-radius: 46% 54% 40% 60% / 52% 44% 56% 48%;
 }
@@ -117,9 +120,17 @@
 /* La largeur est bridée pour que les trois colonnes restent groupées.
    Étalées sur toute la page, les pictos se retrouvent si loin les uns des
    autres qu'on ne les lit plus comme un ensemble. */
+/* Trois colonnes fixes, et non « autant que ça rentre » : avec trois
+   éléments, une grille qui s'adapte toute seule finit tôt ou tard par en
+   poser deux sur une ligne et un sur la suivante — bancal. Ici c'est trois
+   de front, ou un par ligne, jamais entre les deux.
+
+   La largeur est bridée pour que les colonnes restent groupées : étalées sur
+   toute la page, les pictos se retrouvent si loin les uns des autres qu'on
+   ne les lit plus comme un ensemble. */
 .trois-plans {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--espace-m);
   max-width: 780px;
   margin-bottom: var(--espace-l);
@@ -158,6 +169,17 @@
 
   .bandeau {
     padding-bottom: var(--espace-m);
+  }
+}
+
+/* En dessous de cette largeur, trois colonnes deviennent trop étroites pour
+   des phrases entières : les trois plans se lisent alors les uns sous les
+   autres. Le seuil est calculé sur le contenu, pas repris d'un des points de
+   rupture du site — c'est ici que les colonnes cessent d'être lisibles. */
+@media (max-width: 780px) {
+
+  .trois-plans {
+    grid-template-columns: 1fr;
   }
 }
 
