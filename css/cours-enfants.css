@@ -21,16 +21,41 @@
    sa largeur, ce qui se voyait comme une erreur d'affichage.
    ========================================================================== */
 
-/* L'illustration prend deux fois la place du texte, comme sur Cours adultes.
+/* L'illustration prend deux fois la place du texte, comme sur Cours adultes,
+   ET elle sort du conteneur pour aller jusqu'au bord droit de l'écran.
 
-   La règle est enfermée dans « min-width », et non écrite telle quelle : ce
-   fichier est chargé APRÈS page-interieure.css, si bien qu'une déclaration
+   Pourquoi la faire sortir : le tronc de l'arbre est dessiné tout au bord du
+   fichier. Tant que l'image s'arrête à la marge du conteneur, ce bord tombe
+   en plein milieu de la page et le dessin a l'air tranché. Poussé jusqu'au
+   bord de l'écran, il se comporte comme un bandeau : le regard n'y voit plus
+   une coupure mais une image qui continue au-delà de la fenêtre.
+
+   Comment : une marge droite négative. Sur une grille, une marge négative ne
+   décale pas l'élément, elle l'élargit d'autant — la colonne garde sa place,
+   l'image déborde. Sa valeur est exactement la distance qui sépare le bord du
+   conteneur du bord de la fenêtre : la moitié de ce qui reste une fois les
+   1140 px du conteneur retirés, plus la marge intérieure de celui-ci.
+
+   Les règles sont enfermées dans « min-width », et non écrites telles quelles :
+   ce fichier est chargé APRÈS page-interieure.css, si bien qu'une déclaration
    nue passerait par-dessus celle qui remet le bandeau sur une seule colonne
    en dessous de 900 px — et la page resterait en deux colonnes sur mobile. */
 @media (min-width: 901px) {
 
   .hero-page {
     grid-template-columns: 1fr 2fr;
+  }
+
+  .hero-page__illustration {
+    margin-right: calc(-1 * (max(0px, (100vw - var(--largeur-max)) / 2) + var(--espace-m)));
+  }
+
+  /* « 100vw » compte la largeur de la barre de défilement, que la page
+     l'affiche ou non : l'image dépasse donc du bord de quelques pixels. On
+     rogne ce surplus ici, sinon toute la page se mettrait à défiler
+     horizontalement. */
+  .zone-creme {
+    overflow: hidden;
   }
 }
 
@@ -136,6 +161,21 @@
   .bulle {
     padding: var(--espace-m);
     border-radius: 40% 60% 46% 54% / 12% 14% 12% 14%;
+  }
+
+  /* Sur mobile, l'inverse du bandeau : plus aucun débordement. L'illustration
+     est centrée et ne dépasse jamais la largeur disponible, de sorte que le
+     dessin tienne en entier à l'écran. */
+  .hero-page__illustration {
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .hero-page__illustration img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-inline: auto;
   }
 }
 
