@@ -1,0 +1,185 @@
+/* ==========================================================================
+   COURS PARENTS / ENFANTS — styles propres à cours-parents-enfants.html
+   --------------------------------------------------------------------------
+   Chargé après style.css et page-interieure.css.
+
+   La page ne demande presque rien en propre : les trois repères réutilisent
+   tels quels les « Modalités » du gabarit commun, et le bouton comme le titre
+   centré en viennent aussi. Il ne reste ici que :
+     1. le bandeau de titre — cadrage de l'illustration et bulle blanche ;
+     2. la phrase d'invitation, centrée, sous « Intéressé·e ? ».
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. LE BANDEAU DE TITRE
+   --------------------------------------------------------------------------
+   Ce fichier est l'image miroir de celui de Cours enfants : le dessin est
+   massé À GAUCHE, et les 735 derniers pixels sur 1800 — soit 41 % de la
+   largeur — sont un aplat crème vide. C'est là que le site d'origine posait
+   sa bulle. Affichée telle quelle dans notre colonne, l'illustration serait
+   donc minuscule, poussée dans un coin par un immense vide.
+
+   On rogne ce vide, et lui seul. « aspect-ratio » donne à la boîte une
+   proportion nettement plus haute que celle du fichier, « cover » y fait
+   tenir l'image en la débordant, et « object-position: left » choisit de quel
+   côté le surplus est retiré : à droite. Le dessin est ainsi conservé en
+   entier, et il occupe toute la place.
+
+   Les 1130 px retenus laissent une soixantaine de pixels d'air après le
+   dernier trait de crayon : sans eux, le dessin viendrait buter contre le
+   bord de sa boîte.
+   ========================================================================== */
+
+.hero-page__illustration img {
+  aspect-ratio: 1130 / 815;
+  object-fit: cover;
+  object-position: left;
+}
+
+/* Une fois recadré, le dessin est presque carré : il n'a plus besoin de deux
+   fois la place du texte, comme sur les deux autres pages de cours, où
+   l'illustration était panoramique. Une fois et demie suffit — au-delà, la
+   colonne de gauche devient trop étroite pour la bulle.
+
+   Les règles sont enfermées dans « min-width », et non écrites telles quelles :
+   ce fichier est chargé APRÈS page-interieure.css, si bien qu'une déclaration
+   nue passerait par-dessus celle qui remet le bandeau sur une seule colonne
+   sur les écrans étroits — et la page resterait en deux colonnes sur mobile. */
+@media (min-width: 1001px) {
+
+  .hero-page {
+    grid-template-columns: 1fr 1.5fr;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   LA BULLE BLANCHE
+   Comme sur le site d'origine, le texte du bandeau est posé dans une bulle
+   blanche. La forme est obtenue en donnant à chaque coin un rayon horizontal
+   et un rayon vertical différents : le coin devient un quart d'ellipse, et le
+   rectangle une bulle.
+
+   ATTENTION — ces règles sont écrites à l'identique dans cours-adultes.css et
+   cours-enfants.css. C'est la troisième copie : il est temps de les déplacer
+   dans page-interieure.css. Ce n'est pas fait ici parce que toucher au gabarit
+   commun modifierait trois pages déjà validées d'un seul coup.
+   -------------------------------------------------------------------------- */
+
+.bulle {
+  /* Les marges intérieures sont larges parce que les bords sont courbes :
+     dans une bulle, le texte doit rentrer davantage que dans un rectangle,
+     sinon les premières et dernières lignes touchent la paroi. */
+  padding: var(--espace-l) var(--espace-m);
+  background-color: var(--fond);
+  border-radius: 46% 54% 40% 60% / 52% 44% 56% 48%;
+}
+
+/* Plus petit que le titre des autres bandeaux : il est ici enfermé dans une
+   bulle, pas posé en pleine page. */
+.bulle__titre {
+  margin-bottom: var(--espace-s);
+  font-size: clamp(1.5rem, 2.6vw, 32px);
+}
+
+/* Aucune règle de taille : le texte reste à la taille courante du site. */
+.bulle__texte {
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   2. LES TROIS REPÈRES
+   --------------------------------------------------------------------------
+   Le bloc lui-même vient du gabarit commun ; on ne change ici que le nombre
+   de colonnes. La grille commune s'adapte toute seule à la place disponible,
+   ce qui convient aux textes longs des « Modalités » de la Yogathérapie. Ici
+   les trois textes sont courts : sur un écran moyen, la grille en posait deux
+   sur une ligne et laissait le troisième orphelin sur la suivante, séparé par
+   un grand vide. Ce sera donc trois de front, ou un par ligne, jamais entre
+   les deux.
+   ========================================================================== */
+
+.modalites {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+
+/* ==========================================================================
+   3. L'INVITATION FINALE
+   --------------------------------------------------------------------------
+   Une seule phrase sous « Intéressé·e ? ». Elle est centrée comme le titre
+   qu'elle prolonge, et un peu plus grande que le texte courant : c'est une
+   adresse au visiteur, pas un paragraphe de contenu.
+   ========================================================================== */
+
+.invitation {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.67;
+  text-align: center;
+}
+
+
+/* ==========================================================================
+   4. RESPONSIVE
+   ========================================================================== */
+
+/* En dessous de cette largeur, trois colonnes ne laissent plus assez de place
+   à « 17 rue Emmanuel Barthélémy » : les repères se lisent alors les uns sous
+   les autres. Le seuil est calculé sur le contenu, pas repris d'un des points
+   de rupture du site. */
+@media (max-width: 800px) {
+
+  .modalites {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Le bandeau à bulle bascule en une seule colonne dès 1000 px, alors que le
+   reste du site attend 900. Raison : entre les deux, la colonne de gauche
+   n'est plus assez large pour la bulle — une quinzaine de caractères par
+   ligne, et la forme se tord en œuf. Les règles d'empilement du gabarit
+   commun sont ici simplement étendues, ce fichier étant chargé après lui. */
+@media (max-width: 1000px) {
+
+  .hero-page {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-page__illustration {
+    order: -1;
+  }
+
+  /* Empilée sous l'illustration, la bulle devient large et basse : les mêmes
+     rayons en pourcentage y produiraient une ellipse écrasée. On les aplatit
+     donc dans le sens vertical pour retrouver une forme de galet. */
+  .bulle {
+    padding: var(--espace-m);
+    border-radius: 40% 60% 46% 54% / 12% 14% 12% 14%;
+  }
+
+  /* Empilée, l'illustration est centrée et ne dépasse jamais la largeur
+     disponible : le dessin tient en entier à l'écran. */
+  .hero-page__illustration {
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .hero-page__illustration img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-inline: auto;
+  }
+}
+
+@media (max-width: 600px) {
+
+  /* Sur un bloc étroit et haut, un rayon en pourcentage donne une forme
+     démesurée. La bulle redevient un simple rectangle arrondi. */
+  .bulle {
+    border-radius: var(--rayon);
+  }
+}
