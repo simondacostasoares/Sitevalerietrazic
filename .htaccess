@@ -1,10 +1,10 @@
 # ---------------------------------------------------------------------------
 # Une seule adresse pour le site.
 #
-# www.auventdanslesbranches.fr et auventdanslesbranches.fr répondaient toutes
+# Sans cette règle, www.trazicvalerie.fr et trazicvalerie.fr répondent toutes
 # les deux : deux sites identiques aux yeux de Google, deux aperçus distincts
-# pour Facebook. La règle ci-dessous renvoie la forme « www » vers la forme
-# courte — celle qu'utilisent les balises de partage de toutes les pages.
+# pour Facebook. Celle-ci renvoie la forme « www » vers la forme courte —
+# celle qu'utilisent les balises de partage de toutes les pages.
 #
 # Le passage en HTTPS est déjà assuré par Hostinger (option « Forcer le SSL »),
 # il n'y a rien à ajouter ici pour lui.
