@@ -8,16 +8,29 @@
   <meta name="description" content="Valérie Trazic enseigne le yoga depuis 2015 à La Ciotat. Formée à l'école Ananda de Marseille et à l'Institut de Yogathérapie du docteur Lionel Coudron.">
 
   <!-- Aperçu lors d'un partage sur WhatsApp, Facebook, Messenger…
-       og:url doit rester une adresse absolue : une adresse relative ne
-       fonctionne pas ici.
-       À FAIRE : og:image manque. Il faut une image de partage au format
-       1200 × 630 px ; aucune des illustrations récupérées n'a ce format. -->
+       og:url et og:image doivent rester des adresses ABSOLUES. Une adresse
+       relative ne fonctionne pas ici : le réseau social lit ces balises depuis
+       ses propres serveurs et ne saurait pas d'où partir. Elles pointent donc
+       vers valerietrazic.fr, et l'aperçu n'apparaîtra qu'une fois le site en
+       ligne à cette adresse.
+
+       L'image de partage est la MÊME sur toutes les pages : elle annonce la
+       personne, pas la page. Ses dimensions sont déclarées explicitement pour
+       que les messageries affichent le grand aperçu plutôt qu'une vignette
+       carrée. -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="Valérie Trazic">
   <meta property="og:locale" content="fr_FR">
   <meta property="og:url" content="https://valerietrazic.fr/a-propos.html">
   <meta property="og:title" content="À propos de Valérie Trazic">
   <meta property="og:description" content="Valérie Trazic enseigne le yoga depuis 2015 à La Ciotat. Formée à l'école Ananda de Marseille et à l'Institut de Yogathérapie du docteur Lionel Coudron.">
+  <meta property="og:image" content="https://valerietrazic.fr/images/partage.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Valérie Trazic, professeure de yoga et yogathérapeute à La Ciotat">
+
+  <!-- Sans cette ligne, certaines messageries se contentent d'une vignette. -->
+  <meta name="twitter:card" content="summary_large_image">
 
   <!-- Icône du site, dérivée de la branche.
        Le format 180 px est celui d'iOS : il a un fond crème parce qu'iOS
