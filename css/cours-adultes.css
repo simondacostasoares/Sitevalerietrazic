@@ -41,8 +41,8 @@
    La règle est enfermée dans « min-width », et non écrite telle quelle : ce
    fichier est chargé APRÈS page-interieure.css, si bien qu'une déclaration
    nue passerait par-dessus celle qui remet le bandeau sur une seule colonne
-   en dessous de 900 px — et la page resterait en deux colonnes sur mobile. */
-@media (min-width: 901px) {
+   sur les écrans étroits — et la page resterait en deux colonnes sur mobile. */
+@media (min-width: 1001px) {
 
   .hero-page {
     grid-template-columns: 1fr 2fr;
@@ -184,11 +184,20 @@
    4. RESPONSIVE
    ========================================================================== */
 
-/* En dessous de cette largeur, trois colonnes deviennent trop étroites pour
-   des phrases entières : les trois plans se lisent alors les uns sous les
-   autres. Le seuil est calculé sur le contenu, pas repris d'un des points de
-   rupture du site — c'est ici que les colonnes cessent d'être lisibles. */
-@media (max-width: 900px) {
+/* Le bandeau à bulle bascule en une seule colonne dès 1000 px, alors que le
+   reste du site attend 900. Raison : entre les deux, la colonne de gauche
+   n'est plus assez large pour la bulle — une quinzaine de caractères par
+   ligne, et la forme se tord en œuf. Les règles d'empilement du gabarit
+   commun sont ici simplement étendues, ce fichier étant chargé après lui. */
+@media (max-width: 1000px) {
+
+  .hero-page {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-page__illustration {
+    order: -1;
+  }
 
   /* Empilée sous l'illustration, la bulle devient large et basse : les mêmes
      rayons en pourcentage y produiraient une ellipse écrasée. On les aplatit

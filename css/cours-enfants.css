@@ -14,12 +14,25 @@
 /* ==========================================================================
    1. LE BANDEAU DE TITRE
    --------------------------------------------------------------------------
-   Contrairement à Cours adultes, l'illustration n'est PAS recadrée ici : le
-   dessin occupe toute la largeur du fichier — les mots manuscrits « varié »
-   et « ludique » touchent presque le bord gauche, et le tronc de l'arbre le
-   bord droit. Rogner, même de 5 %, tranchait le tronc en deux au milieu de
-   sa largeur, ce qui se voyait comme une erreur d'affichage.
+   Le fichier porte une bande vide sur sa gauche : le premier trait de crayon
+   n'apparaît qu'à 238 px du bord, sur 1800. Affiché tel quel, le dessin
+   semblait donc décollé de la bulle, avec un grand vide crème entre les deux.
+
+   On rogne cette bande — et elle seule. « aspect-ratio » donne à la boîte une
+   proportion un peu plus haute que celle du fichier, « cover » y fait tenir
+   l'image en la débordant, et « object-position: right » choisit de quel côté
+   le surplus est retiré : à gauche. Le tronc de l'arbre, dessiné tout au bord
+   droit, reste donc entier — c'est lui qu'un rognage centré tranchait en deux.
+
+   La proportion 2/1 retire 172 px sur les 238 : le dessin se rapproche de la
+   bulle et grandit d'autant, tout en gardant un souffle sur sa gauche.
    ========================================================================== */
+
+.hero-page__illustration img {
+  aspect-ratio: 2 / 1;
+  object-fit: cover;
+  object-position: right;
+}
 
 /* L'illustration prend deux fois la place du texte, comme sur Cours adultes,
    ET elle sort du conteneur pour aller jusqu'au bord droit de l'écran.
@@ -40,7 +53,7 @@
    ce fichier est chargé APRÈS page-interieure.css, si bien qu'une déclaration
    nue passerait par-dessus celle qui remet le bandeau sur une seule colonne
    en dessous de 900 px — et la page resterait en deux colonnes sur mobile. */
-@media (min-width: 901px) {
+@media (min-width: 1001px) {
 
   .hero-page {
     grid-template-columns: 1fr 2fr;
@@ -153,7 +166,20 @@
    3. RESPONSIVE
    ========================================================================== */
 
-@media (max-width: 900px) {
+/* Le bandeau à bulle bascule en une seule colonne dès 1000 px, alors que le
+   reste du site attend 900. Raison : entre les deux, la colonne de gauche
+   n'est plus assez large pour la bulle — une quinzaine de caractères par
+   ligne, et la forme se tord en œuf. Les règles d'empilement du gabarit
+   commun sont ici simplement étendues, ce fichier étant chargé après lui. */
+@media (max-width: 1000px) {
+
+  .hero-page {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-page__illustration {
+    order: -1;
+  }
 
   /* Empilée sous l'illustration, la bulle devient large et basse : les mêmes
      rayons en pourcentage y produiraient une ellipse écrasée. On les aplatit
