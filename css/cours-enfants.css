@@ -1,0 +1,163 @@
+/* ==========================================================================
+   COURS ENFANTS — styles propres à cours-enfants.html
+   --------------------------------------------------------------------------
+   Chargé après style.css et page-interieure.css.
+
+   Deux blocs seulement :
+     1. le bandeau de titre — même parti pris que sur Cours adultes : deux
+        colonnes, le texte dans une bulle blanche à gauche, l'illustration
+        à droite ;
+     2. les quatre cartes grises de « Où et quand ? ».
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. LE BANDEAU DE TITRE
+   --------------------------------------------------------------------------
+   Contrairement à Cours adultes, l'illustration n'est PAS recadrée ici : le
+   dessin occupe toute la largeur du fichier — les mots manuscrits « varié »
+   et « ludique » touchent presque le bord gauche, et le tronc de l'arbre le
+   bord droit. Rogner, même de 5 %, tranchait le tronc en deux au milieu de
+   sa largeur, ce qui se voyait comme une erreur d'affichage.
+   ========================================================================== */
+
+/* L'illustration prend deux fois la place du texte, comme sur Cours adultes.
+
+   La règle est enfermée dans « min-width », et non écrite telle quelle : ce
+   fichier est chargé APRÈS page-interieure.css, si bien qu'une déclaration
+   nue passerait par-dessus celle qui remet le bandeau sur une seule colonne
+   en dessous de 900 px — et la page resterait en deux colonnes sur mobile. */
+@media (min-width: 901px) {
+
+  .hero-page {
+    grid-template-columns: 1fr 2fr;
+  }
+}
+
+
+/* --------------------------------------------------------------------------
+   LA BULLE BLANCHE
+   Comme sur le site d'origine, le texte du bandeau est posé dans une bulle
+   blanche. La forme est obtenue en donnant à chaque coin un rayon horizontal
+   et un rayon vertical différents : le coin devient un quart d'ellipse, et le
+   rectangle une bulle.
+
+   Ces règles sont les jumelles de celles de cours-adultes.css. La répétition
+   est assumée pour l'instant : les deux fichiers ne sont jamais chargés
+   ensemble, et déplacer la bulle dans le gabarit commun toucherait une page
+   déjà validée. À mutualiser dans page-interieure.css si une troisième page
+   en a besoin.
+   -------------------------------------------------------------------------- */
+
+.bulle {
+  /* Les marges intérieures sont larges parce que les bords sont courbes :
+     dans une bulle, le texte doit rentrer davantage que dans un rectangle,
+     sinon les premières et dernières lignes touchent la paroi. */
+  padding: var(--espace-l) var(--espace-m);
+  background-color: var(--fond);
+  border-radius: 46% 54% 40% 60% / 52% 44% 56% 48%;
+}
+
+/* Plus petit que le titre des autres bandeaux : il est ici enfermé dans une
+   bulle, pas posé en pleine page. */
+.bulle__titre {
+  margin-bottom: var(--espace-s);
+  font-size: clamp(1.5rem, 2.6vw, 32px);
+}
+
+/* Aucune règle de taille : le texte reste à la taille courante du site. */
+.bulle__texte {
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   2. LES QUATRE CARTES « OÙ ET QUAND ? »
+   --------------------------------------------------------------------------
+   Quatre panneaux gris en 2 × 2, chacun avec son picto jaune à gauche et son
+   texte à droite. C'est une liste dans le HTML — quatre situations mises sur
+   le même plan — d'où la remise à zéro des puces et du retrait.
+   ========================================================================== */
+
+.cartes-lieux {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  /* Toutes les cartes prennent la hauteur de la plus haute, comme sur le site
+     d'origine : sans cela, la rangée du haut, dont les textes tiennent sur une
+     ligne, serait nettement plus basse que celle du bas. */
+  grid-auto-rows: 1fr;
+  gap: var(--espace-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carte-lieu {
+  display: flex;
+  align-items: center;
+  gap: var(--espace-s);
+  padding: var(--espace-m);
+  background-color: var(--gris-bloc);
+}
+
+/* Les quatre pictos n'ont pas les mêmes proportions dans leur fichier : le
+   chapeau est large et bas, l'épingle haute et étroite. On les enferme donc
+   tous dans un carré de même taille, « contain » se chargeant de les y faire
+   tenir sans les déformer — sinon ils paraîtraient de tailles différentes.
+
+   « flex-shrink » les empêche de s'écraser quand le texte est long. */
+.carte-lieu__picto {
+  flex-shrink: 0;
+  width: 52px;
+  height: 52px;
+  object-fit: contain;
+}
+
+.carte-lieu__texte {
+  margin: 0;
+}
+
+/* Un numéro de téléphone ne se coupe jamais en deux lignes : il passe en
+   entier à la ligne suivante plutôt que de se casser au milieu. */
+.carte-lieu__texte a {
+  white-space: nowrap;
+}
+
+
+/* ==========================================================================
+   3. RESPONSIVE
+   ========================================================================== */
+
+@media (max-width: 900px) {
+
+  /* Empilée sous l'illustration, la bulle devient large et basse : les mêmes
+     rayons en pourcentage y produiraient une ellipse écrasée. On les aplatit
+     donc dans le sens vertical pour retrouver une forme de galet. */
+  .bulle {
+    padding: var(--espace-m);
+    border-radius: 40% 60% 46% 54% / 12% 14% 12% 14%;
+  }
+}
+
+/* Deux colonnes deviennent ici trop étroites pour des phrases entières : les
+   cartes se lisent alors les unes sous les autres. Le seuil est calculé sur
+   le contenu, pas repris des points de rupture du site. */
+@media (max-width: 720px) {
+
+  .cartes-lieux {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+
+  /* Sur un bloc étroit et haut, un rayon en pourcentage donne une forme
+     démesurée. La bulle redevient un simple rectangle arrondi. */
+  .bulle {
+    border-radius: var(--rayon);
+  }
+
+  .carte-lieu {
+    padding: var(--espace-s);
+  }
+}
