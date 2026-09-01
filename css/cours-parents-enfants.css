@@ -4,10 +4,9 @@
    Chargé après style.css et page-interieure.css.
 
    La page ne demande presque rien en propre : les trois repères réutilisent
-   tels quels les « Modalités » du gabarit commun, et le bouton comme le titre
-   centré en viennent aussi. Il ne reste ici que :
-     1. le bandeau de titre — cadrage de l'illustration et bulle blanche ;
-     2. la phrase d'invitation, centrée, sous « Intéressé·e ? ».
+   les « Modalités » du gabarit commun, et le bouton en vient aussi. Il ne
+   reste ici que le bandeau de titre — cadrage de l'illustration et bulle
+   blanche — et le nombre de colonnes des trois repères.
    ========================================================================== */
 
 
@@ -107,23 +106,7 @@
 
 
 /* ==========================================================================
-   3. L'INVITATION FINALE
-   --------------------------------------------------------------------------
-   Une seule phrase sous « Intéressé·e ? ». Elle est centrée comme le titre
-   qu'elle prolonge, et un peu plus grande que le texte courant : c'est une
-   adresse au visiteur, pas un paragraphe de contenu.
-   ========================================================================== */
-
-.invitation {
-  margin: 0;
-  font-size: 20px;
-  line-height: 1.67;
-  text-align: center;
-}
-
-
-/* ==========================================================================
-   4. RESPONSIVE
+   3. RESPONSIVE
    ========================================================================== */
 
 /* En dessous de cette largeur, trois colonnes ne laissent plus assez de place
