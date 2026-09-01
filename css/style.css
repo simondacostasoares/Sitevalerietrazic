@@ -479,6 +479,27 @@ img {
   text-underline-offset: 3px;
 }
 
+/* Le lien vers les mentions légales. Il est obligatoire et doit être
+   atteignable depuis n'importe quelle page : sa place est donc au pied de
+   page, présent partout. Il est écrit plus petit et plus pâle que le reste —
+   c'est une obligation légale, pas une invitation à cliquer. */
+.pied__legal {
+  margin: var(--espace-s) 0 0;
+  font-size: 13px;
+}
+
+.pied__legal a {
+  color: var(--texte-doux);
+  text-decoration: none;
+}
+
+.pied__legal a:hover,
+.pied__legal a:focus-visible {
+  color: var(--texte);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 
 /* ==========================================================================
    6. RESPONSIVE — éléments communs

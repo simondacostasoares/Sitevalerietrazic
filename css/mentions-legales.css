@@ -1,0 +1,57 @@
+/* ==========================================================================
+   MENTIONS LÉGALES — styles propres à mentions-legales.html
+   --------------------------------------------------------------------------
+   Chargé après style.css et page-interieure.css.
+
+   Une page de texte, rien d'autre. Le gabarit commun fournit déjà le titre,
+   la section et la largeur de lecture ; il ne reste ici que les intertitres
+   et le surlignage des passages restant à compléter.
+   ========================================================================== */
+
+
+/* Les intertitres sont numérotés et courts. Ils restent proches du texte
+   qu'ils annoncent et nettement détachés de celui qui précède : c'est ce
+   décalage, plus que la taille, qui découpe la page en articles. */
+.legal__titre {
+  margin-top: var(--espace-l);
+  margin-bottom: var(--espace-s);
+  font-size: clamp(1.125rem, 2vw, 22px);
+}
+
+/* Le premier n'a rien au-dessus de lui : sa marge haute ferait un trou entre
+   le titre de la page et le début du texte. */
+.legal__titre:first-child {
+  margin-top: 0;
+}
+
+.legal p {
+  margin-bottom: var(--espace-s);
+}
+
+.legal > p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* ==========================================================================
+   LES PASSAGES À COMPLÉTER
+   --------------------------------------------------------------------------
+   Ces blocs signalent des informations légalement obligatoires qui manquent
+   encore. Ils sont surlignés en jaune vif, impossibles à manquer : c'est
+   volontaire. Une mention légale incomplète mais discrète est pire qu'une
+   mention légale visiblement inachevée.
+
+   Une fois les informations obtenues, remplacer le paragraphe par le texte
+   définitif et retirer la classe « a-completer ». Quand il n'en reste plus
+   aucun, la règle ci-dessous peut disparaître avec eux.
+   ========================================================================== */
+
+/* La mention « À compléter » est écrite dans le texte lui-même, et non
+   ajoutée par le CSS : elle reste ainsi lisible même si la feuille de style
+   ne se charge pas, et un lecteur d'écran l'annonce comme le reste. */
+.a-completer {
+  padding: var(--espace-s);
+  border-left: 4px solid var(--jaune);
+  background-color: var(--creme);
+  font-style: italic;
+}

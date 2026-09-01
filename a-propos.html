@@ -108,17 +108,15 @@
          intérieures, il n'y a ni bulle ni bande crème : le site d'origine
          pose ce bandeau sur fond blanc.
 
-         Le titre est là mais invisible à l'écran, comme sur le site d'origine
-         qui n'en affiche aucun. Une page a pourtant besoin d'un titre de
-         niveau 1 : c'est lui qui annonce la page à un lecteur d'écran et qui
-         sert de repère aux moteurs de recherche. Il est donc écrit, puis
-         masqué visuellement — et lui seul, le reste s'affiche normalement.
+         Le titre est écrit DANS la colonne de texte, et non à côté d'elle :
+         le bandeau est une grille à deux cases, et un titre posé directement
+         dedans en occuperait une troisième, ce qui déferait la mise en page.
          ==================================================================== -->
     <section class="conteneur hero-page" aria-labelledby="titre-page">
 
-      <h1 class="lecteur-ecran-seulement" id="titre-page">À propos</h1>
-
       <div class="hero-page__texte">
+        <h1 class="hero-page__titre" id="titre-page">Qui suis-je ?</h1>
+
         <p class="a-propos__intro">
           Le yoga fait partie intégrante de ma vie depuis longtemps. C'est devenu au
           fil des années une manière de vivre, de respirer, de regarder…
@@ -267,6 +265,10 @@
       <p class="pied__credit">
         Site et illustrations par Mathis Olieu<br>
         <a href="mailto:contact@mathisolieu.fr">contact@mathisolieu.fr</a>
+      </p>
+
+      <p class="pied__legal">
+        <a href="mentions-legales.html">Mentions légales</a>
       </p>
 
     </div>
