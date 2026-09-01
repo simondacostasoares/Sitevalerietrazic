@@ -33,25 +33,10 @@
 }
 
 
-/* ==========================================================================
-   LES PASSAGES À COMPLÉTER
-   --------------------------------------------------------------------------
-   Ces blocs signalent des informations légalement obligatoires qui manquent
-   encore. Ils sont surlignés en jaune vif, impossibles à manquer : c'est
-   volontaire. Une mention légale incomplète mais discrète est pire qu'une
-   mention légale visiblement inachevée.
-
-   Une fois les informations obtenues, remplacer le paragraphe par le texte
-   définitif et retirer la classe « a-completer ». Quand il n'en reste plus
-   aucun, la règle ci-dessous peut disparaître avec eux.
-   ========================================================================== */
-
-/* La mention « À compléter » est écrite dans le texte lui-même, et non
-   ajoutée par le CSS : elle reste ainsi lisible même si la feuille de style
-   ne se charge pas, et un lecteur d'écran l'annonce comme le reste. */
-.a-completer {
-  padding: var(--espace-s);
-  border-left: 4px solid var(--jaune);
-  background-color: var(--creme);
-  font-style: italic;
+/* Les deux adresses postales — celle de Valérie, celle de l'hébergeur. La
+   balise <address> est en italique par défaut dans les navigateurs : on la
+   remet droite, comme partout ailleurs sur le site. */
+.legal__adresse {
+  margin-bottom: var(--espace-s);
+  font-style: normal;
 }
