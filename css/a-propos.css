@@ -1,0 +1,166 @@
+/* ==========================================================================
+   À PROPOS — styles propres à a-propos.html
+   --------------------------------------------------------------------------
+   Chargé après style.css et page-interieure.css.
+
+   Deux blocs en propre :
+     1. le bandeau de titre — texte à gauche, portrait rond à droite ;
+     2. les deux panneaux « Mon parcours » et « Ma formation », posés sur un
+        fond orné de deux motifs très pâles.
+
+   C'est la seule page intérieure sans bulle blanche ni bande crème : le site
+   d'origine y pose le texte directement sur le fond blanc.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. LE BANDEAU DE TITRE
+   ========================================================================== */
+
+/* Le texte d'accroche est un peu plus grand que le texte courant, comme sur
+   les autres bandeaux du site. */
+.a-propos__intro {
+  max-width: 46ch;
+  font-size: 20px;
+  line-height: 1.67;
+}
+
+.a-propos__intro:last-child {
+  margin-bottom: 0;
+}
+
+/* Le portrait, rond, et les deux feuilles qui dépassent en bas à gauche.
+   La largeur est bridée : étirée sur toute la colonne, la photo prendrait le
+   pas sur le texte, alors que sur le site d'origine les deux se répondent. */
+.portrait {
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  margin-inline: auto;
+}
+
+/* La photo d'origine est plus large que haute. « aspect-ratio » impose un
+   carré, « cover » recadre la photo dedans, et le rayon de 50 % en fait un
+   rond parfait — quelle que soit la taille de l'écran. */
+.portrait__photo {
+  position: relative;   /* passe au-dessus des feuilles */
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+/* Le sélecteur passe par le parent, alors qu'une seule classe suffirait à
+   désigner l'image. C'est nécessaire : le gabarit commun impose
+   « .hero-page__illustration img { width: 100% } », une règle plus précise
+   qu'une classe seule, qui l'emportait et étirait les feuilles à la taille du
+   portrait. En nommant deux classes, celle-ci reprend la main. */
+.portrait .portrait__feuilles {
+  position: absolute;
+  left: 2%;
+  bottom: 4%;
+  width: 22%;
+  transform: rotate(-125deg);
+}
+
+
+/* ==========================================================================
+   2. PARCOURS ET FORMATION
+   --------------------------------------------------------------------------
+   Le fond porte deux motifs, l'un à gauche, l'autre à droite, chacun sur la
+   moitié de la largeur — exactement comme sur le site d'origine. Ils sont
+   posés en fond et non en balise <img> : ce sont des ornements, ils n'ont
+   rien à dire à un lecteur d'écran.
+
+   Ils sont si pâles — du gris à 251 sur 255 — qu'ils ne se devinent que sur
+   les grandes plages vides autour des panneaux. C'est voulu.
+   ========================================================================== */
+
+.zone-motif {
+  background-image: url("../images/deco-1.jpg"), url("../images/yantra.png");
+  background-position: left center, right center;
+  background-size: 50% 100%, 50% 100%;
+  background-repeat: no-repeat;
+}
+
+.cartes-parcours {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espace-m);
+  /* Les deux panneaux prennent la hauteur du plus haut, comme sur le site
+     d'origine : sans cela, celui de droite s'arrêterait plus haut et les deux
+     ne formeraient plus un bloc. */
+  align-items: stretch;
+}
+
+.carte-parcours {
+  padding: var(--espace-l) var(--espace-m);
+  background-color: var(--fond);
+  border-radius: var(--rayon);
+}
+
+.carte-parcours__picto {
+  display: block;
+  width: auto;
+  height: 66px;
+  margin: 0 auto var(--espace-s);
+}
+
+.carte-parcours__titre {
+  margin-bottom: var(--espace-m);
+  font-size: clamp(1.5rem, 2.8vw, 34px);
+  text-align: center;
+}
+
+.carte-parcours > p:last-child {
+  margin-bottom: 0;
+}
+
+/* La liste des formations garde sa nature de liste dans le HTML, mais pas ses
+   puces : sur le site d'origine, chaque ligne commence par sa date, qui joue
+   déjà ce rôle. */
+.formations {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.formations li + li {
+  margin-top: var(--espace-s);
+}
+
+
+/* ==========================================================================
+   3. RESPONSIVE
+   ========================================================================== */
+
+/* Les deux panneaux passent l'un sous l'autre avant le seuil habituel du
+   site : « Ma formation » contient des lignes longues — noms d'écoles et de
+   formateurs — qui se hachent dès que la colonne se resserre. */
+@media (max-width: 900px) {
+
+  .cartes-parcours {
+    grid-template-columns: 1fr;
+  }
+
+  /* Empilés, les motifs de fond n'ont plus de moitié gauche ni de moitié
+     droite à occuper : on n'en garde qu'un, étiré sur toute la largeur. */
+  .zone-motif {
+    background-image: url("../images/deco-1.jpg");
+    background-position: center;
+    background-size: 100% 100%;
+  }
+
+  .carte-parcours {
+    padding: var(--espace-m);
+  }
+}
+
+@media (max-width: 600px) {
+
+  /* Empilé sous le texte, le portrait n'a plus besoin d'être aussi grand. */
+  .portrait {
+    max-width: 280px;
+  }
+}

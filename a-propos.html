@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>À propos — Valérie Trazic, professeure de yoga et yogathérapeute à La Ciotat</title>
+  <meta name="description" content="Valérie Trazic enseigne le yoga depuis 2015 à La Ciotat. Formée à l'école Ananda de Marseille et à l'Institut de Yogathérapie du docteur Lionel Coudron.">
+
+  <!-- Aperçu lors d'un partage sur WhatsApp, Facebook, Messenger…
+       og:url doit rester une adresse absolue : une adresse relative ne
+       fonctionne pas ici.
+       À FAIRE : og:image manque. Il faut une image de partage au format
+       1200 × 630 px ; aucune des illustrations récupérées n'a ce format. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Valérie Trazic">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:url" content="https://valerietrazic.fr/a-propos.html">
+  <meta property="og:title" content="À propos de Valérie Trazic">
+  <meta property="og:description" content="Valérie Trazic enseigne le yoga depuis 2015 à La Ciotat. Formée à l'école Ananda de Marseille et à l'Institut de Yogathérapie du docteur Lionel Coudron.">
+
+  <!-- Icône du site, dérivée de la branche.
+       Le format 180 px est celui d'iOS : il a un fond crème parce qu'iOS
+       remplace la transparence par du noir. -->
+  <link rel="icon" href="images/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="images/favicon-512.png" sizes="512x512">
+  <link rel="apple-touch-icon" href="images/favicon-180.png">
+
+  <!-- Le site d'origine n'utilise que Quicksand, titres comme corps de texte. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- style.css : design system + éléments communs.
+       page-interieure.css : gabarit des six pages autres que l'accueil.
+       a-propos.css : les blocs propres à cette page. -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/page-interieure.css">
+  <link rel="stylesheet" href="css/a-propos.css">
+</head>
+
+<body>
+
+  <!-- ======================================================================
+       EN-TÊTE — identique sur les 7 pages du site.
+       Pour le modifier, il faut le faire dans chaque fichier HTML.
+       Sur la page courante, le lien porte aria-current="page" : c'est lui
+       qui déclenche le grisé.
+       ====================================================================== -->
+  <header class="entete">
+    <div class="conteneur entete__interieur">
+
+      <a href="index.html" class="entete__marque">
+        <img class="entete__branche" src="images/branche.png" alt="" aria-hidden="true" width="400" height="430">
+        <span class="entete__nom">Valérie Trazic</span>
+      </a>
+
+      <nav class="nav" aria-label="Navigation principale">
+
+        <button class="nav__burger" type="button" aria-expanded="false" aria-controls="menu-principal">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span class="lecteur-ecran-seulement">Ouvrir le menu</span>
+        </button>
+
+        <ul class="nav__liste" id="menu-principal">
+
+          <li><a class="nav__lien" href="index.html">Accueil</a></li>
+
+          <li><a class="nav__lien" href="yogatherapie.html">Yogathérapie</a></li>
+
+          <!-- « Cours » n'est pas une page : c'est l'intitulé d'un groupe.
+               C'est donc un <button>, pas un <a> — il n'y a nulle part où
+               aller. Sur mobile, le CSS le transforme en simple intertitre
+               et déplie la liste en permanence. -->
+          <li class="nav__deroulant">
+            <button class="nav__lien nav__bascule" type="button" aria-expanded="false" aria-controls="sous-menu-cours">Cours</button>
+
+            <ul class="nav__sous-menu" id="sous-menu-cours">
+              <li><a class="nav__sous-lien" href="cours-adultes.html">Cours adultes</a></li>
+              <li><a class="nav__sous-lien" href="cours-enfants.html">Cours enfants</a></li>
+              <li><a class="nav__sous-lien" href="cours-parents-enfants.html">Cours parents / enfants</a></li>
+              <li><a class="nav__sous-lien" href="yoga-adapte-sante.html">Yoga Adapté Santé</a></li>
+            </ul>
+          </li>
+
+          <li><a class="nav__lien" href="a-propos.html" aria-current="page">À propos</a></li>
+
+          <!-- « Contact » n'est pas une page non plus : c'est une ancre vers
+               le bandeau de coordonnées, qui porte id="contact". -->
+          <li><a class="nav__lien" href="#contact">Contact</a></li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+  </header>
+
+
+
+  <main>
+
+    <!-- ====================================================================
+         1. BANDEAU DE TITRE
+         Le texte à gauche, la photo à droite. Contrairement aux autres pages
+         intérieures, il n'y a ni bulle ni bande crème : le site d'origine
+         pose ce bandeau sur fond blanc.
+
+         Le titre est là mais invisible à l'écran, comme sur le site d'origine
+         qui n'en affiche aucun. Une page a pourtant besoin d'un titre de
+         niveau 1 : c'est lui qui annonce la page à un lecteur d'écran et qui
+         sert de repère aux moteurs de recherche. Il est donc écrit, puis
+         masqué visuellement — et lui seul, le reste s'affiche normalement.
+         ==================================================================== -->
+    <section class="conteneur hero-page" aria-labelledby="titre-page">
+
+      <h1 class="lecteur-ecran-seulement" id="titre-page">À propos</h1>
+
+      <div class="hero-page__texte">
+        <p class="a-propos__intro">
+          Le yoga fait partie intégrante de ma vie depuis longtemps. C'est devenu au
+          fil des années une manière de vivre, de respirer, de regarder…
+        </p>
+        <p class="a-propos__intro">
+          Un <strong>art de vivre</strong> que je cultive et dont je ne cesse de
+          découvrir la richesse, l'étendue, la pertinence,<br>
+          que j'ai à cœur de <strong>partager</strong>.
+        </p>
+      </div>
+
+      <!-- Les feuilles sont écrites AVANT la photo : les deux étant
+           positionnées, c'est la dernière du fichier qui passe au-dessus.
+           Elles dépassent donc simplement du bas du portrait. -->
+      <div class="hero-page__illustration portrait">
+        <img class="portrait__feuilles" src="images/feuille-trait.png" alt="" aria-hidden="true" width="160" height="138">
+        <img class="portrait__photo" src="images/valerie.jpg" alt="Valérie Trazic, souriante, assise en extérieur" width="1336" height="1110">
+      </div>
+
+    </section>
+
+
+    <!-- ====================================================================
+         2. PARCOURS ET FORMATION
+         Deux panneaux blancs posés sur un fond orné de deux motifs très
+         pâles, comme sur le site d'origine.
+         ==================================================================== -->
+    <div class="zone-motif">
+      <section class="conteneur section" id="parcours" aria-label="Parcours et formation">
+
+        <div class="cartes-parcours">
+
+          <article class="carte-parcours">
+            <img class="carte-parcours__picto" src="images/picto-spirale.svg" alt="" aria-hidden="true" width="90" height="100" loading="lazy">
+            <h2 class="carte-parcours__titre">Mon parcours</h2>
+
+            <p>J'enseigne le yoga depuis 2015.</p>
+
+            <p>
+              Expérimentant chaque jour la <strong>portée thérapeutique du yoga</strong>
+              sur moi-même et sur mes élèves, j'ai souhaité m'engager sur cette voie plus
+              spécifique. Après une formation de plus de deux ans à l'<strong>Institut de
+              Yogathérapie</strong> dirigé par le docteur Lionel Coudron, j'accompagne
+              aujourd'hui les personnes ayant un <strong>objectif santé</strong> en suivi
+              individuel ou en petits groupes autour de problématiques communes.
+            </p>
+
+            <p>
+              Forte de mon expérience de <strong>professeure des écoles</strong>, je
+              propose également des ateliers auprès d'enfants et d'adolescents pour les
+              aider à traverser des périodes parfois difficiles ou simplement pour leur
+              <strong>donner des outils</strong> pour grandir en harmonie et confiance.
+            </p>
+          </article>
+
+          <article class="carte-parcours">
+            <img class="carte-parcours__picto" src="images/picto-diplome.svg" alt="" aria-hidden="true" width="100" height="80" loading="lazy">
+            <h2 class="carte-parcours__titre">Ma formation</h2>
+
+            <ul class="formations">
+              <li>
+                2012/2015 : Formation de professeur de yoga à l'école
+                <strong>Ananda</strong> de Marseille avec <strong>Nicolas Gentil</strong>
+              </li>
+              <li>
+                2015/2017 : Approfondissement des techniques à l'école
+                <strong>Ananda</strong> de Marseille avec <strong>Nicolas Gentil</strong>
+              </li>
+              <li>
+                2020 : Technique de Yoga dans l'éducation avec le RYE
+                (<strong>Recherche Yoga Éducation</strong>, association habilitée par
+                l'Éducation Nationale)
+              </li>
+              <li>
+                2021 : Technique de Relaxation dans l'éducation avec le RYE
+              </li>
+              <li>
+                2020/2022 : Formation <strong>Nidra</strong> à l'école
+                <strong>Ananda</strong> de Marseille avec <strong>Michèle Ferraud</strong>
+              </li>
+              <li>
+                2021/2023 : Formation en yogathérapie à l'<strong>Institut de
+                Yogathérapie</strong> du Docteur <strong>Lionel Coudron</strong>
+              </li>
+            </ul>
+          </article>
+
+        </div>
+
+      </section>
+    </div>
+
+  </main>
+
+
+  <!-- ======================================================================
+       BANDEAU CONTACT — identique sur les 7 pages.
+       Il porte id="contact" : c'est la cible de l'entrée « Contact » du menu.
+       Les filets jaunes entre les cellules ne sont pas des bordures : c'est
+       le fond jaune du bandeau qui apparaît dans les fentes de 1 px.
+       ====================================================================== -->
+  <section class="bandeau-contact" id="contact" aria-label="Coordonnées">
+    <div class="bandeau-contact__grille">
+
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-lieu.webp" alt="" aria-hidden="true" width="88" height="120" loading="lazy">
+        <address class="bandeau-contact__texte">
+          <a href="https://auventdanslesbranches.fr" target="_blank" rel="noopener">Au vent dans les branches<span class="lecteur-ecran-seulement"> (nouvelle fenêtre)</span></a><br>
+          17 rue Emmanuel Barthélémy<br>
+          13600 La Ciotat
+        </address>
+      </div>
+
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-telephone.webp" alt="" aria-hidden="true" width="118" height="120" loading="lazy">
+        <p class="bandeau-contact__texte">
+          <a href="tel:+33671415745">06 71 41 57 45</a>
+        </p>
+      </div>
+
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-mail.webp" alt="" aria-hidden="true" width="125" height="120" loading="lazy">
+        <p class="bandeau-contact__texte">
+          <a href="mailto:trazicvalerie@gmail.com">trazicvalerie@gmail.com</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       PIED DE PAGE — identique sur les 7 pages. Fond blanc, tout centré.
+       ====================================================================== -->
+  <footer class="pied">
+    <div class="conteneur">
+
+      <img class="pied__branche" src="images/branche.png" alt="" aria-hidden="true" width="400" height="430" loading="lazy">
+
+      <p class="pied__nom">Valérie Trazic</p>
+      <p class="pied__role">
+        Professeure de Yoga<br>
+        Yogathérapeute
+      </p>
+
+      <p class="pied__credit">
+        Site et illustrations par Mathis Olieu<br>
+        <a href="mailto:contact@mathisolieu.fr">contact@mathisolieu.fr</a>
+      </p>
+
+    </div>
+  </footer>
+
+
+  <script src="js/menu.js"></script>
+
+</body>
+</html>
