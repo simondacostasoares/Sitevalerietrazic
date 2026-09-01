@@ -17,12 +17,11 @@
    1. LE BANDEAU DE TITRE
    ========================================================================== */
 
-/* Le texte d'accroche est un peu plus grand que le texte courant, comme sur
-   les autres bandeaux du site. */
+/* Aucune règle de taille : le texte reste à la taille courante du site, comme
+   dans les bulles des autres bandeaux. Seule la largeur est bridée, pour que
+   les lignes ne s'étirent pas d'un bord à l'autre de la colonne. */
 .a-propos__intro {
   max-width: 46ch;
-  font-size: 20px;
-  line-height: 1.67;
 }
 
 .a-propos__intro:last-child {
