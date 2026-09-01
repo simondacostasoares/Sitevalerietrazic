@@ -89,6 +89,12 @@
 }
 
 .carte-sante {
+  /* La carte est une colonne, uniquement pour que le bouton puisse être
+     collé en bas (voir plus loin) : les deux boutons se retrouvent ainsi à la
+     même hauteur, alors que les horaires au-dessus n'ont pas le même nombre
+     de lignes. */
+  display: flex;
+  flex-direction: column;
   padding: var(--espace-m);
   background-color: var(--gris-bloc);
   text-align: center;
@@ -140,8 +146,13 @@
   font-weight: var(--gras);
 }
 
-.carte-sante__lien {
-  margin: var(--espace-s) 0 0;
+/* « auto » en haut mange tout l'espace libre restant : le bouton est poussé
+   au bas de la carte. Seul le bouton porte cette marge — le lotus et
+   l'horaire, eux, suivent le fil du texte et restent alignés d'une carte à
+   l'autre. */
+.carte-sante__bouton {
+  margin: auto 0 0;
+  padding-top: var(--espace-m);
 }
 
 
@@ -176,9 +187,13 @@
   width: 30px;
 }
 
+/* Les deux lignes sont centrées l'une par rapport à l'autre : la mention du
+   partenariat, plus courte que l'adresse, se posait sinon en décalé sous elle,
+   alignée à gauche. */
 .lieu__texte {
   margin: 0;
   font-style: normal;   /* neutralise l'italique par défaut de <address> */
+  text-align: center;
 }
 
 /* Un léger décalage entre l'adresse et la mention du partenariat : sans lui,
