@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Yoga Adapté Santé — Valérie Trazic, professeure de yoga à La Ciotat</title>
+  <meta name="description" content="Yoga Adapté Santé à La Ciotat : yoga sur chaise et yogathérapie en petit groupe, pour reprendre une activité physique en douceur. En partenariat avec la Maison Sport Santé.">
+
+  <!-- Aperçu lors d'un partage sur WhatsApp, Facebook, Messenger…
+       og:url doit rester une adresse absolue : une adresse relative ne
+       fonctionne pas ici.
+       À FAIRE : og:image manque. Il faut une image de partage au format
+       1200 × 630 px ; aucune des illustrations récupérées n'a ce format. -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Valérie Trazic">
+  <meta property="og:locale" content="fr_FR">
+  <meta property="og:url" content="https://valerietrazic.fr/yoga-adapte-sante.html">
+  <meta property="og:title" content="Yoga Adapté Santé à La Ciotat">
+  <meta property="og:description" content="Yoga Adapté Santé à La Ciotat : yoga sur chaise et yogathérapie en petit groupe, pour reprendre une activité physique en douceur. En partenariat avec la Maison Sport Santé.">
+
+  <!-- Icône du site, dérivée de la branche.
+       Le format 180 px est celui d'iOS : il a un fond crème parce qu'iOS
+       remplace la transparence par du noir. -->
+  <link rel="icon" href="images/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="images/favicon-512.png" sizes="512x512">
+  <link rel="apple-touch-icon" href="images/favicon-180.png">
+
+  <!-- Le site d'origine n'utilise que Quicksand, titres comme corps de texte. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- style.css : design system + éléments communs.
+       page-interieure.css : gabarit des six pages autres que l'accueil.
+       yoga-adapte-sante.css : les blocs propres à cette page. -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/page-interieure.css">
+  <link rel="stylesheet" href="css/yoga-adapte-sante.css">
+</head>
+
+<body>
+
+  <!-- ======================================================================
+       EN-TÊTE — identique sur les 7 pages du site.
+       Pour le modifier, il faut le faire dans chaque fichier HTML.
+       Sur la page courante, le lien porte aria-current="page" : c'est lui
+       qui déclenche le grisé.
+       ====================================================================== -->
+  <header class="entete">
+    <div class="conteneur entete__interieur">
+
+      <a href="index.html" class="entete__marque">
+        <img class="entete__branche" src="images/branche.png" alt="" aria-hidden="true" width="400" height="430">
+        <span class="entete__nom">Valérie Trazic</span>
+      </a>
+
+      <nav class="nav" aria-label="Navigation principale">
+
+        <button class="nav__burger" type="button" aria-expanded="false" aria-controls="menu-principal">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span class="lecteur-ecran-seulement">Ouvrir le menu</span>
+        </button>
+
+        <ul class="nav__liste" id="menu-principal">
+
+          <li><a class="nav__lien" href="index.html">Accueil</a></li>
+
+          <li><a class="nav__lien" href="yogatherapie.html">Yogathérapie</a></li>
+
+          <!-- « Cours » n'est pas une page : c'est l'intitulé d'un groupe.
+               C'est donc un <button>, pas un <a> — il n'y a nulle part où
+               aller. Sur mobile, le CSS le transforme en simple intertitre
+               et déplie la liste en permanence. -->
+          <li class="nav__deroulant">
+            <button class="nav__lien nav__bascule" type="button" aria-expanded="false" aria-controls="sous-menu-cours">Cours</button>
+
+            <ul class="nav__sous-menu" id="sous-menu-cours">
+              <li><a class="nav__sous-lien" href="cours-adultes.html">Cours adultes</a></li>
+              <li><a class="nav__sous-lien" href="cours-enfants.html">Cours enfants</a></li>
+              <li><a class="nav__sous-lien" href="cours-parents-enfants.html">Cours parents / enfants</a></li>
+              <li><a class="nav__sous-lien" href="yoga-adapte-sante.html" aria-current="page">Yoga Adapté Santé</a></li>
+            </ul>
+          </li>
+
+          <li><a class="nav__lien" href="a-propos.html">À propos</a></li>
+
+          <!-- « Contact » n'est pas une page non plus : c'est une ancre vers
+               le bandeau de coordonnées, qui porte id="contact". -->
+          <li><a class="nav__lien" href="#contact">Contact</a></li>
+
+        </ul>
+
+      </nav>
+
+    </div>
+  </header>
+
+
+
+  <main>
+
+    <!-- ====================================================================
+         1. BANDEAU DE TITRE
+         Comme sur les trois pages de cours : deux colonnes, le texte dans une
+         bulle blanche à gauche, l'illustration à droite. Le site d'origine
+         posait la bulle SUR l'illustration, et à droite.
+         Le crème court sur toute la largeur de l'écran, derrière la section,
+         parce que c'est aussi le fond de l'illustration : les deux se
+         rejoignent sans que le raccord se voie.
+         ==================================================================== -->
+    <div class="zone-creme">
+      <section class="conteneur hero-page">
+
+        <!-- La bulle et le trait à feuille sont deux enveloppes distinctes :
+             chacune a son propre retrait à gauche, et une seule balise ne peut
+             pas porter deux marges intérieures différentes du même côté. -->
+        <div class="hero-page__texte bulle">
+          <div class="trait-feuille">
+            <img class="trait-feuille__feuille" src="images/feuille-trait.png" alt="" aria-hidden="true" width="160" height="138">
+            <h1 class="bulle__titre">Yoga Adapté Santé</h1>
+            <p class="bulle__texte">
+              Les séances de Yoga Adapté Santé s'adressent aux personnes qui ont besoin
+              et envie de reprendre une activité physique en douceur. Le mouvement est
+              adapté aux possibilités et aux besoins de chacun pour bouger avec plaisir,
+              en sécurité. Le travail sur la respiration permet de s'apaiser et de
+              renouer avec soi. Les visualisations et concentrations, simples et
+              accessibles, stimulent l'esprit et favorisent la prise de recul.
+            </p>
+          </div>
+        </div>
+
+        <div class="hero-page__illustration">
+          <img src="images/yoga-adapte.png" alt="Trois personnes en postures de yoga au pied d'un arbre" width="1292" height="1046">
+        </div>
+
+      </section>
+    </div>
+
+
+    <!-- ====================================================================
+         2. LES DEUX SÉANCES
+         Deux panneaux gris côte à côte. Ils n'ont pas de titre de section :
+         sur le site d'origine, ils suivent directement le bandeau. Le bloc
+         porte donc un aria-label, seul moyen de le nommer pour un lecteur
+         d'écran sans titre visible.
+         ==================================================================== -->
+    <section class="conteneur section" id="seances" aria-label="Les deux séances proposées">
+
+      <ul class="cartes-sante">
+
+        <li class="carte-sante">
+          <img class="carte-sante__portrait" src="images/yoga-adapte-1.png" alt="" aria-hidden="true" width="300" height="300" loading="lazy">
+          <h2 class="carte-sante__titre">Yoga sur chaise</h2>
+          <span class="carte-sante__filet" aria-hidden="true"></span>
+          <p class="carte-sante__texte">
+            Pour bouger en sécurité et entretenir son capital santé.
+          </p>
+          <img class="carte-sante__lotus" src="images/lotus.svg" alt="" aria-hidden="true" width="46" height="33" loading="lazy">
+          <p class="carte-sante__horaire">
+            Les mardis de <strong>10h45</strong> à <strong>11h45</strong>
+          </p>
+        </li>
+
+        <li class="carte-sante">
+          <img class="carte-sante__portrait" src="images/yoga-adapte-2.png" alt="" aria-hidden="true" width="300" height="300" loading="lazy">
+          <h2 class="carte-sante__titre">Yogathérapie en petit groupe</h2>
+          <span class="carte-sante__filet" aria-hidden="true"></span>
+          <p class="carte-sante__texte">
+            Pour un mieux-être physique et psychique.
+          </p>
+          <img class="carte-sante__lotus" src="images/lotus.svg" alt="" aria-hidden="true" width="46" height="33" loading="lazy">
+          <p class="carte-sante__horaire">
+            Les mercredis de <strong>17h30</strong> à <strong>18h45</strong><br>
+            et les jeudis de <strong>9h30</strong> à <strong>10h45</strong>
+          </p>
+          <p class="carte-sante__lien">
+            <a href="yogatherapie.html#petit-groupe">En savoir plus<span class="lecteur-ecran-seulement"> sur la yogathérapie en petit groupe</span></a>
+          </p>
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <!-- ====================================================================
+         3. LIEU ET PARTENARIAT
+         ==================================================================== -->
+    <section class="conteneur section" id="lieu" aria-label="Lieu des séances et partenariat">
+
+      <div class="lieu">
+
+        <span class="lieu__picto">
+          <img src="images/picto-lieu.svg" alt="" aria-hidden="true" width="40" height="37" loading="lazy">
+        </span>
+
+        <div>
+          <address class="lieu__texte">
+            À <a href="https://auventdanslesbranches.fr" target="_blank" rel="noopener">Au vent dans les branches<span class="lecteur-ecran-seulement"> (nouvelle fenêtre)</span></a>,
+            17 rue Emmanuel Barthélémy, 13600 La Ciotat
+          </address>
+          <p class="lieu__texte">
+            Séances en partenariat avec la Maison Sport Santé de La Ciotat
+          </p>
+        </div>
+
+      </div>
+
+      <img class="logo-partenaire" src="images/logo-maison-sport-sante.webp" alt="Logo de l'ASSBE, Ateliers Sport Santé Bien-Être" width="480" height="480" loading="lazy">
+
+    </section>
+
+  </main>
+
+
+  <!-- ======================================================================
+       BANDEAU CONTACT — identique sur les 7 pages.
+       Il porte id="contact" : c'est la cible de l'entrée « Contact » du menu.
+       Les filets jaunes entre les cellules ne sont pas des bordures : c'est
+       le fond jaune du bandeau qui apparaît dans les fentes de 1 px.
+       ====================================================================== -->
+  <section class="bandeau-contact" id="contact" aria-label="Coordonnées">
+    <div class="bandeau-contact__grille">
+
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-lieu.webp" alt="" aria-hidden="true" width="88" height="120" loading="lazy">
+        <address class="bandeau-contact__texte">
+          <a href="https://auventdanslesbranches.fr" target="_blank" rel="noopener">Au vent dans les branches<span class="lecteur-ecran-seulement"> (nouvelle fenêtre)</span></a><br>
+          17 rue Emmanuel Barthélémy<br>
+          13600 La Ciotat
+        </address>
+      </div>
+
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-telephone.webp" alt="" aria-hidden="true" width="118" height="120" loading="lazy">
+        <p class="bandeau-contact__texte">
+          <a href="tel:+33671415745">06 71 41 57 45</a>
+        </p>
+      </div>
+
+      <div class="bandeau-contact__cellule">
+        <img class="bandeau-contact__icone" src="images/icone-mail.webp" alt="" aria-hidden="true" width="125" height="120" loading="lazy">
+        <p class="bandeau-contact__texte">
+          <a href="mailto:trazicvalerie@gmail.com">trazicvalerie@gmail.com</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+
+
+  <!-- ======================================================================
+       PIED DE PAGE — identique sur les 7 pages. Fond blanc, tout centré.
+       ====================================================================== -->
+  <footer class="pied">
+    <div class="conteneur">
+
+      <img class="pied__branche" src="images/branche.png" alt="" aria-hidden="true" width="400" height="430" loading="lazy">
+
+      <p class="pied__nom">Valérie Trazic</p>
+      <p class="pied__role">
+        Professeure de Yoga<br>
+        Yogathérapeute
+      </p>
+
+      <p class="pied__credit">
+        Site et illustrations par Mathis Olieu<br>
+        <a href="mailto:contact@mathisolieu.fr">contact@mathisolieu.fr</a>
+      </p>
+
+    </div>
+  </footer>
+
+
+  <script src="js/menu.js"></script>
+
+</body>
+</html>

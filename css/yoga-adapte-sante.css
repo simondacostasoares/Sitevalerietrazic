@@ -1,0 +1,275 @@
+/* ==========================================================================
+   YOGA ADAPTÉ SANTÉ — styles propres à yoga-adapte-sante.html
+   --------------------------------------------------------------------------
+   Chargé après style.css et page-interieure.css.
+
+   Trois blocs en propre :
+     1. le bandeau de titre — cadrage de l'illustration et bulle blanche ;
+     2. les deux panneaux gris des séances ;
+     3. le lieu et le logo du partenaire.
+   ========================================================================== */
+
+
+/* ==========================================================================
+   1. LE BANDEAU DE TITRE
+   --------------------------------------------------------------------------
+   Le dessin est presque carré, et il ne remplit pas son fichier : il reste
+   187 px de crème vide à sa gauche, sur 1292. Placée telle quelle, la colonne
+   commencerait donc par une bande vide, et le dessin paraîtrait décollé de la
+   bulle.
+
+   On rogne cette bande, en en laissant une quarantaine de pixels pour que le
+   dessin ne touche pas le bord. « aspect-ratio » donne à la boîte une
+   proportion un peu plus étroite que celle du fichier, « cover » y fait tenir
+   l'image en la débordant, et « object-position: right » retire le surplus à
+   gauche.
+
+   Les deux colonnes gardent la largeur du gabarit commun — moitié-moitié.
+   Contrairement aux pages de cours, dont l'illustration est panoramique,
+   celle-ci est presque carrée : lui donner plus de place la rendrait
+   immense et écraserait la bulle.
+   ========================================================================== */
+
+.hero-page__illustration img {
+  aspect-ratio: 1145 / 1046;
+  object-fit: cover;
+  object-position: right;
+}
+
+
+/* --------------------------------------------------------------------------
+   LA BULLE BLANCHE
+   Comme sur le site d'origine, le texte du bandeau est posé dans une bulle
+   blanche. La forme est obtenue en donnant à chaque coin un rayon horizontal
+   et un rayon vertical différents : le coin devient un quart d'ellipse, et le
+   rectangle une bulle.
+
+   ATTENTION — quatrième copie de ces règles, après cours-adultes.css,
+   cours-enfants.css et cours-parents-enfants.css. Elles doivent être
+   déplacées dans page-interieure.css ; ce n'est pas fait ici parce que
+   toucher au gabarit commun modifierait quatre pages déjà validées d'un coup.
+   -------------------------------------------------------------------------- */
+
+.bulle {
+  /* Les marges intérieures sont larges parce que les bords sont courbes :
+     dans une bulle, le texte doit rentrer davantage que dans un rectangle,
+     sinon les premières et dernières lignes touchent la paroi. */
+  padding: var(--espace-l) var(--espace-m);
+  background-color: var(--fond);
+  border-radius: 46% 54% 40% 60% / 52% 44% 56% 48%;
+}
+
+/* Plus petit que le titre des autres bandeaux : il est ici enfermé dans une
+   bulle, pas posé en pleine page. */
+.bulle__titre {
+  margin-bottom: var(--espace-s);
+  font-size: clamp(1.5rem, 2.6vw, 32px);
+}
+
+/* Aucune règle de taille : le texte reste à la taille courante du site. */
+.bulle__texte {
+  margin: 0;
+}
+
+
+/* ==========================================================================
+   2. LES DEUX PANNEAUX DES SÉANCES
+   --------------------------------------------------------------------------
+   C'est une liste dans le HTML — deux séances mises sur le même plan — d'où
+   la remise à zéro des puces et du retrait.
+   ========================================================================== */
+
+.cartes-sante {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--espace-m);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.carte-sante {
+  padding: var(--espace-m);
+  background-color: var(--gris-bloc);
+  text-align: center;
+}
+
+/* Les portraits sont fournis détourés en rond, fond compris : aucune forme à
+   dessiner ici, seulement une taille. */
+.carte-sante__portrait {
+  width: 130px;
+  height: auto;
+  margin: 0 auto var(--espace-m);
+}
+
+.carte-sante__titre {
+  margin-bottom: var(--espace-xs);
+  font-size: clamp(1.25rem, 2.2vw, 26px);
+}
+
+/* Le petit trait jaune sous le titre. Il ne fait pas toute la largeur de la
+   carte : c'est une ponctuation, pas une séparation. */
+.carte-sante__filet {
+  display: block;
+  width: 70%;
+  height: 3px;
+  margin: 0 auto var(--espace-s);
+  background-color: var(--jaune);
+}
+
+.carte-sante__texte {
+  margin: 0;
+}
+
+/* Le lotus sépare la phrase de l'horaire, comme sur le site d'origine.
+   Il suit simplement le fil du texte : poussé vers le bas de la carte, il se
+   retrouverait plus bas dans la carte la plus courte que dans l'autre, et les
+   deux lotus ne seraient plus à la même hauteur. */
+.carte-sante__lotus {
+  display: block;
+  width: 46px;
+  height: auto;
+  margin: var(--espace-m) auto var(--espace-s);
+}
+
+.carte-sante__horaire {
+  margin: 0;
+}
+
+.carte-sante__horaire strong {
+  font-weight: var(--gras);
+}
+
+.carte-sante__lien {
+  margin: var(--espace-s) 0 0;
+}
+
+
+/* ==========================================================================
+   3. LE LIEU ET LE LOGO DU PARTENAIRE
+   --------------------------------------------------------------------------
+   Un picto blanc dans un rond jaune, le texte à sa droite, l'ensemble centré
+   dans la page. Le rond est le même que celui des « Modalités », mais il est
+   ici posé à côté du texte et non au-dessus : d'où une règle à part plutôt
+   qu'une réutilisation.
+   ========================================================================== */
+
+.lieu {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--espace-s);
+}
+
+.lieu__picto {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;   /* sans quoi le rond s'ovalise quand le texte est long */
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background-color: var(--jaune);
+}
+
+.lieu__picto img {
+  width: 30px;
+}
+
+.lieu__texte {
+  margin: 0;
+  font-style: normal;   /* neutralise l'italique par défaut de <address> */
+}
+
+/* Un léger décalage entre l'adresse et la mention du partenariat : sans lui,
+   les deux se lisent comme une seule phrase dès que l'une passe à la ligne. */
+.lieu__texte + .lieu__texte {
+  margin-top: var(--espace-xs);
+}
+
+/* Le fichier du logo est un carré de 480 px dont le dessin n'occupe que les
+   370 premiers : le reste est du blanc, qui creusait un vide sous le logo
+   avant le bandeau de coordonnées. On rogne ce blanc — « cover » recadre
+   l'image dans une boîte plus large que haute, « top » garde le haut.
+   Le dessin, lui, ne fait que 292 px de large sur les 480 du fichier : d'où
+   une largeur affichée de 190 px pour qu'il pèse autant que sur le site
+   d'origine. */
+.logo-partenaire {
+  display: block;
+  width: 190px;
+  height: auto;
+  aspect-ratio: 480 / 370;
+  object-fit: cover;
+  object-position: top;
+  margin: var(--espace-m) auto 0;
+}
+
+
+/* ==========================================================================
+   4. RESPONSIVE
+   ========================================================================== */
+
+/* Le bandeau à bulle bascule en une seule colonne dès 1000 px, alors que le
+   reste du site attend 900. Raison : entre les deux, la colonne de gauche
+   n'est plus assez large pour la bulle — une quinzaine de caractères par
+   ligne, et la forme se tord en œuf. Les règles d'empilement du gabarit
+   commun sont ici simplement étendues, ce fichier étant chargé après lui. */
+@media (max-width: 1000px) {
+
+  .hero-page {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-page__illustration {
+    order: -1;
+  }
+
+  /* Empilée sous l'illustration, la bulle devient large et basse : les mêmes
+     rayons en pourcentage y produiraient une ellipse écrasée. On les aplatit
+     donc dans le sens vertical pour retrouver une forme de galet. */
+  .bulle {
+    padding: var(--espace-m);
+    border-radius: 40% 60% 46% 54% / 12% 14% 12% 14%;
+  }
+
+  /* Empilée, l'illustration est centrée et ne dépasse jamais la largeur
+     disponible : le dessin tient en entier à l'écran. */
+  .hero-page__illustration {
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .hero-page__illustration img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-inline: auto;
+  }
+}
+
+/* En dessous de cette largeur, deux panneaux côte à côte deviennent trop
+   étroits pour un titre comme « Yogathérapie en petit groupe » : les séances
+   se lisent alors l'une sous l'autre. Le seuil est calculé sur le contenu,
+   pas repris d'un des points de rupture du site. */
+@media (max-width: 760px) {
+
+  .cartes-sante {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+
+  /* Sur un bloc étroit et haut, un rayon en pourcentage donne une forme
+     démesurée. La bulle redevient un simple rectangle arrondi. */
+  .bulle {
+    border-radius: var(--rayon);
+  }
+
+  /* Le rond du lieu passe au-dessus du texte : côte à côte, il ne resterait
+     pas assez de largeur pour l'adresse. */
+  .lieu {
+    flex-direction: column;
+    text-align: center;
+  }
+}
