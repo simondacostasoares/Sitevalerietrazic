@@ -50,6 +50,36 @@
   .hero-page {
     grid-template-columns: 1fr 1.5fr;
   }
+
+  /* LA BRANCHE COUPÉE
+     Dans le fichier lui-même, la grande branche part du bord gauche : elle
+     est déjà tranchée à x = 0. Sur le site d'origine ce n'était pas gênant,
+     l'illustration courait sous la bulle et la coupure était cachée par
+     elle. Rangée sagement dans sa colonne, la branche s'arrête au contraire
+     en plein vide, comme sciée.
+
+     On rétablit donc le recouvrement d'origine : l'illustration est décalée
+     vers la gauche jusqu'à glisser sous la bulle, qui repasse devant elle.
+
+     « position: relative » plutôt qu'une marge négative : une marge négative
+     sur une case de grille ne la déplace pas, elle l'élargit — le dessin
+     grandirait et le bandeau entier deviendrait plus haut. Ici l'image garde
+     exactement sa taille et ne fait que glisser. Le vide de 9 rem qu'elle
+     laisse à sa droite ne se voit pas : le fond de la section est le même
+     crème que le fond du dessin. */
+  .hero-page__illustration {
+    position: relative;
+    right: 9rem;
+  }
+
+  /* Sans « position », « z-index » n'a aucun effet : c'est la position qui
+     sort l'élément du plan de la page et lui donne le droit d'être empilé.
+     La bulle passe ainsi DEVANT le dessin, et non derrière — c'est ce qui
+     escamote le bout de branche coupé. */
+  .hero-page__texte {
+    position: relative;
+    z-index: 1;
+  }
 }
 
 

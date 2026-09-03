@@ -156,14 +156,12 @@
    poser deux sur une ligne et un sur la suivante — bancal. Ici c'est trois
    de front, ou un par ligne, jamais entre les deux.
 
-   La largeur est bridée pour que les colonnes restent groupées : étalées sur
-   toute la page, les pictos se retrouvent si loin les uns des autres qu'on
-   ne les lit plus comme un ensemble. */
+   Les colonnes occupent toute la largeur de la page : le bloc n'est plus
+   décalé par le trait jaune, il est posé au milieu, dans l'axe du titre. */
 .trois-plans {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--espace-m);
-  max-width: 780px;
   margin-bottom: var(--espace-l);
   text-align: center;
 }
@@ -177,6 +175,16 @@
 .trois-plans__texte {
   margin: 0;
   font-weight: var(--gras);
+}
+
+/* Le paragraphe qui suit reste bridé à 62 caractères par ligne — au-delà,
+   l'œil perd le début de la ligne suivante. Mais il n'est plus collé à la
+   marge de gauche : c'est le bloc entier qui est posé au milieu de la page,
+   sous les trois colonnes. Le texte, lui, reste aligné à gauche : un
+   paragraphe de plusieurs lignes centré n'a plus de bord commun où l'œil
+   revient, et devient pénible à lire. */
+.comment-marche .bloc-texte {
+  margin-inline: auto;
 }
 
 
