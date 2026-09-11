@@ -1,3 +1,20 @@
+RewriteEngine On
+
+# Ne s'applique qu'aux visiteurs arrivant via ventyoga.fr (http, https, www ou non)
+RewriteCond %{HTTP_HOST} ^(www\.)?ventyoga\.fr$ [NC]
+
+# Correspondances page par page
+RewriteRule ^about/?$                          https://trazicvalerie.fr/a-propos.html [R=301,L]
+RewriteRule ^yogatherapie/?$                   https://trazicvalerie.fr/yogatherapie.html [R=301,L]
+RewriteRule ^yoga-adapt(é|%C3%A9)-sant(é|%C3%A9)/?$ https://trazicvalerie.fr/yoga-adapte-sante.html [R=301,L,NE]
+RewriteRule ^copie-de-cours-enfants/?$         https://trazicvalerie.fr/cours-adultes.html [R=301,L]
+RewriteRule ^copie-de-cours-adultes/?$         https://trazicvalerie.fr/cours-enfants.html [R=301,L]
+RewriteRule ^copie-de-cours-enfants-1/?$       https://trazicvalerie.fr/cours-parents-enfants.html [R=301,L]
+
+# Tout le reste (accueil, pages techniques Wix) -> accueil
+RewriteCond %{HTTP_HOST} ^(www\.)?ventyoga\.fr$ [NC]
+RewriteRule ^.*$                               https://trazicvalerie.fr/ [R=301,L]
+
 # ---------------------------------------------------------------------------
 # Une seule adresse pour le site.
 #
