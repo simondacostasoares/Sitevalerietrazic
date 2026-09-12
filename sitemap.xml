@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Liste des pages à indexer par les moteurs de recherche.
+     Toute nouvelle page publique doit être ajoutée ici.
+     L'accueil est déclaré sous la forme courte « / », pas « index.html ».
+     Les mentions légales en sont volontairement absentes : elles sont en
+     « noindex ». -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://trazicvalerie.fr/</loc>
+  </url>
+  <url>
+    <loc>https://trazicvalerie.fr/yogatherapie.html</loc>
+  </url>
+  <url>
+    <loc>https://trazicvalerie.fr/cours-adultes.html</loc>
+  </url>
+  <url>
+    <loc>https://trazicvalerie.fr/cours-enfants.html</loc>
+  </url>
+  <url>
+    <loc>https://trazicvalerie.fr/cours-parents-enfants.html</loc>
+  </url>
+  <url>
+    <loc>https://trazicvalerie.fr/yoga-adapte-sante.html</loc>
+  </url>
+  <url>
+    <loc>https://trazicvalerie.fr/a-propos.html</loc>
+  </url>
+</urlset>

@@ -1,0 +1,8 @@
+# Règles pour les robots des moteurs de recherche.
+# Tout est autorisé, y compris les mentions légales : elles portent déjà
+# un « noindex », que Google ne verrait plus si on les bloquait ici.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://trazicvalerie.fr/sitemap.xml
